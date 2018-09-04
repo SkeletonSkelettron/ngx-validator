@@ -25,7 +25,6 @@
     "class-validator": "^0.9.1",
     "core-js": "^2.5.4",
     "iban": "0.0.11",
-    "luhn": "^2.3.0",
     "ngx-validation": "0.0.4-test",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
