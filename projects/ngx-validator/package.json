@@ -19,6 +19,9 @@
     "type": "git",
     "url": "git+https://github.com/ReactiveCore-com/ngx-validation.git"
   },
+  "dependencies": {
+    "@ngx-translate/core": "^10.0.2"
+  },
   "scripts": {
     "lint": "ng lint",
     "ng": "ng",
