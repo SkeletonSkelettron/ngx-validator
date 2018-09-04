@@ -8,7 +8,7 @@
     "reflect-metadata": "^0.1.12",
     "@ngx-translate/core": "^10.0.2"
   },
-  "homepage": "https://github.com/SkeletonSkelettron/ngx-validator#readme",
+  "homepage": "https://github.com/SkeletonSkelettron",
   "keywords": [
     "angular2",
     "validation",
