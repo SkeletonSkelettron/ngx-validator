@@ -1,0 +1,34 @@
+<div >
+  <h1>Hero Form</h1>
+
+  <form (ngSubmit)="onSubmit(pwr)" #heroForm="ngForm" autocomplete="off">
+    <div class="form-group">
+      <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
+      <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
+      <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
+      
+      <ngx-label-for [model]="model" [field]="'creditCard'"></ngx-label-for>
+      <input type="text" class="form-control" id="creditCard" [(ngModel)]="model.creditCard" name="creditCard" #creditCard="ngModel" [ngx-validator]="model"/>
+      <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for>
+    </div>
+
+    <div class="form-group">
+      <label for="alterEgo">Alter Ego</label>
+      <input type="text" class="form-control" id="alterEgo" required [(ngModel)]="model.alterEgo" name="alterEgo"  #alterEgo="ngModel" >
+      <div [hidden]="alterEgo.valid || alterEgo.pristine" class="alert alert-danger">
+        Valid email is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="power">Hero Power</label>
+      <select class="form-control" id="power" [(ngModel)]="model.power" name="power" #pwr="ngModel" [ngx-validator]="model">
+        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+      </select>
+      <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+  </form>
+
+</div>

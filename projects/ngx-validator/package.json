@@ -1,0 +1,28 @@
+{
+  "license": "MIT",
+  "name": "ngx-validator",
+  "version": "0.0.6",
+  "peerDependencies": {
+    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "reflect-metadata": "^0.1.12",
+    "@ngx-translate/core": "^10.0.2"
+  },
+  "homepage": "https://github.com/ReactiveCore-com/ngx-validation#readme",
+  "keywords": [
+    "angular2",
+    "validation",
+    "reflection",
+    "property decorators"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReactiveCore-com/ngx-validation.git"
+  },
+  "scripts": {
+    "lint": "ng lint",
+    "ng": "ng",
+    "start": "ng serve",
+    "test": " ng test -cc --watch=false"
+  }
+}
