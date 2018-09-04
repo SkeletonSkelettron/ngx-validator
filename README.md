@@ -1,27 +1,177 @@
-# ReflectApp
+# ngx-validator for angular template driven forms
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is something like data annotations in c#. This library depends on @ngx-translate/core for translations support
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator-for>` and a directive `ngx-validator`.
 
-## Code scaffolding
+## ngx-validator
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ `ngx-validator` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class. the property name of the class, for which it should evaluate input data, is taken from input's attribute `name`'s value, so it's value should always be the name of property of a class.
 
-## Build
+## ngx-label-for
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`<ngx-label-for>` component is used to display class property name, it has two input parameters `model` and `field`, where `model` is a instance of a class, and `field` is a property of the class, for which this component should retrieve name(if it has @Name decorator defined on that property, otherwise, it will display 'heroName' in this case).
 
-## Running unit tests
+## ngx-validator-for
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`<ngx-validator-for>` component is helper component and it simply displays formControl errors. it has input property `[errors]`, which should be binded to formControl's 'errors'  property.
 
-## Running end-to-end tests
+## List of decorators
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+1. DataType(param: ParamInputModel)
+2. CreditCard(param: ParamInputModel)
+3. Contains(param: ParamInputModel)
+4. Compare(param: ParamInputModel)
+5. Name(param:  string)
+6. Required(param:  string)
+7. Pattern(param: ParamInputModel)
+8. MinValue(param: ParamInputModel)
+9. MaxValue(param: ParamInputModel)
+10. NotContains(param: ParamInputModel)
+11. StringLength(param: RangeInputModel)
+12. Email(param: string)
+13. Range(param: RangeInputModel)
 
-## Further help
+Usage:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```html
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+  <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
+  <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
+  <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
+...
+...
+  <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+</form>
+```
+
+The variable `model` here is the instance of a class, where we have our decorators defined. the class instance should always be created by `new` keyword, otherwise library will not work.
+
+Example of a class and usage:
+
+```javascript
+@Component({
+  selector: 'app-root',
+  template: `
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
+            <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
+            <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+        </form>`,
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  model =  new Hero();
+
+  onSubmit() {
+    console.log('form submitted');
+  }
+
+}
+
+//Class
+export class Hero {
+
+  @Name('Hero Id')
+  id?: number;
+
+  @Name('Hero Name')
+  @Required('Name is required')
+  @StringLength({ min: 5, max: 15, error: 'Name should be minimum {0} and maximum {1} symbols length'})
+  heroName?: string;
+
+  @Name('Hero NickName')
+  @Compare({ field: 'heroName', error: 'nickName does not match heroName' })
+  nickName?: string;
+
+  @Name('Hero\'s  email')
+  @Required('Email is required')
+  @Email('Value should be an email')
+  email: string;
+
+  @Name('Hero\'s  credit card')
+  @CreditCard({ error: 'Value should be a valid credit card number' })
+  creditCard: string;
+
+  @Pattern({ value: /^[0-9]{6}$/, error: 'Value should be a valid phone number' })
+  mobile: string;
+
+  @MinValue({ value: 21, error: 'Value should be more than {0}' })
+  @DataType({value: DataTypeEnum.Number, error: 'Value should be typeof integer'})
+  age: number;
+
+}
+
+//AppModule
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { HtmlHelperDirective } from './htmlHelper.directive';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgxValidatorModule } from 'ngx-validator';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    NgxValidatorModule,
+    TranslateModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+```
+
+input parameter can be any of these:
+
+``` javascript
+string;
+ParamInputModel;
+RangeInputModel;
+
+```
+
+``` javascript
+export interface ParamInputModel {
+    value?: any;
+    field?: string;
+    error: string;
+    customValue?: any;
+}
+
+export interface RangeInputModel {
+    min?: number | Date;
+    max?: number | Date;
+    error: string;
+}
+
+export enum DataTypeEnum {
+    Int,
+    Number,
+    Hexadecimal,
+    Date,
+    Array
+}
+
+```
+
+@Name decorator does not validate anything, it is used by `<ngx-label-for>` component to display a property name where you need.
+
+## Translation support
+
+This library supports translation via @ngx-translate. If you pass resource key strings to property decorators (like @Name('resources.login.name')), then it will display translated value, in case of usual text, it displays them intact. Translate service initialization should be done in your application, then this library will automatically use it.
+
+## To Do
+
+Support for angular reactive forms
