@@ -18,11 +18,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SkeletonSkelettron/ngx-validator.git"
-  },
-  "scripts": {
-    "lint": "ng lint",
-    "ng": "ng",
-    "start": "ng serve",
-    "test": " ng test -cc --watch=false"
   }
 }
