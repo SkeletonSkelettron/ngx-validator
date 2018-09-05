@@ -22,7 +22,8 @@ import { NgxInputForComponent } from './ngx-input-for/ngx-input-for.component';
   exports: [
     NgxValidatorDirective,
     NgxLabelForComponent,
-    NgxValidatorForComponent
+    NgxValidatorForComponent,
+    NgxInputForComponent
   ]
 })
 export class NgxValidatorModule { }

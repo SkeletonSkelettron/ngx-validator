@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ValueAccessorBase } from '../../core/value-accessor';
+import { NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'lib-ngx-input-for',
+  selector: 'ngx-input-for',
   templateUrl: './ngx-input-for.component.html',
-  styleUrls: ['./ngx-input-for.component.css']
+  styleUrls: ['./ngx-input-for.component.css'],
+    providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: NgxInputForComponent,
+    multi: true,
+  }],
 })
-export class NgxInputForComponent implements OnInit {
+export class NgxInputForComponent extends ValueAccessorBase<string> implements OnInit  {
 
-  constructor() { }
+  @Input()
+  dataModel: any;
+
+  @Input()
+  field: string;
+
+  @ViewChild(NgModel) 
+  model: NgModel;
+
+  placeHolder: string;
+
+  constructor() {
+    super();
+   }
 
   ngOnInit() {
+    console.log(this.model)
+    console.log(this.model.errors);
+    console.log(this.field)
   }
 
 }
