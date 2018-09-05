@@ -1,4 +1,4 @@
-import { Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, ValueRange, Compare } from 'projects/ngx-validator/src/public_api';
+import { Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, ValueRange, Compare } from 'ngx-validator';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { range } from 'rxjs';
 
