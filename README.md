@@ -1,13 +1,12 @@
 # ngx-validator for angular template driven forms
 
-It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is something like data annotations in c#. This library depends on @ngx-translate/core for translations support
-
+It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.
 
 This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator-for>` and a directive `ngx-validator`.
 
 ## ngx-validator
 
- `ngx-validator` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class. the property name of the class, for which it should evaluate input data, is taken from input's attribute `name`'s value, so it's value should always be the name of property of a class.
+ `ngx-validator` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class. The property name of the class, for which it should evaluate input data, is taken from input's attribute `name`'s value, so it's value should always be the name of property of a class.
 
 ## ngx-label-for
 
@@ -15,7 +14,7 @@ This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator
 
 ## ngx-validator-for
 
-`<ngx-validator-for>` component is helper component and it simply displays formControl errors. it has input property `[errors]`, which should be binded to formControl's 'errors'  property.
+`<ngx-validator-for>` component is helper component and it simply displays formControl errors. It has input property `[errors]`, which should be binded to formControl's 'errors'  property.
 
 ## List of decorators
 
@@ -46,7 +45,7 @@ Usage:
 </form>
 ```
 
-The variable `model` here is the instance of a class, where we have our decorators defined. the class instance should always be created by `new` keyword, otherwise library will not work.
+The variable `model` here is the instance of a class, where we have our decorators defined. The class instance should always be created by `new` keyword, otherwise library will not work.
 
 Example of a class and usage:
 
@@ -74,19 +73,22 @@ export class AppComponent {
 }
 
 //Class
+
+import { Name, Required, Pattern, StringLength, Email, Compare, CreditCard, MinValue, DataType, ValueRange } from 'ngx-validator';
+
 export class Hero {
 
   @Name('Hero Id')
-  id?: number;
+  id: number;
 
   @Name('Hero Name')
   @Required('Name is required')
   @StringLength({ min: 5, max: 15, error: 'Name should be minimum {0} and maximum {1} symbols length'})
-  heroName?: string;
+  heroName: string;
 
   @Name('Hero NickName')
   @Compare({ field: 'heroName', error: 'nickName does not match heroName' })
-  nickName?: string;
+  nickName: string;
 
   @Name('Hero\'s  email')
   @Required('Email is required')
@@ -95,14 +97,14 @@ export class Hero {
 
   @Name('Hero\'s  credit card')
   @CreditCard({ error: 'Value should be a valid credit card number' })
-  creditCard: string;
+  creditCard?: string;
 
   @Pattern({ value: /^[0-9]{6}$/, error: 'Value should be a valid phone number' })
-  mobile: string;
+  mobile?: string;
 
   @MinValue({ value: 21, error: 'Value should be more than {0}' })
   @DataType({value: DataTypeEnum.Number, error: 'Value should be typeof integer'})
-  age: number;
+  age?: number;
 
 }
 
@@ -174,4 +176,5 @@ This library supports translation via @ngx-translate. If you pass resource key s
 
 ## To Do
 
+Add `<ngx-input-for>` component (soon) <br />
 Support for angular reactive forms
