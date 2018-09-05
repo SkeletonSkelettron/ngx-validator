@@ -73,19 +73,22 @@ export class AppComponent {
 }
 
 //Class
+
+import { Name, Required, Pattern, StringLength, Email, Compare, CreditCard, MinValue, DataType, ValueRange } from 'ngx-validator';
+
 export class Hero {
 
   @Name('Hero Id')
-  id?: number;
+  id: number;
 
   @Name('Hero Name')
   @Required('Name is required')
   @StringLength({ min: 5, max: 15, error: 'Name should be minimum {0} and maximum {1} symbols length'})
-  heroName?: string;
+  heroName: string;
 
   @Name('Hero NickName')
   @Compare({ field: 'heroName', error: 'nickName does not match heroName' })
-  nickName?: string;
+  nickName: string;
 
   @Name('Hero\'s  email')
   @Required('Email is required')
@@ -94,14 +97,14 @@ export class Hero {
 
   @Name('Hero\'s  credit card')
   @CreditCard({ error: 'Value should be a valid credit card number' })
-  creditCard: string;
+  creditCard?: string;
 
   @Pattern({ value: /^[0-9]{6}$/, error: 'Value should be a valid phone number' })
-  mobile: string;
+  mobile?: string;
 
   @MinValue({ value: 21, error: 'Value should be more than {0}' })
   @DataType({value: DataTypeEnum.Number, error: 'Value should be typeof integer'})
-  age: number;
+  age?: number;
 
 }
 
