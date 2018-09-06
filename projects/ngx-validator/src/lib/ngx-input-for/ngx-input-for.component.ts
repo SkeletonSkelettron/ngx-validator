@@ -30,7 +30,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   field: string;
 
   @ViewChild(NgModel)
-  mosdel: NgModel;
+  ngModel: NgModel;
 
   placeHolder = '';
 
