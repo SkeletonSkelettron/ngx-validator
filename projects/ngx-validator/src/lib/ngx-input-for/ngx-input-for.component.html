@@ -1,8 +1,13 @@
-<input type="text" 
-[placeholder]="placeHolder" 
-[(ngModel)]="value" 
-[id]="field"
-[name]="field"
-class="form-control" 
-[ngx-validator]="dataModel"
-/>
+<ng-container [ngSwitch]="dataType">
+    <a [href]="value" *ngSwitchCase="DataTypeEnum.Url" [ngClass]="cssClass">sfdsdfsdfsdf</a>
+
+    <input type="text" *ngSwitchCase="DataTypeEnum.Password" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"/>
+
+    <img *ngSwitchCase="DataTypeEnum.ImageUrl" [src]="value" [id]="field" />
+
+    <input type="file" *ngSwitchCase="DataTypeEnum.Upload" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"/>
+
+    <textarea *ngSwitchCase="DataTypeEnum.MultilineText" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"></textarea>
+
+    <input *ngSwitchDefault type="text" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass" />
+</ng-container>

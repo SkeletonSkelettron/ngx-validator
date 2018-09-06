@@ -22,7 +22,7 @@ export class NgxValidatorDirective implements Validator {
 
   validate(control: AbstractControl): { [validator: string]: string } {
 
-    const attribs = getDecorators(this.dataModel, this.el.nativeElement.getAttribute('id'));
+    const attribs = getDecorators(this.dataModel, this.el.nativeElement.getAttribute('name'));
     const errs: { [validator: string]: string } = {};
 
     // const t = await validate(this.skValidator);

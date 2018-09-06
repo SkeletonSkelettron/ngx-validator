@@ -1,4 +1,4 @@
-import { Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, ValueRange, Compare  } from 'projects/ngx-validator/src/public_api';
+import { Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, ValueRange, Compare, Placeholder  } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 
 export class Hero {
@@ -8,7 +8,9 @@ export class Hero {
 
   @Name('Hero Name')
   @Required('ველი აუცილებელია')
-  @ValueRange({ min: 5, max: 10, error: 'ველი უნდა იყოს მინიმუმ {0} და მაქსიმუმ {1} სიმბოლოს სიგრძის' })
+  @Placeholder('პლეიზჰოლდერო')
+  //@ValueRange({ min: 5, max: 10, error: 'ველი უნდა იყოს მინიმუმ {0} და მაქსიმუმ {1} სიმბოლოს სიგრძის' })
+  @DataType({value: DataTypeEnum.MultilineText, error:''})
   heroName?: string;
 
   @Name('Hero\'s  email')
