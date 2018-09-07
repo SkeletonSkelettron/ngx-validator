@@ -9,8 +9,8 @@ export class Hero {
   @Name('Hero Name')
   @Required('ველი აუცილებელია')
   @Placeholder('პლეიზჰოლდერო')
-  //@ValueRange({ min: 5, max: 10, error: 'ველი უნდა იყოს მინიმუმ {0} და მაქსიმუმ {1} სიმბოლოს სიგრძის' })
-  @DataType({value: DataTypeEnum.MultilineText, error:''})
+  // @ValueRange({ min: 5, max: 10, error: 'ველი უნდა იყოს მინიმუმ {0} და მაქსიმუმ {1} სიმბოლოს სიგრძის' })
+  @DataType({value: DataTypeEnum.MultilineText, error: ''})
   heroName?: string;
 
   @Name('Hero\'s  email')
