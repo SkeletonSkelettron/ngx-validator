@@ -1,5 +1,5 @@
 <ng-container [ngSwitch]="dataType">
-    <a [href]="value" *ngSwitchCase="DataTypeEnum.Url" [ngClass]="cssClass">sfdsdfsdfsdf</a>
+    <a [href]="value" *ngSwitchCase="DataTypeEnum.Url" [ngClass]="cssClass">Url</a>
 
     <input type="password" *ngSwitchCase="DataTypeEnum.Password" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"/>
 
