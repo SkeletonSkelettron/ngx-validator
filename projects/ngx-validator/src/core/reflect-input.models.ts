@@ -14,12 +14,18 @@ export interface RangeInputModel {
 export enum DataTypeEnum {
     Int,
     Number,
+    MultilineText,
+    Url,
+    ImageUrl,
+    Password,
     Hexadecimal,
     Date,
-    Array
+    Array,
+    Upload
 }
 
 export interface DecoratorReturnModel {
     key: string;
-    value: string;
+    value: any;
 }
+
