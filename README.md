@@ -6,7 +6,23 @@ This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator
 
 ## ngx-validator
 
- `ngx-validator` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class. The property name of the class, for which it should evaluate input data, is taken from input's attribute `name`'s value, so it's value should always be the name of property of a class.
+`[ngx-validator]="dataModel"` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class(dataModel variable above). The property name of the class, for which it should evaluate input data, is taken from input's attribute name's value, so it's value should always be the name of property of a class.
+
+## ngx-input-for
+
+ngx-input-for generates control component from @Datatype() decorator data (just like C# razor helpers) and perfoms input validations if necessary.
+Generated form contols are folowing:
+DataTypeEnum:
+
+* DataTypeEnum.MultilineText - `<textarea>`
+* DataTypeEnum.Url - `<a>`
+* DataTypeEnum.ImageUrl - `<img>`
+* DataTypeEnum.Password - `<input type="password" />`
+* DataTypeEnum.Upload - `<input type="file" />`
+* In all other cases we will have `<input type="text" />`
+
+This component has following input parameters: model(instance of a class), cssClass - to use custom class for generated control (default is "form-control"). Component also must have defined name attribute, which should have name of the property of a class, for which we want to generate control. When we add property @Datatype({{value: DataTypeEnum.MultilineText, error: '' }}), the component ignores `error` parameter(also it does not validate input) in decorator function when value has any value listed above(DataTypeEnum.MultilineText, DataTypeEnum.Url... ), so you should pass empty string. In any other cases error parameter should be passed as non empty string where needed, otherwise validation will not work. For example @Datatype({{value: DataTypeEnum.Int, error: '' }}) will not generate error.
+.(See example below)
 
 ## ngx-label-for
 
@@ -41,6 +57,11 @@ Usage:
   <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
 ...
 ...
+  <ngx-label-for [model]="model" [field]="'heroDescription'"></ngx-label-for>
+  <ngx-input-for [model]="model" name="heroDescription" [(ngModel)]="model.heroDescription" #heroDescription="ngModel"></ngx-input-for>
+  <ngx-validator-for [errors]="heroDescription.errors"></ngx-validator-for>
+...
+...
   <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
 </form>
 ```
@@ -57,8 +78,14 @@ Example of a class and usage:
             <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
             <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
             <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
-
-            <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+...
+...
+            <ngx-label-for [model]="model" [field]="'heroDescription'"></ngx-label-for>
+            <ngx-input-for [model]="model" name="heroDescription" [(ngModel)]="model.heroDescription" #heroDescription="ngModel"></ngx-input-for>
+            <ngx-validator-for [errors]="heroDescription.errors"></ngx-validator-for>
+...
+...
+          <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
         </form>`,
   styleUrls: ['./app.component.css']
 })
@@ -74,11 +101,13 @@ export class AppComponent {
 
 //Class
 
-import { Name, Required, Pattern, StringLength, Email, Compare, CreditCard, MinValue, DataType, ValueRange } from 'ngx-validator';
+import { Name, Required, Pattern, StringLength, Email, Compare,
+        CreditCard, MinValue, DataType, ValueRange } from 'ngx-validator';
 
 export class Hero {
 
   @Name('Hero Id')
+  @Datatype({value: DataTypeEnum.Int, error: 'value should be the number' })
   id: number;
 
   @Name('Hero Name')
@@ -89,6 +118,9 @@ export class Hero {
   @Name('Hero NickName')
   @Compare({ field: 'heroName', error: 'nickName does not match heroName' })
   nickName: string;
+
+  @Datatype({value: DataTypeEnum.MultilineText, error: '' })
+  heroDescription: string;
 
   @Name('Hero\'s  email')
   @Required('Email is required')
@@ -172,9 +204,10 @@ export enum DataTypeEnum {
 
 ## Translation support
 
-This library supports translation via @ngx-translate. If you pass resource key strings to property decorators (like @Name('resources.login.name')), then it will display translated value, in case of usual text, it displays them intact. Translate service initialization should be done in your application, then this library will automatically use it.
+This library supports translation via @ngx-translate. If you pass resource key strings to property decorators (like @Name('resources.login.name')), then it will display translated value. In case of usual text, it displays them intact. Translate service initialization should be done in your application, then this library will automatically use it. Installation of @ngx-translate/core is quite straightforward. (npm i @ngx-tranlate/core, and then include TranslateModule in your module imports. For further details please refer to their page).
 
 ## To Do
 
-Add `<ngx-input-for>` component (soon) <br />
-Support for angular reactive forms
+Support for angular reactive forms (Do we really need it?)
+Add custom validation logic(soon)
+Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)

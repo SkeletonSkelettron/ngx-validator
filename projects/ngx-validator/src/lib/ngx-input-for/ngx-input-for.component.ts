@@ -5,6 +5,7 @@ import { getDecorators, ngxValidate } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'ngx-input-for',
   templateUrl: './ngx-input-for.component.html',
   styleUrls: ['./ngx-input-for.component.css'],
@@ -21,7 +22,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   @Input()
   model: any;
 
-  @Input('ngx-class')
+  @Input()
   cssClass = 'form-control';
 
   DataTypeEnum = DataTypeEnum;
@@ -33,6 +34,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   ngModel: NgModel;
 
   placeHolder = '';
+  name = '';
 
   constructor(private el: ElementRef,
               private renderer: Renderer2) {
@@ -42,9 +44,6 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   }
 
   ngOnInit() {
-    // console.log(this.model)
-    // console.log(this.model.errors);
-    // console.log(this.field)
     const attribs = getDecorators(this.model, this.el.nativeElement.getAttribute('name'));
     if (attribs.find(x => x.key === 'DataType')) {
       this.dataType = (attribs.find(x => x.key === 'DataType').value as ParamInputModel).value;
@@ -52,6 +51,10 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
 
     if (attribs.find(x => x.key === 'Placeholder')) {
       this.placeHolder = attribs.find(x => x.key === 'Placeholder').value;
+    }
+
+    if (attribs.find(x => x.key === 'Name')) {
+      this.placeHolder = attribs.find(x => x.key === 'Name').value;
     }
 
     this.renderer.setAttribute(this.el.nativeElement.children[0], 'type', 'password');
