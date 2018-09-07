@@ -22,7 +22,7 @@ DataTypeEnum:
 * In all other cases we will have `<input type="text" />`
 
 This component has following input parameters: model(instance of a class), cssClass - to use custom class for generated control (default is "form-control"). Component also must have defined name attribute, which should have name of the property of a class, for which we want to generate control. When we add property @Datatype({{value: DataTypeEnum.MultilineText, error: '' }}), the component ignores `error` parameter(also it does not validate input) in decorator function when value has any value listed above(DataTypeEnum.MultilineText, DataTypeEnum.Url... ), so you should pass empty string. In any other cases error parameter should be passed as non empty string where needed, otherwise validation will not work. For example @Datatype({{value: DataTypeEnum.Int, error: '' }}) will not generate error.
-.(see example below)
+.(See example below)
 
 ## ngx-label-for
 
@@ -204,9 +204,10 @@ export enum DataTypeEnum {
 
 ## Translation support
 
-This library supports translation via @ngx-translate. If you pass resource key strings to property decorators (like @Name('resources.login.name')), then it will display translated value, in case of usual text, it displays them intact. Translate service initialization should be done in your application, then this library will automatically use it.
+This library supports translation via @ngx-translate. If you pass resource key strings to property decorators (like @Name('resources.login.name')), then it will display translated value. In case of usual text, it displays them intact. Translate service initialization should be done in your application, then this library will automatically use it. Installation of @ngx-translate/core is quite straightforward. (npm i @ngx-tranlate/core, and then include TranslateModule in your module imports. For further details please refer to their page).
 
 ## To Do
 
-Add `<ngx-input-for>` component (soon) <br />
-Support for angular reactive forms
+Support for angular reactive forms (Do we really need it?)
+Add custom validation logic(soon)
+Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)
