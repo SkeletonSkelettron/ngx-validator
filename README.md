@@ -1,8 +1,7 @@
 # ngx-validator for angular template driven forms
 
-It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.
-
-This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator-for>` and a directive `ngx-validator`.
+It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.  
+This  library contains 3 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `ngx-input-for` and a directive `ngx-validator`.
 
 ## ngx-validator
 
@@ -10,8 +9,8 @@ This  library contains 2 angular components - `<ngx-label-for>`, `<ngx-validator
 
 ## ngx-input-for
 
-ngx-input-for generates control component from @Datatype() decorator data (just like C# razor helpers) and perfoms input validations if necessary.
-Generated form contols are folowing:
+ngx-input-for generates control component from @Datatype() decorator data (just like C# razor helpers) and perfoms input validations if necessary.  
+Generated form contols are folowing:  
 DataTypeEnum:
 
 * DataTypeEnum.MultilineText - `<textarea>`
@@ -66,8 +65,7 @@ Usage:
 </form>
 ```
 
-The variable `model` here is the instance of a class, where we have our decorators defined. The class instance should always be created by `new` keyword, otherwise library will not work.
-
+The variable `model` here is the instance of a class, where we have our decorators defined. The class instance should always be created by `new` keyword, otherwise library will not work.  
 Example of a class and usage:
 
 ```javascript
@@ -208,6 +206,6 @@ This library supports translation via @ngx-translate. If you pass resource key s
 
 ## To Do
 
-Support for angular reactive forms (Do we really need it?)
-Add custom validation logic(soon)
-Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)
+Support for angular reactive forms (Do we really need it?)  
+Add custom validation logic(soon)  
+Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)  
