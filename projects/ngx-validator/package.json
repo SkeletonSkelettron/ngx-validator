@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "name": "ngx-validator",
-  "version": "0.10.1",
+  "version": "0.10.6",
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
@@ -10,10 +10,12 @@
   },
   "homepage": "https://github.com/SkeletonSkelettron",
   "keywords": [
-    "angular2",
+    "angular",
     "validation",
     "reflection",
-    "property decorators"
+    "property decorators",
+    "dataanotations",
+    "html helpers"
   ],
   "repository": {
     "type": "git",
