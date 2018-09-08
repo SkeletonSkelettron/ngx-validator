@@ -36,11 +36,8 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   placeHolder = '';
   name = '';
 
-  constructor(private el: ElementRef,
-              private renderer: Renderer2) {
+  constructor(private el: ElementRef) {
     super();
-
-    this.renderer.setAttribute(this.el.nativeElement, 'name', 'heroName');
   }
 
   ngOnInit() {
@@ -54,7 +51,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
     }
 
     if (attribs.find(x => x.key === 'Name')) {
-      this.placeHolder = attribs.find(x => x.key === 'Name').value;
+      this.name = attribs.find(x => x.key === 'Name').value;
     }
     this.field = this.el.nativeElement.getAttribute('name');
   }
