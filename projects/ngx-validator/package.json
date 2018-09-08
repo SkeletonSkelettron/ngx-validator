@@ -13,7 +13,9 @@
     "angular",
     "validation",
     "reflection",
-    "property decorators"
+    "property decorators",
+    "dataanotations",
+    "html helpers"
   ],
   "repository": {
     "type": "git",
