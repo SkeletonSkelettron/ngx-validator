@@ -56,8 +56,6 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
     if (attribs.find(x => x.key === 'Name')) {
       this.placeHolder = attribs.find(x => x.key === 'Name').value;
     }
-
-    this.renderer.setAttribute(this.el.nativeElement.children[0], 'type', 'password');
     this.field = this.el.nativeElement.getAttribute('name');
   }
 
