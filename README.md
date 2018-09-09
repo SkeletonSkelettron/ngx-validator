@@ -208,7 +208,7 @@ export enum DataTypeEnum {
 
 ```
 
-@Name decorator does not validate anything, it is used by `<ngx-label-for>` component to display a property name where you need. <br /> <br />
+@Name decorator does not validate anything, it is used by `<ngx-label-for>` component to display a property name where you need.  
 
 @Custom decorator should receive a function in customFunc parameter which returns boolean. If evaluation result is false, then validation will return error. The function has one required parameter, the value of a class property and optional - datamodel property, which is the instance of a class, where the decorator is used. During evaluation this customFunc will receive value of the property and class instance as parameters and will perform validation.
 
@@ -219,5 +219,4 @@ This library supports translation via @ngx-translate. If you pass resource key s
 ## To Do
 
 Support for angular reactive forms (Do we really need it?)  
-Add custom validation logic(soon)  
 Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)  
