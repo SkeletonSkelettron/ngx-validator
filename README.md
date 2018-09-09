@@ -136,8 +136,7 @@ export class Hero {
   @MinValue({ value: 21, error: 'Value should be more than {0}' })
   @DataType({value: DataTypeEnum.Number, error: 'Value should be typeof integer'})
   @Custom({
-    value: 17,
-    error: 'age should be divisible by 3 and hero should have mobile number', 
+    error: 'age should be divisible by 3 and hero should have mobile number',
     customFunc: (propertyValue: number, hr: Hero) => {
       return propertyValue % 3 === 0 && hr.mobile != '';
     }
