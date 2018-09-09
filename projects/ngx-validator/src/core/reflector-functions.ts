@@ -26,6 +26,12 @@ export function Contains(param: ParamInputModel) {
     };
 }
 
+export function Custom(param: ParamInputModel) {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
+    };
+}
+
 // export function IBAN(param: ParamInputModel) {
 //     return function (target: Object, propertyKey: string) {
 //         Reflect.defineMetadata('custom-reflect:IBAN', param, target, propertyKey);
@@ -119,7 +125,15 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
     if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'Compare') {
         return null;
     }
-
+    let errorString = '';
+    if (typeof param === 'string') {
+        errorString = param;
+    } else {
+        errorString = param.error;
+    }
+    if (!errorString) {
+        errorString = 'error not asigned!';
+    }
     switch (key) {
         // case 'IBAN': {
         //     if (!isValid(value)) {
@@ -145,12 +159,11 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             const Solo = /^(6334|6767)[0-9]{12}|(6334|6767)[0-9]{14}|(6334|6767)[0-9]{15}$/;
             const Switch = /^(4903|4905|4911|4936|6333|6759)[0-9]{12}|(4903|4905|4911|4936|6333|6759)[0-9]{14}|(4903|4905|4911|4936|6333|6759)[0-9]{15}|564182[0-9]{10}|564182[0-9]{12}|564182[0-9]{13}|633110[0-9]{10}|633110[0-9]{12}|633110[0-9]{13}$/;
             const UnionPay = /^(62[0-9]{14,17})$/;
-            const VisaMasterCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$/;
 
             if (!checkLuhn(value) ||
                 !(Visa.test(value) || MasterCard.test(value) || Amex.test(value) || DinersClub.test(value) || Discover.test(value) || JCB.test(value)
                     || BCGlobal.test(value) || CarteBlanche.test(value) || InstaPayment.test(value) || KoreanLocalCard.test(value) || Laser.test(value)
-                    || Maestro.test(value) || Solo.test(value) || Switch.test(value) || UnionPay.test(value) || VisaMasterCard.test(value) ||
+                    || Maestro.test(value) || Solo.test(value) || Switch.test(value) || UnionPay.test(value) ||
                     ((param as ParamInputModel).customValue && (param as ParamInputModel).customValue.test(value)))) {
                 retstr = (param as ParamInputModel).error;
             }
@@ -158,13 +171,20 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
         }
         case 'Compare': {
             if (value !== dataModel[(param as ParamInputModel).field]) {
-                retstr = (param as ParamInputModel).error;
+                retstr = errorString;
             }
             break;
         }
         case 'Contains': {
             if (value.indexOf((param as ParamInputModel).value) === -1) {
-                retstr = (param as ParamInputModel).error;
+                retstr = errorString;
+            }
+            break;
+        }
+        case 'Custom': {
+            const result = (param as ParamInputModel).customFunc(value, dataModel);
+            if (!result) {
+                retstr = errorString;
             }
             break;
         }
@@ -172,18 +192,18 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             if ((param as ParamInputModel).value === DataTypeEnum.Number) {
                 const reg = /^[+-]?\d+(\.\d+)?$/;
                 if (isNaN(parseFloat(value)) || !reg.test(value)) {
-                    retstr = (param as ParamInputModel).error;
+                    retstr = errorString;
                 }
             }
             if ((param as ParamInputModel).value === DataTypeEnum.Date) {
                 if (!(value instanceof Date)) {
-                    retstr = (param as ParamInputModel).error;
+                    retstr = errorString;
                 }
             }
             if ((param as ParamInputModel).value === DataTypeEnum.Hexadecimal) {
                 const expression = /^([0-9a-fA-F]+)$/i;
                 if (!expression.test(value)) {
-                    retstr = (param as ParamInputModel).error;
+                    retstr = errorString;
                 }
             }
             if ((param as ParamInputModel).value === DataTypeEnum.Int) {
@@ -191,56 +211,56 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
                 if (isNaN(parseFloat(value))
                     || !isNaN(parseFloat(value)) && (parseFloat(value) - parseInt(value, 10) !== 0)
                     || !reg.test(value)) {
-                    retstr = (param as ParamInputModel).error;
+                    retstr = errorString;
                 }
             }
             if ((param as ParamInputModel).value === DataTypeEnum.Array) {
                 if (!Array.isArray(value)) {
-                    retstr = (param as ParamInputModel).error;
+                    retstr = errorString;
                 }
             }
             break;
         }
         case 'NotContains': {
             if (value.indexOf((param as ParamInputModel).value) !== -1) {
-                retstr = (param as ParamInputModel).error;
+                retstr = errorString;
             }
             break;
         }
         case 'Required': {
             if (!value) {
-                retstr = param as string;
+                retstr = errorString;
             }
             break;
         }
         case 'Pattern': {
             const pat = (param as ParamInputModel).value;
             if (!pat.test(value)) {
-                retstr = (param as ParamInputModel).error;
+                retstr = errorString;
             }
             break;
         }
         case 'MinValue': {
             if (value < (param as ParamInputModel).value) {
-                retstr = (param as ParamInputModel).error.replace('{0}', (param as ParamInputModel).value.toString());
+                retstr = errorString.replace('{0}', (param as ParamInputModel).value.toString());
             }
             break;
         }
         case 'MaxValue': {
             if (value > (param as ParamInputModel).value) {
-                retstr = (param as ParamInputModel).error.replace('{0}', (param as ParamInputModel).value.toString());
+                retstr = errorString.replace('{0}', (param as ParamInputModel).value.toString());
             }
             break;
         }
         case 'StringLength': {
             if (!value || value.length < (param as RangeInputModel).min || value.length > (param as RangeInputModel).max) {
-                retstr = (param as RangeInputModel).error.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
+                retstr = errorString.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
             }
             break;
         }
         case 'ValueRange': {
             if (value < (param as RangeInputModel).min || value > (param as RangeInputModel).max) {
-                retstr = (param as RangeInputModel).error.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
+                retstr = errorString.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
             }
             break;
         }
@@ -248,7 +268,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             // credits http://emailregex.com/
             const emreg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (!emreg.test(value)) {
-                retstr = param as string;
+                retstr = errorString;
             }
             break;
         }
