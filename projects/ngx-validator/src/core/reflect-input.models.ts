@@ -3,6 +3,7 @@ export interface ParamInputModel {
     field?: string;
     error: string;
     customValue?: any;
+    customFunc?: (propertyValue: any, dataModel?: any) => boolean;
 }
 
 export interface RangeInputModel {
@@ -28,4 +29,3 @@ export interface DecoratorReturnModel {
     key: string;
     value: any;
 }
-

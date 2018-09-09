@@ -11,6 +11,9 @@
       <ngx-input-for [model]="model" name="heroName" [(ngModel)]="model.heroName" #heroName3="ngModel"></ngx-input-for>
       <ngx-validator-for [errors]="heroName3.errors"></ngx-validator-for>
 
+      <ngx-label-for [model]="model" [field]="'age'"></ngx-label-for>
+      <ngx-input-for [model]="model" name="age" [(ngModel)]="model.age" #age="ngModel"></ngx-input-for>
+      <ngx-validator-for [errors]="age.errors"></ngx-validator-for>
       <!-- <ngx-label-for [model]="model" [field]="'creditCard'"></ngx-label-for>
       <input type="text" class="form-control" id="creditCard" [(ngModel)]="model.creditCard" name="creditCard" #creditCard="ngModel" [ngx-validator]="model"/>
       <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for> -->
