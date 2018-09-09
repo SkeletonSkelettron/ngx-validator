@@ -46,6 +46,7 @@ This component has following input parameters: model(instance of a class), cssCl
 11. StringLength(param: RangeInputModel)
 12. Email(param: string)
 13. Range(param: RangeInputModel)
+14. Custom(param: ParamInputModel)
 
 Usage:
 
@@ -134,6 +135,11 @@ export class Hero {
 
   @MinValue({ value: 21, error: 'Value should be more than {0}' })
   @DataType({value: DataTypeEnum.Number, error: 'Value should be typeof integer'})
+  @Custom({
+    value: 17, error: 'age should be divisible by 3 and hero should have mobile number', customFunc: (propertyValue: number, hr: Hero) => {
+      return propertyValue % 3 === 0 && hr.mobile != '';
+    }
+  })
   age?: number;
 
 }
@@ -179,8 +185,10 @@ export interface ParamInputModel {
     value?: any;
     field?: string;
     error: string;
-    customValue?: any;
+    customValue?: any; // Used in @CreditCard() decorator to pass custom regex for credit card. Will be used with existing regexes. Visa, MasterCard ,Amex,DinersClub,                          Discover,JCB,BCGlobal,CarteBlanche,InstaPayment,KoreanLocalCard,Laser,Maestro,Solo,Switch, UnionPay,VisaMasterCard are supported out of the box
+    customFunc?: (propertyValue: any, dataModel?: any) => boolean; //when function returns false, then validation will return error. Used in @Custom() decorator.
 }
+
 
 export interface RangeInputModel {
     min?: number | Date;
@@ -198,7 +206,9 @@ export enum DataTypeEnum {
 
 ```
 
-@Name decorator does not validate anything, it is used by `<ngx-label-for>` component to display a property name where you need.
+@Name decorator does not validate anything, it is used by `<ngx-label-for>` component to display a property name where you need. <br /> <br />
+
+@Custom decorator should receive a function in customFunc parameter which returns boolean. If evaluation result is false, then validation will return error. The function has one required parameter, the value of a class property and optional - datamodel property, which is the instance of a class, where the decorator is used. During evaluation this customFunc will receive thouse two parameters and will perform validation.
 
 ## Translation support
 
