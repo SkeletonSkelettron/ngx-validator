@@ -36,11 +36,12 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   placeHolder = '';
   name = '';
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private renderer: Renderer2) {
     super();
   }
 
   ngOnInit() {
+    // this.renderer.setAttribute(this.el.nativeElement, 'name', 'heroName');
     const attribs = getDecorators(this.model, this.el.nativeElement.getAttribute('name'));
     if (attribs.find(x => x.key === 'DataType')) {
       this.dataType = (attribs.find(x => x.key === 'DataType').value as ParamInputModel).value;

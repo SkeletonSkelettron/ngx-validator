@@ -34,6 +34,8 @@ export class Hero {
   @Pattern({ value: /^[0-9]{6}$/, error: 'Value should be a valid phone number' })
   mobile: string;
 
+
+  @Name('Hero age')
   @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Custom({

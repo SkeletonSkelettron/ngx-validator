@@ -1,0 +1,9 @@
+<form #form="ngForm" (ngSubmit)="submit(form)">
+  <div class="form-group" *ngFor="let item of propertyNames">
+    <ngx-label-for [model]="_model" [field]="item"></ngx-label-for>
+    <ngx-input-for [id]="item" [model]="_model" [(ngModel)]="_model[item]" [ngModelOptions]="{ name: item }"></ngx-input-for>
+    <!-- <ngx-validator-for [errors]="form.controls[item].errors"></ngx-validator-for> -->
+  </div>
+
+  <button type="submit" [disabled]="!form.valid"  class="btn btn-success" >Submit</button>
+</form>
