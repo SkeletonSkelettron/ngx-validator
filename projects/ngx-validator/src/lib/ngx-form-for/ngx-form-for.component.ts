@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CssInputModel } from '../../public_api';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,6 +19,9 @@ export class NgxFormForComponent implements OnInit {
       this.propertyNames.push(item);
     }
   }
+
+  @Input()
+  cssClasses: CssInputModel;
 
   propertyNames: string[] = [];
 
