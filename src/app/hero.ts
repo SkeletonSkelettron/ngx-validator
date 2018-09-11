@@ -1,9 +1,12 @@
-import { Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, ValueRange, Compare, Placeholder, Custom } from 'projects/ngx-validator/src/public_api';
+import {
+  Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
+  Compare, Placeholder, Custom, FormGenerator
+} from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { Injectable } from '@angular/core';
 
 
-@Injectable()
+@FormGenerator
 export class Hero {
 
   @Name('Hero Id')
@@ -23,7 +26,8 @@ export class Hero {
   email: string;
 
   @Name('Hero\'s  credit card')
-  @Compare({ value: 'heroName', error: 'ველი არ ემთხვევა სახელს' })
+  @Compare({ field: 'heroName', error: 'ველი არ ემთხვევა სახელს' })
+  @Contains({ value: '123', error: 'უნდა შეიცავდეს 123ს' })
   // @CreditCard({ error: 'Value should be a valid credit card number' })
   creditCard: string;
 
@@ -48,5 +52,17 @@ export class Hero {
   @Required('Value is required')
   public power: string;
   public alterEgo?: string;
+
+  constructor() {
+    this.id = 0;
+    this.age = 0;
+    this.alterEgo = '';
+    this.bankAccount = '';
+    this.creditCard = '';
+    this.email = '';
+    this.heroName = '';
+    this.mobile = '';
+    this.power = '';
+  }
 
 }
