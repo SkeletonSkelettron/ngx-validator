@@ -15,6 +15,13 @@ export class AppComponent implements OnInit {
 
   model = new Hero();
 
+  listItems = [
+    { text: 'პირველი', value: 1 },
+    { text: 'მეორე', value: 2 },
+    { text: 'მესამე', value: 3 }
+  ];
+
+  selectedValue: any;
   sName = 'snameeeeeeeeeeeee';
 
   submitted = false;

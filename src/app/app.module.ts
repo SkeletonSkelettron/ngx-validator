@@ -4,6 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxValidatorModule } from 'projects/ngx-validator/src/public_api';
 import { TranslateModule } from '@ngx-translate/core';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -11,9 +20,19 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     NgxValidatorModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot(),
+    DropDownsModule,
+    LayoutModule,
+    GridModule,
+    ExcelModule,
+    DateInputsModule,
+    DropDownsModule,
+    InputsModule,
+    PopupModule,
+    ButtonsModule
   ],
   bootstrap: [AppComponent]
 })

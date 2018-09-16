@@ -23,7 +23,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements V
   model: any;
 
   @Input()
-  cssClass = 'form-control';
+  inputClass = 'form-control';
 
   DataTypeEnum = DataTypeEnum;
   dataType: number;

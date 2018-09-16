@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CssInputModel } from '../../public_api';
 

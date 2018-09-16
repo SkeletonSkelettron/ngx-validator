@@ -41,5 +41,20 @@
 
     <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
   </form>
-<ngx-form-for [model]="model"></ngx-form-for>
+  <kendo-dropdownlist
+        [data]="listItems"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [value]="selectedValue"
+    >
+    <ng-template kendoDropDownListItemTemplate let-data>
+        <span class="template">{{ data.value }}</span> {{ data.text }}
+    </ng-template>
+    </kendo-dropdownlist>
+<ngx-form-for [model]="model">
+    <ng-template ngxCustomTemplateFor  let-dataModel>
+        <h1>{{dataModel}}</h1>
+    </ng-template>
+</ngx-form-for>
+
 </div>
