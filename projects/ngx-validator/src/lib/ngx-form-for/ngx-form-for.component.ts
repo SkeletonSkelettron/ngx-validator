@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CssInputModel } from '../../public_api';
 
@@ -23,11 +23,18 @@ export class NgxFormForComponent implements OnInit {
   @Input()
   cssClasses: CssInputModel;
 
+  @ViewChild('tmp1')
+  template: TemplateRef<any>;
   propertyNames: string[] = [];
 
-  constructor() { }
+  @ContentChild('someVar')
+  someVar: ElementRef;
+
+  constructor(private viewContainer: ViewContainerRef) { }
 
   ngOnInit() {
+    this.template.elementRef.nativeElement = this.someVar.nativeElement;
+    this.viewContainer.createEmbeddedView(this.template, { $implicit: 'data' });
   }
   submit(form: NgForm) {
     console.log(form);

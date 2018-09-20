@@ -6,5 +6,5 @@
   </div>
 
   <button type="submit" [disabled]="!form.valid"  class="btn btn-success" >Submit</button>
-  <ng-content ></ng-content>
+  <ng-template #tmp1 let-data></ng-template>
 </form>
