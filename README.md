@@ -199,6 +199,8 @@ export class Hero {
   })
   age?: number;
   
+  power?: number;
+
   constructor() {
     this.age = 33;
     this.id = 0;
@@ -208,7 +210,7 @@ export class Hero {
     this.email = 'pref.ge1@gmail.com';
     this.heroName = '';
     this.mobile = '';
-    this.power = '';
+    this.power = null;
   }
 }
 
