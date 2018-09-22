@@ -29,3 +29,10 @@ export interface DecoratorReturnModel {
     key: string;
     value: any;
 }
+
+export interface CssInputModel {
+    group: string;
+    label: string;
+    input: string;
+    error: string;
+}

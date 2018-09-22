@@ -15,6 +15,13 @@ export class AppComponent implements OnInit {
 
   model = new Hero();
 
+  listItems = [
+    { text: 'პირველი', value: 1 },
+    { text: 'მეორე', value: 2 },
+    { text: 'მესამე', value: 3 }
+  ];
+
+  selectedValue: any;
   sName = 'snameeeeeeeeeeeee';
 
   submitted = false;
@@ -31,13 +38,15 @@ export class AppComponent implements OnInit {
     this.model = new Hero();
   }
 
-
+  submitValue(value: Hero) {
+    console.log(value);
+  }
   //////// NOT SHOWN IN DOCS ////////
 
   ngOnInit() {
-    this.model.age = 18;
-    this.model.heroName = 'https://sportall.ge/images/new_photo/2018/SEP1-15/02/saqartvelos-nakrebi-34436.jpg';
-    const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
-    console.log(g);
+    // this.model.age = 18;
+    this.model.heroName = 'ზღარიბი';
+    // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
+    // console.log(g);
   }
 }
