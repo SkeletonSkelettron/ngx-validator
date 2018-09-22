@@ -17,7 +17,7 @@ import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
   { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }],
 })
 
-export class NgxInputForComponent extends ValueAccessorBase<string> implements Validator, OnInit {
+export class NgxInputForComponent extends ValueAccessorBase<any> implements Validator, OnInit {
 
   @Input()
   model: any;
@@ -37,7 +37,7 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements V
   placeHolder = '';
   name = '';
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(private el: ElementRef) {
     super();
   }
 

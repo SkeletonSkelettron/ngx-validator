@@ -1,10 +1,19 @@
 <form #form="ngForm" (ngSubmit)="submit(form)">
-  <div class="form-group" *ngFor="let item of propertyNames">
-    <ngx-label-for [model]="_model" [field]="item"></ngx-label-for>
-    <ngx-input-for [id]="item" [model]="_model" [(ngModel)]="_model[item]" [ngModelOptions]="{ name: item }" [field]="item"></ngx-input-for>
-    <ngx-validator-for *ngIf="form.controls[item]" [errors]="form.controls[item].errors"></ngx-validator-for>
-  </div>
 
-  <button type="submit" [disabled]="!form.valid"  class="btn btn-success" >Submit</button>
-  <ng-template #tmp1 let-data></ng-template>
+  <div class="form-group" *ngFor="let item of propertyNames">
+    <ng-container *ngIf="!item.template; else template">
+      <ngx-label-for [model]="_model" [field]="item.field"></ngx-label-for>
+      <ngx-input-for [id]="item.field" [model]="_model" [(ngModel)]="_model[item.field]" [ngModelOptions]="{ name: item.field }"
+        [field]="item.field"></ngx-input-for>
+      <ngx-validator-for *ngIf="form.controls[item.field]" [errors]="form.controls[item.field].errors"></ngx-validator-for>
+    </ng-container>
+    <ng-template #template>
+      <!-- temporary form validation workaround. custom temlpate is not binded to form's controls and therefore, form validation doesn't work. help needed -->
+      <input [name]="item.field" [(ngModel)]="_model[item.field]" [ngx-validator]="_model" style="display:none"/>
+      <ng-container [ngTemplateOutlet]="getTemplate(item.field)" [ngTemplateOutletContext]="{$implicit: _model}">
+      </ng-container>
+    </ng-template>
+  </div>
+  <button type="submit"  class="btn btn-success">Submit</button>
+
 </form>

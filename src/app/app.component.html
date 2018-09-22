@@ -1,13 +1,13 @@
-<div >
+<div>
   <h1>Hero Form</h1>
 
-  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" autocomplete="off">
+  <!-- <form (ngSubmit)="onSubmit()" #heroForm="ngForm" autocomplete="off">
     <div class="form-group">
-      <!-- <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
+      <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
       <input type="text" name="heroName" class="form-control" id="heroName" [(ngModel)]="model.heroName" #heroName="ngModel"  [ngx-validator]="model"/>
-      <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for> -->
-      
-      <!-- <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
+      <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
+
+      <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
       <ngx-input-for [model]="model" name="heroName" [(ngModel)]="model.heroName" #heroName3="ngModel"></ngx-input-for>
       <ngx-validator-for [errors]="heroName3.errors"></ngx-validator-for>
 
@@ -17,13 +17,13 @@
 
       <ngx-label-for [model]="model" [field]="'creditCard'"></ngx-label-for>
       <ngx-input-for [model]="model" name="creditCard" [(ngModel)]="model.creditCard" #creditCard="ngModel"></ngx-input-for>
-      <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for> -->
-      <!-- <ngx-label-for [model]="model" [field]="'creditCard'"></ngx-label-for>
+      <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for>
+      <ngx-label-for [model]="model" [field]="'creditCard'"></ngx-label-for>
       <input type="text" class="form-control" id="creditCard" [(ngModel)]="model.creditCard" name="creditCard" #creditCard="ngModel" [ngx-validator]="model"/>
-      <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for> -->
+      <ngx-validator-for [errors]="creditCard.errors"></ngx-validator-for>
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label for="alterEgo">Alter Ego</label>
       <input type="text" class="form-control" id="alterEgo" required [(ngModel)]="model.alterEgo" name="alterEgo"  #alterEgo="ngModel" >
       <div [hidden]="alterEgo.valid || alterEgo.pristine" class="alert alert-danger">
@@ -37,25 +37,27 @@
         <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
       </select>
       <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
-    </div> -->
+    </div>
 
     <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
-  </form>
-  <kendo-dropdownlist
-        [data]="listItems"
-        [textField]="'text'"
-        [valueField]="'value'"
-        [value]="selectedValue"
-    >
-    <ng-template kendoDropDownListItemTemplate let-data>
-        <span class="template">{{ data.value }}</span> {{ data.text }}
+  </form> -->
+
+
+  <ngx-form-for [model]="model">
+    <ng-template ngxCustomTemplateFor="power" let-dModel>
+      <kendo-dropdownlist [data]="listItems" [textField]="'text'" [valueField]="'value'" name="power" [(ngModel)]="dModel.power"
+        [valuePrimitive]="true" required #power="ngModel">
+        <ng-template kendoDropDownListItemTemplate let-data>
+          <span class="template">{{ data.value }}</span> {{ data.text }} {{dModel.heroName}}
+        </ng-template>
+      </kendo-dropdownlist>
+      <!-- <input id="power" name="power" [(ngModel)]="dModel.power" #power="ngModel" class="form-control"  [ngx-validator]="dModel"/> -->
+      <ngx-validator-for [errors]="power.errors"></ngx-validator-for>
+
     </ng-template>
-    </kendo-dropdownlist>
-<ngx-form-for [model]="model">
-    <!-- <ng-template ngxCustomTemplateFor  let-dataModel>
-        <h1>{{dataModel}}</h1>
-    </ng-template> -->
-    <div #someVar> ოე ოეეეეე</div>
-</ngx-form-for>
+    <ng-template ngxCustomTemplateFor="age" let-dModel>
+      <h4>{{dModel.heroName}}</h4>
+    </ng-template>
+  </ngx-form-for>
 
 </div>
