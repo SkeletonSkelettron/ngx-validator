@@ -1,13 +1,13 @@
 <ng-container [ngSwitch]="dataType">
-    <a [href]="value" *ngSwitchCase="DataTypeEnum.Url" [ngClass]="cssClass" [id]="field">{{name | translate}}</a>
+    <a [href]="value" *ngSwitchCase="DataTypeEnum.Url" [ngClass]="inputClass" [id]="field">{{name | translate}}</a>
 
-    <input type="password" *ngSwitchCase="DataTypeEnum.Password" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"/>
+    <input type="password" *ngSwitchCase="DataTypeEnum.Password" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="inputClass"/>
 
-    <img *ngSwitchCase="DataTypeEnum.ImageUrl" [src]="value" [id]="field" />
+    <img *ngSwitchCase="DataTypeEnum.ImageUrl" [src]="value" [id]="field"  [ngClass]="inputClass"/>
 
-    <input type="file" *ngSwitchCase="DataTypeEnum.Upload" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass"/>
+    <input type="file" *ngSwitchCase="DataTypeEnum.Upload" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="inputClass"/>
 
-    <textarea *ngSwitchCase="DataTypeEnum.MultilineText" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" rows="5" [ngClass]="cssClass"></textarea>
+    <textarea *ngSwitchCase="DataTypeEnum.MultilineText" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" rows="5" [ngClass]="inputClass"></textarea>
 
-    <input *ngSwitchDefault type="text" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="cssClass" />
+    <input *ngSwitchDefault type="text" [placeholder]="placeHolder" [(ngModel)]="value" [id]="field" [ngClass]="inputClass" />
 </ng-container>

@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
 import { getDecorators, ngxValidate } from '../core/reflector-functions';
 
@@ -18,11 +18,14 @@ export class NgxValidatorDirective implements Validator {
     this.dataModel = value;
   }
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef, private render: Renderer2) { }
 
   validate(control: AbstractControl): { [validator: string]: string } {
 
-    const attribs = getDecorators(this.dataModel, this.el.nativeElement.getAttribute('name'));
+    const name = !this.el.nativeElement.getAttribute('name')
+      ? this.el.nativeElement.getAttribute('ng-reflect-name')
+      : this.el.nativeElement.getAttribute('name');
+    const attribs = getDecorators(this.dataModel, name);
     const errs: { [validator: string]: string } = {};
 
     // const t = await validate(this.skValidator);

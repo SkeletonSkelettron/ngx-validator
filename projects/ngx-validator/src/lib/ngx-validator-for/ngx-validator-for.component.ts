@@ -10,6 +10,10 @@ export class NgxValidatorForComponent {
 
   messages: any[] = [];
 
+
+  @Input()
+  errorClass = 'text-danger';
+
   @Input('errors')
   set errors(value: any) {
     this.messages = [];

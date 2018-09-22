@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, TemplateRef, AfterViewInit } from '@angular/core';
 import { ValueAccessorBase } from '../../core/value-accessor';
 import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 import { getDecorators, ngxValidate } from '../../core/reflector-functions';
@@ -17,17 +17,18 @@ import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
   { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }],
 })
 
-export class NgxInputForComponent extends ValueAccessorBase<string> implements OnInit, Validator {
+export class NgxInputForComponent extends ValueAccessorBase<any> implements Validator, OnInit {
 
   @Input()
   model: any;
 
   @Input()
-  cssClass = 'form-control';
+  inputClass = 'form-control';
 
   DataTypeEnum = DataTypeEnum;
   dataType: number;
 
+  @Input()
   field: string;
 
   @ViewChild(NgModel)
@@ -41,7 +42,12 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
   }
 
   ngOnInit() {
-    const attribs = getDecorators(this.model, this.el.nativeElement.getAttribute('name'));
+    if (this.field === null || this.field === undefined) {
+      this.field = this.el.nativeElement.getAttribute('name') === null
+      ? this.el.nativeElement.getAttribute('id')
+      : this.el.nativeElement.getAttribute('name');
+    }
+    const attribs = getDecorators(this.model, this.field);
     if (attribs.find(x => x.key === 'DataType')) {
       this.dataType = (attribs.find(x => x.key === 'DataType').value as ParamInputModel).value;
     }
@@ -53,12 +59,11 @@ export class NgxInputForComponent extends ValueAccessorBase<string> implements O
     if (attribs.find(x => x.key === 'Name')) {
       this.name = attribs.find(x => x.key === 'Name').value;
     }
-    this.field = this.el.nativeElement.getAttribute('name');
   }
 
   validate(control: AbstractControl): { [validator: string]: string } {
 
-    const attribs = getDecorators(this.model, this.el.nativeElement.getAttribute('name'));
+    const attribs = getDecorators(this.model, this.field);
     const errs: { [validator: string]: string } = {};
 
     for (const item of attribs) {

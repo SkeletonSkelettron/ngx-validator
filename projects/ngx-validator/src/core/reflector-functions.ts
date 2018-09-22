@@ -2,6 +2,11 @@ import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
 // import { isValid } from 'iban';
 
+export function FormGenerator(constructor: Function) {
+    Object.create(constructor);
+    Object.create(constructor.prototype);
+}
+
 export function DataType(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:DataType', param, target, propertyKey);
@@ -71,6 +76,12 @@ export function MaxValue(input: ParamInputModel) {
 export function NotContains(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:NotContains', param, target, propertyKey);
+    };
+}
+
+export function NoForm() {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata('custom-reflect:NoForm', null, target, propertyKey);
     };
 }
 
