@@ -1,11 +1,15 @@
-# ngx-validator for angular template driven forms
+# ngx-validator and form template generator for angular template driven forms
 
-It is a angular custom validator directive, based on typesript class property decorators, which replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.  
-This  library contains 3 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `ngx-input-for` and a directive `ngx-validator`.
+It is an angular library which has form template generator, custom input component and custom validation directive, which work on data based on typesript class property decorators. custom validation directive replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others. It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.  
+This  library contains 4 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `<ngx-input-for>`, `<ngx-form-for>`  and a directive `ngx-validator`.
 
 ## ngx-validator
 
 `[ngx-validator]="dataModel"` is a custom validator directive which validates the input's values and returns the errors in the angular form's control. It should be binded to the instance of a class(dataModel variable above). The property name of the class, for which it should evaluate input data, is taken from input's attribute name's value, so it's value should always be the name of property of a class.
+
+## ngx-form-for
+
+`<ngx-form-for>` is a form template generator component according to data model. For it to work, component needs model instance created by `new` keyword and all needed properties assigned, at least by empty values. This is unavoidable, because it is the way Typescript works. If you want the component not to generate input and labels for some property, add @NoForm() decorator to it(or do not initialize it during new instance creation). The component also supports custom or third party components by custom transcluded templates for all needed fields(for example in case if you want to put some custom droprown for some property).
 
 ## ngx-input-for
 
@@ -47,13 +51,16 @@ This component has following input parameters: model(instance of a class), cssCl
 12. Email(param: string)
 13. Range(param: RangeInputModel)
 14. Custom(param: ParamInputModel)
+15. NoForm()
 
 Usage:
 
 ```html
+
 <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
   <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
-  <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
+  <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel"  
+         [ngx-validator]="model"/>
   <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
 ...
 ...
@@ -64,6 +71,28 @@ Usage:
 ...
   <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
 </form>
+
+
+<ngx-form-for [model]="model" (submitForm)="submitValue($event)">
+<!-- These templates will be used for 'power' and 'age' properties in generated form. 
+Others will have default ngx-label-for, ngx-input-for and ngx-validator-for implementation -->
+    <label> heroes power</label>
+    <ng-template ngxCustomTemplateFor="power" let-data>
+      <kendo-dropdownlist
+        [data]="listItems"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [(ngModel)]="data.model.power"
+        [valuePrimitive]="true">
+      </kendo-dropdownlist>
+      <ngx-validator-for *ngIf="data.form.controls['power']" [errors]="data.form.controls['power'].errors"></ngx-validator-for>
+    </ng-template>
+
+    <ng-template ngxCustomTemplateFor="age" let-data>
+      <h4>{{data.model.age}}</h4>
+    </ng-template>
+
+</ngx-form-for>
 ```
 
 The variable `model` here is the instance of a class, where we have our decorators defined. The class instance should always be created by `new` keyword, otherwise library will not work.  
@@ -75,7 +104,8 @@ Example of a class and usage:
   template: `
         <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
             <ngx-label-for [model]="model" [field]="'heroName'"></ngx-label-for>
-            <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel" [ngx-validator]="model"/>
+            <input type="text" class="form-control" id="heroName" [(ngModel)]="model.heroName" name="heroName" #heroName="ngModel"
+                  [ngx-validator]="model"/>
             <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
 ...
 ...
@@ -85,10 +115,34 @@ Example of a class and usage:
 ...
 ...
           <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
-        </form>`,
+        </form>
+
+  <ngx-form-for [model]="model" (submitForm)="submitValue($event)">
+      <ng-template ngxCustomTemplateFor="power" let-data>
+        <kendo-dropdownlist
+          [data]="listItems"
+          [textField]="'text'"
+          [valueField]="'value'"
+          [(ngModel)]="data.model.power"
+          [valuePrimitive]="true">
+        </kendo-dropdownlist>
+        <ngx-validator-for *ngIf="data.form.controls['power']" [errors]="data.form.controls['power'].errors"></ngx-validator-for>
+      </ng-template>
+
+      <ng-template ngxCustomTemplateFor="age" let-data>
+        <h4>{{data.model.age}}</h4>
+      </ng-template>
+  </ngx-form-for>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  listItems = [
+    { text: 'first', value: 1 },
+    { text: 'second', value: 2 },
+    { text: 'third', value: 3 }
+  ];
+
 
   model =  new Hero();
 
@@ -96,6 +150,9 @@ export class AppComponent {
     console.log('form submitted');
   }
 
+  submitValue(value: Hero) {
+    console.log(value);
+  }
 }
 
 //Class
@@ -105,8 +162,7 @@ import { Name, Required, Pattern, StringLength, Email, Compare,
 
 export class Hero {
 
-  @Name('Hero Id')
-  @Datatype({value: DataTypeEnum.Int, error: 'value should be the number' })
+  @NoForm()
   id: number;
 
   @Name('Hero Name')
@@ -186,7 +242,8 @@ export interface ParamInputModel {
     value?: any;
     field?: string;
     error: string;
-    customValue?: any; // Used in @CreditCard() decorator to pass custom regex for credit card. Will be used with existing regexes. Visa, MasterCard ,Amex,DinersClub,                          Discover,JCB,BCGlobal,CarteBlanche,InstaPayment,KoreanLocalCard,Laser,Maestro,Solo,Switch, UnionPay,VisaMasterCard are supported out of the box
+    customValue?: any; // Used in @CreditCard() decorator to pass custom regex for credit card. Will be used with existing regexes. Visa, MasterCard ,Amex,DinersClub,  Discover,JCB,BCGlobal,CarteBlanche,InstaPayment,KoreanLocalCard,Laser,Maestro,Solo,Switch, UnionPay,VisaMasterCard are supported out of the box
+
     customFunc?: (propertyValue: any, dataModel?: any) => boolean; //when function returns false, then validation will return error. Used in @Custom() decorator.
 }
 
@@ -217,5 +274,4 @@ This library supports translation via @ngx-translate. If you pass resource key s
 
 ## To Do
 
-Support for angular reactive forms (Do we really need it?)  
-Add `ngx-form-for` component to generate form template based on class instance and decorator data. (soon)  
+Support for angular reactive forms (Do we really need it?). Contribution will be appreciated.

@@ -38,7 +38,9 @@ export class AppComponent implements OnInit {
     this.model = new Hero();
   }
 
-
+  submitValue(value: Hero) {
+    console.log(value);
+  }
   //////// NOT SHOWN IN DOCS ////////
 
   ngOnInit() {

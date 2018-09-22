@@ -9,11 +9,11 @@
     </ng-container>
     <ng-template #template>
       <!-- temporary form validation workaround. custom temlpate is not binded to form's controls and therefore, form validation doesn't work. help needed -->
-      <input [name]="item.field" [(ngModel)]="_model[item.field]" [ngx-validator]="_model" style="display:none"/>
-      <ng-container [ngTemplateOutlet]="getTemplate(item.field)" [ngTemplateOutletContext]="{$implicit: _model}">
+      <input [name]="item.field" [(ngModel)]="_model[item.field]" [ngx-validator]="_model" style="display:none" />
+      <ng-container [ngTemplateOutlet]="getTemplate(item.field)" [ngTemplateOutletContext]="{$implicit: {model: _model, form: form}}">
       </ng-container>
     </ng-template>
   </div>
-  <button type="submit"  class="btn btn-success">Submit</button>
+  <button type="submit" [disabled]="form.invalid" class="btn btn-success">Submit</button>
 
 </form>

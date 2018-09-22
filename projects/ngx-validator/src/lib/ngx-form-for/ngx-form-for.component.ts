@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild, ContentChildren, QueryList, forwardRef } from '@angular/core';
-import { NgForm, NG_VALUE_ACCESSOR, NgModel } from '@angular/forms';
+import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild, ContentChildren, QueryList, forwardRef, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CssInputModel } from '../../public_api';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
-import { ValueAccessorBase } from '../../core/value-accessor';
+import { getDecorators } from '../../core/reflector-functions';
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-form-for',
@@ -22,30 +23,29 @@ export class NgxFormForComponent /*extends ValueAccessorBase<any>*/ implements O
   @Input()
   set model(value: any) {
     this._model = value;
+
     for (const item of Object.keys(this._model)) {
-      this.propertyNames.push({ field: item, template: false });
+      const attribs = getDecorators(this._model, item);
+      if (!attribs.find(x => x.key === 'NoForm')) {
+        this.propertyNames.push({ field: item, template: false });
+      }
     }
   }
-  show = false;
+
   @Input()
   cssClasses: CssInputModel;
 
-  @ViewChild('tmp1')
-  template: TemplateRef<any>;
-
-  // @ViewChild(NgModel)
-  // ngModel: NgModel;
-
+  @ViewChild(NgForm)
+  form: NgForm;
 
   propertyNames: { field: string, template: boolean }[] = [];
 
-  // @ContentChild(TemplateRef)
-  // someVar: TemplateRef<any>;
+  @Output()
+  submitForm = new EventEmitter<any>();
 
   _templates: NgxCustomTemplateForDirective[] = [];
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
-  // templates: QueryList<NgxCustomTemplateForDirective>;
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {
     if (this._model) {
       value.forEach((item) => {
@@ -61,17 +61,15 @@ export class NgxFormForComponent /*extends ValueAccessorBase<any>*/ implements O
   }
 
   constructor() {
-    // super();
    }
 
   ngOnInit() {
-
   }
 
   getTemplate(field: string): TemplateRef<any> {
     return this._templates.find(x => x.ngxCustomTemplateFor === field)['templateRef'];
   }
-  submit(form: any) {
-    console.log(form);
+  submit() {
+    this.submitForm.emit(this._model);
   }
 }

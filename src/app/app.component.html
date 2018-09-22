@@ -43,20 +43,17 @@
   </form> -->
 
 
-  <ngx-form-for [model]="model">
-    <ng-template ngxCustomTemplateFor="power" let-dModel>
-      <kendo-dropdownlist [data]="listItems" [textField]="'text'" [valueField]="'value'" name="power" [(ngModel)]="dModel.power"
-        [valuePrimitive]="true" required #power="ngModel">
-        <ng-template kendoDropDownListItemTemplate let-data>
-          <span class="template">{{ data.value }}</span> {{ data.text }} {{dModel.heroName}}
-        </ng-template>
+  <ngx-form-for [model]="model" (submitForm)="submitValue($event)">
+    <ng-template ngxCustomTemplateFor="power" let-data>
+      <kendo-dropdownlist [data]="listItems" [textField]="'text'" [valueField]="'value'" name="power" [(ngModel)]="data.model.power"
+        [valuePrimitive]="true">
       </kendo-dropdownlist>
-      <!-- <input id="power" name="power" [(ngModel)]="dModel.power" #power="ngModel" class="form-control"  [ngx-validator]="dModel"/> -->
-      <ngx-validator-for [errors]="power.errors"></ngx-validator-for>
+      <ngx-validator-for *ngIf="data.form.controls['power']" [errors]="data.form.controls['power'].errors"></ngx-validator-for>
 
     </ng-template>
-    <ng-template ngxCustomTemplateFor="age" let-dModel>
-      <h4>{{dModel.heroName}}</h4>
+
+    <ng-template ngxCustomTemplateFor="age" let-data>
+      <h4>{{data.model.age}}</h4>
     </ng-template>
   </ngx-form-for>
 

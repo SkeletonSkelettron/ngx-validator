@@ -79,6 +79,12 @@ export function NotContains(param: ParamInputModel) {
     };
 }
 
+export function NoForm() {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata('custom-reflect:NoForm', null, target, propertyKey);
+    };
+}
+
 export function StringLength(input: RangeInputModel) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:StringLength', input, target, propertyKey);

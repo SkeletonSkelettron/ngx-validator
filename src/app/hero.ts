@@ -1,6 +1,6 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator
+  Compare, Placeholder, Custom, FormGenerator, NoForm
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { Injectable } from '@angular/core';
@@ -9,13 +9,14 @@ import { Injectable } from '@angular/core';
 @FormGenerator
 export class Hero {
 
+  @NoForm()
   @Name('Hero Id')
   id?: number;
 
   @Name('Hero Name')
-  @Required('ველი აუცილებელია')
-  @Placeholder('პლეიზჰოლდერო')
-  @StringLength({ min: 5, max: 10, error: 'ველი უნდა იყოს მინიმუმ {0} და მაქსიმუმ {1} სიმბოლოს სიგრძის' })
+  @Required('field required')
+  @Placeholder('placeholder')
+  @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
   @DataType({ value: DataTypeEnum.MultilineText, error: '' })
   heroName?: string;
 
@@ -26,7 +27,7 @@ export class Hero {
   email: string;
 
   @Name('Hero\'s  credit card')
-  @Compare({ field: 'heroName', error: 'ველი არ ემთხვევა სახელს' })
+  @Compare({ field: 'heroName', error: 'field does not match name' })
   // @Contains({ value: '123', error: 'უნდა შეიცავდეს 123ს' })
   // @CreditCard({ error: 'Value should be a valid credit card number' })
   creditCard: string;
@@ -50,7 +51,7 @@ export class Hero {
   age: number;
 
   @Required('Value is required')
-  @DataType({value: DataTypeEnum.Number, error:'უნდა იყოს რიცხვი'})
+  @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
   public power: string;
 
   public alterEgo?: string;
@@ -60,7 +61,7 @@ export class Hero {
     this.id = 0;
     this.alterEgo = '';
     this.bankAccount = '';
-    this.creditCard = 'ზღარიბი';
+    this.creditCard = '';
     this.email = 'pref.ge1@gmail.com';
     this.heroName = '';
     this.mobile = '';
