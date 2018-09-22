@@ -198,13 +198,12 @@ export class Hero {
     }
   })
   age?: number;
-  
+
   power?: number;
 
   constructor() {
     this.age = 33;
     this.id = 0;
-    this.alterEgo = '';
     this.bankAccount = '';
     this.creditCard = '';
     this.email = 'pref.ge1@gmail.com';
