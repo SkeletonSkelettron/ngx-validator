@@ -16,9 +16,6 @@ export class NgxLabelForComponent implements OnInit {
   field: string;
 
   @Input()
-  cssClass: string;
-
-  @Input()
   labelClass = '';
 
   reflectValue = '';

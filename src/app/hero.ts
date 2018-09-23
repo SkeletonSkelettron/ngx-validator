@@ -1,6 +1,6 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm
+  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { Injectable } from '@angular/core';
@@ -54,6 +54,7 @@ export class Hero {
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
   public power: string;
 
+  @ReadOnly()
   public alterEgo?: string;
 
   constructor() {

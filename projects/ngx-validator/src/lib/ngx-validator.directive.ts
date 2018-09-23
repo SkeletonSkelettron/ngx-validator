@@ -28,6 +28,10 @@ export class NgxValidatorDirective implements Validator {
     const attribs = getDecorators(this.dataModel, name);
     const errs: { [validator: string]: string } = {};
 
+    if (attribs.find(x => x.key === 'ReadOnly')) {
+      this.el.nativeElement.setAttribute('readonly', true);
+    }
+
     // const t = await validate(this.skValidator);
     // return t[0].constraints;
 

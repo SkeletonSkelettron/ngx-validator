@@ -52,6 +52,7 @@ This component has following input parameters: model(instance of a class), cssCl
 13. Range(param: RangeInputModel)
 14. Custom(param: ParamInputModel)
 15. NoForm()
+16. ReadOnly()
 
 Usage:
 
@@ -73,7 +74,8 @@ Usage:
 </form>
 
 
-<ngx-form-for [model]="model" (submitForm)="submitValue($event)">
+<ngx-form-for [model]="model" (submitForm)="submitValue($event)"
+[cssClasses]="{group:'form-group newsizeinput', label:'control-label col-sm-4', input:'col-sm-5 newsizeinput2', error: 'text-danger'}" >
 <!-- These templates will be used for 'power' and 'age' properties in generated form. 
 Others will have default ngx-label-for, ngx-input-for and ngx-validator-for implementation -->
     <label> heroes power</label>

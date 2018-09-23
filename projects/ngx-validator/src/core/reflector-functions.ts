@@ -55,6 +55,12 @@ export function Required(param: string) {
     };
 }
 
+export function ReadOnly() {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata('custom-reflect:ReadOnly', null, target, propertyKey);
+    };
+}
+
 export function Pattern(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:Pattern', param, target, propertyKey);

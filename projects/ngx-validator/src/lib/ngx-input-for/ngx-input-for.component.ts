@@ -37,6 +37,8 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
   placeHolder = '';
   name = '';
 
+  readonly = false;
+
   constructor(private el: ElementRef) {
     super();
   }
@@ -58,6 +60,10 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
 
     if (attribs.find(x => x.key === 'Name')) {
       this.name = attribs.find(x => x.key === 'Name').value;
+    }
+
+    if (attribs.find(x => x.key === 'ReadOnly')) {
+      this.readonly = true;
     }
   }
 
