@@ -1,19 +1,16 @@
 <form #form="ngForm" (ngSubmit)="submit()">
 
-  <div [ngClass]="cssClasses.group" *ngFor="let item of propertyNames">
+  <div [ngClass]="cssClasses? cssClasses.group: 'form-group'" *ngFor="let item of propertyNames">
     <ng-container *ngIf="!item.template; else template">
 
-      <ngx-label-for [model]="_model" [field]="item.field" [cssClass]="cssClasses.label"></ngx-label-for>
+      <ngx-label-for [model]="_model" [field]="item.field" [labelClass]="cssClasses? cssClasses.label:''"></ngx-label-for>
       <ngx-input-for [id]="item.field" [model]="_model" [(ngModel)]="_model[item.field]" [ngModelOptions]="{ name: item.field }"
-        [field]="item.field" [inputClass]="cssClasses.input"></ngx-input-for>
-      <ngx-validator-for 
-        *ngIf="form.controls[item.field]" 
-        [errors]="form.controls[item.field].errors" 
-        [errorClass]="cssClasses.error">
+        [field]="item.field" [inputClass]="cssClasses? cssClasses.input:'form-control'"></ngx-input-for>
+      <ngx-validator-for [errors]="form.controls[item.field]?.errors" [errorClass]="cssClasses? cssClasses.error: 'text-danger'">
       </ngx-validator-for>
 
     </ng-container>
-    
+
     <ng-template #template>
       <!-- temporary form validation workaround. custom temlpate is not binded to form's controls and therefore, form validation doesn't work. help needed -->
       <input [name]="item.field" [(ngModel)]="_model[item.field]" [ngx-validator]="_model" style="display:none" />

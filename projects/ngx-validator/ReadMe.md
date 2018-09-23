@@ -52,6 +52,7 @@ This component has following input parameters: model(instance of a class), cssCl
 13. Range(param: RangeInputModel)
 14. Custom(param: ParamInputModel)
 15. NoForm()
+16. ReadOnly()
 
 Usage:
 
