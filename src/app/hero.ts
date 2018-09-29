@@ -54,6 +54,9 @@ export class Hero {
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
   public power: string;
 
+  @Required('birthdate is required')
+  birthdate: Date;
+
   @ReadOnly()
   public alterEgo?: string;
 
@@ -67,6 +70,7 @@ export class Hero {
     this.heroName = '';
     this.mobile = '';
     this.power = '';
+    this.birthdate = null;
   }
 
 }
