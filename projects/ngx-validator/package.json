@@ -12,7 +12,10 @@
   "keywords": [
     "angular",
     "validation",
+    "angular validator",
+    "angular custom validator",
     "reflection",
+    "razor like functionality",
     "property decorators",
     "data anotations",
     "html helpers",
