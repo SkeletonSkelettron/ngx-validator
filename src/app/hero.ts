@@ -44,8 +44,11 @@ export class Hero {
   @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Custom({
-    value: 17, error: '', customFunc: (value: number, hr: Hero) => {
-      return value % 3 === 0;
+    value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
+      if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
+        return false;
+      }
+      return true;
     }
   })
   age: number;
