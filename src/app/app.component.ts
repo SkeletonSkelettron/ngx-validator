@@ -3,6 +3,7 @@ import { InputModel } from './InputModel';
 import { Hero } from './hero';
 import { NgForm } from '@angular/forms';
 import { ngxValidate } from 'projects/ngx-validator/src/public_api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,9 @@ export class AppComponent implements OnInit {
     this.submitted = true;
   }
 
+  constructor(private translate: TranslateService) {
 
+  }
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.model); }
 
@@ -45,6 +48,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.model.age = 18;
+    this.translate.setDefaultLang('ka-ge');
     this.model.heroName = 'ზღარიბი';
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
