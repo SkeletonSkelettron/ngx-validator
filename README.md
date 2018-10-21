@@ -2,7 +2,7 @@
 
 ## Changes in version 1.1.1
 
-* fixed placeholder tranlsation error
+* fixed placeholder translation error
 
 ## Changes in version 1.1.0
 
