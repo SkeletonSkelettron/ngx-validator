@@ -1,12 +1,13 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly
+  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { Injectable } from '@angular/core';
 
 
 @FormGenerator
+@Injectable()
 export class Hero {
 
   @NoForm()
@@ -17,7 +18,7 @@ export class Hero {
   @Required('field required')
   @Placeholder('placeholder')
   @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
-  @DataType({ value: DataTypeEnum.MultilineText, error: '' })
+  @DataType({ value: DataTypeEnum.Number, error: '' })
   heroName?: string;
 
   @Name('Hero\'s  email')
@@ -51,11 +52,15 @@ export class Hero {
       return true;
     }
   })
+  @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
   age: number;
 
   @Required('Value is required')
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
   public power: string;
+
+  @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
+  birthdate: Date;
 
   @ReadOnly()
   public alterEgo?: string;
@@ -70,6 +75,7 @@ export class Hero {
     this.heroName = '';
     this.mobile = '';
     this.power = '';
+    this.birthdate = null;
   }
 
 }

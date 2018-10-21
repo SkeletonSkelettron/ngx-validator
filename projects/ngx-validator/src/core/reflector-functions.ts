@@ -55,6 +55,12 @@ export function Required(param: string) {
     };
 }
 
+export function RequiredIf(param: ParamInputModel) {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata('custom-reflect:RequiredIf', param, target, propertyKey);
+    };
+}
+
 export function ReadOnly() {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:ReadOnly', null, target, propertyKey);
@@ -139,7 +145,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
 
     let retstr: string;
 
-    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'Compare') {
+    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare') {
         return null;
     }
     let errorString = '';
@@ -247,6 +253,16 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
         case 'Required': {
             if (!value) {
                 retstr = errorString;
+            }
+            break;
+        }
+        case 'RequiredIf': {
+            if (!(param as ParamInputModel).field || !(param as ParamInputModel).value) {
+                console.warn('incorrect parameters in RequiredIf attribute');
+            } else {
+                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && !value) {
+                    retstr = errorString;
+                }
             }
             break;
         }

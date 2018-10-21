@@ -11,6 +11,11 @@
       <ngx-input-for [model]="model" name="heroName" [(ngModel)]="model.heroName"></ngx-input-for>
       <ngx-validator-for [errors]="heroForm.controls['heroName']?.errors"></ngx-validator-for>
 
+      <ngx-label-for [model]="model" [field]="'birthdate'"></ngx-label-for>
+      <kendo-datepicker [(ngModel)]="model.birthdate" name="birthdate" class="form-control input-sm" [ngx-validator]="model">
+      </kendo-datepicker>
+      <ngx-validator-for [errors]="heroForm.controls['birthdate']?.errors"></ngx-validator-for>
+
       <ngx-label-for [model]="model" [field]="'age'"></ngx-label-for>
       <ngx-input-for [model]="model" name="age" [(ngModel)]="model.age" #age="ngModel"></ngx-input-for>
       <ngx-validator-for [errors]="age.errors"></ngx-validator-for>
@@ -44,7 +49,7 @@
       <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
     </div> -->
 
-    <button type="submit" class="btn btn-success" [disabled]="!heroForm.valid">Submit</button>
+    <button type="submit" class="btn btn-success" >Submit</button>
   </form>
 
 
