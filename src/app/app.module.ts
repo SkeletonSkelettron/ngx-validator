@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgxValidatorModule } from 'projects/ngx-validator/src/public_api';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { GridModule, ExcelModule } from '@progress/kendo-angular-grid';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
@@ -12,6 +13,11 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { PopupModule } from '@progress/kendo-angular-popup';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {  HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 
 @NgModule({
@@ -23,7 +29,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     FormsModule,
     NgxValidatorModule,
-    TranslateModule.forRoot(),
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
     DropDownsModule,
     LayoutModule,
     GridModule,

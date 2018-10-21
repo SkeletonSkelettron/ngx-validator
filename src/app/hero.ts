@@ -23,6 +23,7 @@ export class Hero {
 
   @Name('Hero\'s  email')
   @Required('Email is required')
+  @Placeholder('email')
   @Email('Value should be an email')
 
   email: string;
