@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 
 
 @FormGenerator
+
 @Injectable()
 export class Hero {
 
