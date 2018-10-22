@@ -128,7 +128,6 @@ export function configurable(value: boolean) {
 /**
  * Placeholder(string)
  * Validate: function
- * Compare:? ორი ველის შედარება
  */
 export function getDecorators(target: any, propertyName: string | symbol): DecoratorReturnModel[] {
     const keys: any[] = Reflect.getMetadataKeys(target, propertyName);
