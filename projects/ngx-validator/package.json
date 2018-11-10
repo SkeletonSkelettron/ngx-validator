@@ -1,10 +1,10 @@
 {
   "license": "MIT",
   "name": "ngx-validator",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "@angular/common": "^6.0.0-rc.0 || ^7.0.3",
+    "@angular/core": "^6.0.0-rc.0 || ^7.0.3",
     "reflect-metadata": "^0.1.12",
     "@ngx-translate/core": "^10.0.2"
   },
