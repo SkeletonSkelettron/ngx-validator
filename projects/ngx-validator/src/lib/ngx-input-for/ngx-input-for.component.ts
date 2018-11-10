@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, TemplateRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, TemplateRef, AfterViewInit, ContentChildren, QueryList } from '@angular/core';
 import { ValueAccessorBase } from '../../core/value-accessor';
 import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 import { getDecorators, ngxValidate } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
+import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +38,18 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
   placeHolder = '';
   name = '';
 
+  _template: NgxCustomTemplateForDirective;
+
   readonly = false;
+
+  @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
+  set templates(value: QueryList<NgxCustomTemplateForDirective>) {
+    if (this.model) {
+      value.forEach((item) => {
+        this._template = item;
+      });
+    }
+  }
 
   constructor(private el: ElementRef) {
     super();
@@ -46,8 +58,8 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
   ngOnInit() {
     if (this.field === null || this.field === undefined) {
       this.field = this.el.nativeElement.getAttribute('name') === null
-      ? this.el.nativeElement.getAttribute('id')
-      : this.el.nativeElement.getAttribute('name');
+        ? this.el.nativeElement.getAttribute('id')
+        : this.el.nativeElement.getAttribute('name');
     }
     const attribs = getDecorators(this.model, this.field);
     if (attribs.find(x => x.key === 'DataType')) {
@@ -81,4 +93,7 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
     return errs;
   }
 
+  getTemplate(): TemplateRef<any> {
+    return this._template['templateRef'];
+  }
 }
