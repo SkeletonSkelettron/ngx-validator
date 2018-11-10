@@ -113,9 +113,9 @@ export function Placeholder(input: string) {
     };
 }
 
-export function ValueRange(input: RangeInputModel) {
+export function Range(input: RangeInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata('custom-reflect:ValueRange', input, target, propertyKey);
+        Reflect.defineMetadata('custom-reflect:Range', input, target, propertyKey);
     };
 }
 
@@ -145,7 +145,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
 
     let retstr: string;
 
-    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare') {
+    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare'  && key !== 'Range') {
         return null;
     }
     let errorString = '';
@@ -291,7 +291,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             }
             break;
         }
-        case 'ValueRange': {
+        case 'Range': {
             if (value < (param as RangeInputModel).min || value > (param as RangeInputModel).max) {
                 retstr = errorString.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
             }

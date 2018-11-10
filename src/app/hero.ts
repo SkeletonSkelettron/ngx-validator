@@ -1,6 +1,6 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, ValueRange
+  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, Range
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 import { Injectable } from '@angular/core';
@@ -46,7 +46,7 @@ export class Hero {
   @Name('Hero age')
   // @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
-  @ValueRange({min: 1, max: 10, error: '1 dan 10mde'})
+  @Range({min: 1, max: 10, error: '1 dan 10mde'})
   // @Custom({
   //   value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
   //     if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
@@ -77,7 +77,7 @@ export class Hero {
     this.email = 'pref.ge1@gmail.com';
     this.heroName = '';
     this.mobile = '';
-    this.power = 2;
+    this.power = null;
     this.birthdate = null;
   }
 
