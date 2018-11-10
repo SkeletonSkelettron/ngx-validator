@@ -1,5 +1,9 @@
 # Changes
 
+## Changes in version 1.2.2
+
+* bug fix
+
 ## Changes in version 1.2.1
 
 * added support for custom template in ngx-input-for
