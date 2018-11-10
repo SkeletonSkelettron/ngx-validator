@@ -1,5 +1,9 @@
 # Changes
 
+## Changes in version 1.2.3
+
+* bug fix in Required and RequiredIf.
+
 ## Changes in version 1.2.2
 
 * bug fix

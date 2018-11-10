@@ -145,7 +145,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
 
     let retstr: string;
 
-    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare'  && key !== 'Range') {
+    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare' && key !== 'Range') {
         return null;
     }
     let errorString = '';
@@ -251,7 +251,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             break;
         }
         case 'Required': {
-            if (!value) {
+            if (value === null || value === undefined || value === '') {
                 retstr = errorString;
             }
             break;
@@ -260,7 +260,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             if (!(param as ParamInputModel).field || !(param as ParamInputModel).value) {
                 console.warn('incorrect parameters in RequiredIf attribute');
             } else {
-                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && !value) {
+                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && (value === null || value === undefined || value === '')) {
                     retstr = errorString;
                 }
             }
