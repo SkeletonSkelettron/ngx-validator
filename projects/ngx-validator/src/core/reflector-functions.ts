@@ -128,9 +128,9 @@ export function Placeholder(input: string) {
     };
 }
 
-export function ValueRange(input: RangeInputModel) {
+export function Range(input: RangeInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata('custom-reflect:ValueRange', input, target, propertyKey);
+        Reflect.defineMetadata('custom-reflect:Range', input, target, propertyKey);
     };
 }
 
@@ -159,7 +159,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
 
     let retstr: string;
 
-    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare') {
+    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare' && key !== 'Range') {
         return null;
     }
     let errorString = '';
@@ -265,7 +265,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             break;
         }
         case 'Required': {
-            if (!value) {
+            if (value === null || value === undefined || value === '') {
                 retstr = errorString;
             }
             break;
@@ -274,7 +274,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             if (!(param as ParamInputModel).field || !(param as ParamInputModel).value) {
                 console.warn('incorrect parameters in RequiredIf attribute');
             } else {
-                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && !value) {
+                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && (value === null || value === undefined || value === '')) {
                     retstr = errorString;
                 }
             }
@@ -305,7 +305,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             }
             break;
         }
-        case 'ValueRange': {
+        case 'Range': {
             if (value < (param as RangeInputModel).min || value > (param as RangeInputModel).max) {
                 retstr = errorString.replace('{0}', (param as RangeInputModel).min.toString()).replace('{1}', (param as RangeInputModel).max.toString());
             }
