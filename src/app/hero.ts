@@ -13,6 +13,7 @@ export class baseClass {
   isValid: Function;
 }
 @ModelState
+@Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
 
   @NoForm()
@@ -73,18 +74,18 @@ export class Hero {
   @ReadOnly()
   public alterEgo?: string;
 
-  constructor() {
-    //super()
-    this.age = 33;
-    this.id = 0;
-    this.alterEgo = '';
-    this.bankAccount = '';
-    this.creditCard = '';
-    this.email = 'pref.ge1@gmail.com';
-    this.heroName = '';
-    this.mobile = '';
-    this.power = null;
-    this.birthdate = null;
-  }
+  // constructor() {
+  //   //super()
+  //   this.age = 33;
+  //   this.id = 0;
+  //   this.alterEgo = '';
+  //   this.bankAccount = '';
+  //   this.creditCard = '';
+  //   this.email = 'pref.ge1@gmail.com';
+  //   this.heroName = '';
+  //   this.mobile = '';
+  //   this.power = null;
+  //   this.birthdate = null;
+  // }
 
 }
