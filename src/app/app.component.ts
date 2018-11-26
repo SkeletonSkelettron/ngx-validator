@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   get diagnostic() { return JSON.stringify(this.model); }
 
   newHero() {
-    this.model = new Hero();
+    //this.model = new Hero();
   }
 
   submitValue(value: Hero) {

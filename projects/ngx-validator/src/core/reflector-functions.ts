@@ -7,6 +7,18 @@ export function FormGenerator(constructor: Function) {
     Object.create(constructor.prototype);
 }
 
+export function Init<T extends { new(...args: any[]): {} }>(constructor: T) {
+
+    for (const item of Object.keys(constructor)) {
+        console.log(item)
+    }
+
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
 export function DataType(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata('custom-reflect:DataType', param, target, propertyKey);
