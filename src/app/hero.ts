@@ -1,49 +1,18 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, Init
+  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, ModelState,
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 
-function logClass(target: any) {
-
-  // save a reference to the original constructor
-  var original = target;
-
-  // a utility function to generate instances of a class
-  function construct(constructor, args) {
-    var c: any = function () {
-      return constructor.apply(this, args);
-    }
-    c.prototype = constructor.prototype;
-    return new c();
-  }
-
-  // the new constructor behaviour
-  var f: any = function (...args) {
-    console.log("New: " + original.name);
-    return construct(original, args);
-  }
-
-  // copy prototype so intanceof operator still works
-  f.prototype = original.prototype;
-
-  // return new constructor (will override original)
-  return f;
+export const MyClassDecorator = options => {
+  return function (target) {
+    Reflect.defineMetadata('key', options, target);
+  };
+};
+export class baseClass {
+  isValid: Function;
 }
-
-export function decorator<C>(ClassDefinition: C): C {
-  return ClassDefinition
-}
-function init<T extends { new(...args: any[]): {} }>(g: T) {
-  return class extends g {
-    firstName = "Amitai";
-    lastName = "Barnea";
-    sayMyName() {
-      return `${this.firstName} ${this.lastName}`
-    }
-  }
-}
-@init
+@ModelState
 export class Hero {
 
   @NoForm()
@@ -102,17 +71,18 @@ export class Hero {
   @ReadOnly()
   public alterEgo?: string;
 
-  // constructor() {
-  //   this.age = 33;
-  //   this.id = 0;
-  //   this.alterEgo = '';
-  //   this.bankAccount = '';
-  //   this.creditCard = '';
-  //   this.email = 'pref.ge1@gmail.com';
-  //   this.heroName = '';
-  //   this.mobile = '';
-  //   this.power = '';
-  //   this.birthdate = null;
-  // }
+  constructor() {
+    //super()
+    this.age = 33;
+    this.id = 0;
+    this.alterEgo = '';
+    this.bankAccount = '';
+    this.creditCard = '';
+    this.email = 'pref.ge1@gmail.com';
+    this.heroName = '';
+    this.mobile = '';
+    this.power = '';
+    this.birthdate = null;
+  }
 
 }

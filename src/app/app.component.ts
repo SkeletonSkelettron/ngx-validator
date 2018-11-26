@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
     // this.model.age = 18;
     this.translate.setDefaultLang('ka-ge');
     this.model.heroName = 'ზღარიბი';
+    this.model.isValid();
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
   }

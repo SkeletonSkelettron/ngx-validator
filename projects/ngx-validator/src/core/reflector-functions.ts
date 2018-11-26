@@ -7,15 +7,18 @@ export function FormGenerator(constructor: Function) {
     Object.create(constructor.prototype);
 }
 
-export function Init<T extends { new(...args: any[]): {} }>(constructor: T) {
-
-    for (const item of Object.keys(constructor)) {
-        console.log(item)
-    }
+export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
 
     return class extends constructor {
-        newProperty = "new property";
-        hello = "override";
+
+        isValid() {
+            let result = true;
+            for (const item of Object.keys(this)) {
+                const attribs = getDecorators(this, item);
+                console.log(attribs);
+            }
+            return result;
+        }
     }
 }
 
