@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     let className: any = A;
     this.model = new Hero();
     let a = new className();
-    this.model.isValid();
+    
 
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);

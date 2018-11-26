@@ -12,14 +12,14 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
     return class extends constructor {
 
         isValid() {
-            let result = true;
+            const result = true;
             for (const item of Object.keys(this)) {
                 const attribs = getDecorators(this, item);
                 console.log(attribs);
             }
             return result;
         }
-    }
+    };
 }
 
 export function DataType(param: ParamInputModel) {
