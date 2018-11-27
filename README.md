@@ -2,7 +2,7 @@
 
 ## version 1.2.4
 
-* updated readme.
+* updated readme. New documentation for library
 
 ## version 1.2.3
 
