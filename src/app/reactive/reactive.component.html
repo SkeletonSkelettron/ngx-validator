@@ -1,0 +1,32 @@
+<div [formGroup]="heroForm" class="form-group">
+    <h3>Address</h3>
+
+    <label>
+        heroName:
+        <!-- <input
+            type="text"
+            class="form-control"
+            formControlName="heroName"> -->
+            <ngx-input-for formControlName="heroName" [model]="model"></ngx-input-for>
+            <ngx-validator-for [errors]="heroForm.get('heroName').errors"></ngx-validator-for>
+    </label>
+<br/>
+    <label>
+        age:
+        <input
+            type="text"
+            class="form-control"
+            formControlName="age">
+    </label>
+    <br/>
+    <label>
+        email:
+        <input
+            type="text"
+            class="form-control"
+            formControlName="email">
+    </label>
+
+</div>
+<input type="button" class="btn btn-success" value="Press" (click)="clickBtn()"/>
+

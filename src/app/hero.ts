@@ -1,6 +1,6 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, Range, ModelState
+  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, Range, ModelState, NameKey
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 
@@ -9,9 +9,6 @@ export const MyClassDecorator = options => {
     Reflect.defineMetadata('key', options, target);
   };
 };
-export class baseClass {
-  isValid: Function;
-}
 @ModelState
 @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
@@ -21,6 +18,7 @@ export class Hero {
   id?: number;
 
   @Name('Hero Name')
+  @NameKey('Hero Name Key')
   @Required('field required')
   @Placeholder('placeholder')
   @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
@@ -75,7 +73,7 @@ export class Hero {
   public alterEgo?: string;
 
   // constructor() {
-  //   //super()
+  //   // super()
   //   this.age = 33;
   //   this.id = 0;
   //   this.alterEgo = '';

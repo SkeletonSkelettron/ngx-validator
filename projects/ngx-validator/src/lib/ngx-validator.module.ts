@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgxInputForComponent } from './ngx-input-for/ngx-input-for.component';
 import { NgxFormForComponent } from './ngx-form-for/ngx-form-for.component';
 import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directive';
+import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-for-reactive.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directi
     NgxValidatorForComponent,
     NgxInputForComponent,
     NgxFormForComponent,
-    NgxCustomTemplateForDirective
+    NgxCustomTemplateForDirective,
+    NgxFormForReactiveComponent
   ],
   exports: [
     NgxValidatorDirective,

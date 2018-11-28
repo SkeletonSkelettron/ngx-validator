@@ -61,6 +61,7 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
         ? this.el.nativeElement.getAttribute('id')
         : this.el.nativeElement.getAttribute('name');
     }
+
     const attribs = getDecorators(this.model, this.field);
     if (attribs.find(x => x.key === 'DataType')) {
       this.dataType = (attribs.find(x => x.key === 'DataType').value as ParamInputModel).value;
@@ -80,6 +81,13 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
   }
 
   validate(control: AbstractControl): { [validator: string]: string } {
+
+
+    for (const item of Object.keys(control.parent.controls)) {
+      if (control.parent.controls[item] === control) {
+        this.field = item;
+      }
+    }
 
     const attribs = getDecorators(this.model, this.field);
     const errs: { [validator: string]: string } = {};

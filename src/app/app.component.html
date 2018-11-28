@@ -6,7 +6,7 @@
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
-            <!-- <ngx-label-for
+            <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
             <input
@@ -17,7 +17,7 @@
                 [(ngModel)]="model.heroName"
                 #heroName="ngModel"
                 [ngx-validator]="model">
-            <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for> -->
+            <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
 
             <ngx-label-for
                 [model]="model"
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label for="power">Hero Power</label>
             <select
                 class="form-control"
@@ -126,7 +126,7 @@
                 </option>
             </select>
             <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
-        </div> -->
+        </div>
 
         <button
             type="submit"
@@ -135,7 +135,7 @@
         </button>
     </form>
 
-    <!-- <ngx-form-for
+    <ngx-form-for
         [model]="model"
         (submitForm)="submitValue($event)">
 
@@ -162,6 +162,10 @@
             <h4>{{data.model.age}}</h4>
         </ng-template>
 
-    </ngx-form-for> -->
+    </ngx-form-for>
 
 </div>
+<input type="button" class="btn btn-success" (click)="changeVal()" value="change"/>
+
+
+<router-outlet></router-outlet>  

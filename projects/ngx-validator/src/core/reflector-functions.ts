@@ -24,35 +24,35 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
 
 export function DataType(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:DataType', param, target, propertyKey);
     };
 }
 
 export function CreditCard(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:CreditCard', param, target, propertyKey);
     };
 }
 
 export function Compare(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Compare', param, target, propertyKey);
     };
 }
 
 export function Contains(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Contains', param, target, propertyKey);
     };
 }
 
 export function Custom(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
     };
 }
@@ -66,21 +66,28 @@ export function Custom(param: ParamInputModel) {
 
 export function Name(param: string) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
+        Reflect.defineMetadata('custom-reflect:Name', param, target, propertyKey);
+    };
+}
+
+export function NameKey(param: string) {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Name', param, target, propertyKey);
     };
 }
 
 export function Required(param: string) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Required', param, target, propertyKey);
     };
 }
 
 export function RequiredIf(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:RequiredIf', param, target, propertyKey);
     };
 }
@@ -94,28 +101,28 @@ export function ReadOnly() {
 
 export function Pattern(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Pattern', param, target, propertyKey);
     };
 }
 
 export function MinValue(input: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MinValue', input, target, propertyKey);
     };
 }
 
 export function MaxValue(input: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MaxValue', input, target, propertyKey);
     };
 }
 
 export function NotContains(param: ParamInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:NotContains', param, target, propertyKey);
     };
 }
@@ -129,26 +136,26 @@ export function NoForm() {
 
 export function StringLength(input: RangeInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:StringLength', input, target, propertyKey);
     };
 }
 export function Email(input: string) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Email', input, target, propertyKey);
     };
 }
 export function Placeholder(input: string) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Placeholder', input, target, propertyKey);
     };
 }
 
 export function Range(input: RangeInputModel) {
     return function (target: Object, propertyKey: string) {
-        Reflect.defineMetadata(propertyKey, propertyKey, target);
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Range', input, target, propertyKey);
     };
 }

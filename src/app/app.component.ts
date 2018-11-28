@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   get diagnostic() { return JSON.stringify(this.model); }
 
   newHero() {
-    //this.model = new Hero();
+    // this.model = new Hero();
   }
 
   submitValue(value: Hero) {
@@ -49,15 +49,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // this.model.age = 18;
     this.translate.setDefaultLang('ka-ge');
-    this.model.heroName = 'ზღარიბი';
-    //this.model.isValid();
-    let className: any = A;
-    this.model = new Hero();
-    let a = new className();
-    
+    // this.model.isValid();
 
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
+  }
+
+  changeVal() {
+    // this.model.heroName = 'fsdfsfsdfsdf';
   }
 }
 
@@ -65,6 +64,4 @@ export class AppComponent implements OnInit {
 class A {
   private a1;
   private a2;
-
-
 }

@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild, ContentChildren, QueryList, forwardRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CssInputModel } from '../../public_api';
-import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 import { getDecorators } from '../../core/reflector-functions';
+import { CssInputModel } from '../../core/reflect-input.models';
+import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'ngx-form-for',
-  templateUrl: './ngx-form-for.component.html',
-  styleUrls: ['./ngx-form-for.component.css']
+  selector: 'ngx-form-for-reactive',
+  templateUrl: './ngx-form-for-reactive.component.html',
+  styleUrls: ['./ngx-form-for-reactive.component.css']
 })
-export class NgxFormForComponent implements OnInit {
+export class NgxFormForReactiveComponent implements OnInit {
 
   _model: any;
 
