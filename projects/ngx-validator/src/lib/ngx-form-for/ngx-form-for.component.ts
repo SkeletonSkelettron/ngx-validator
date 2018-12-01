@@ -24,10 +24,20 @@ export class NgxFormForComponent implements OnInit {
         this.propertyNames.push({ field: item, template: false });
       }
     }
+
+    for (const item of Reflect.getMetadataKeys(this._model)) {
+      const attribs = getDecorators(this._model, item);
+      if (!attribs.find(x => x.key === 'NoForm') && this.propertyNames.find(x => x.field === item) === undefined) {
+        this.propertyNames.push({ field: item, template: false });
+      }
+    }
   }
 
   @Input()
   cssClasses: CssInputModel;
+
+  @Input()
+  autoComplete: string;
 
   @ViewChild(NgForm)
   form: NgForm;
@@ -55,7 +65,7 @@ export class NgxFormForComponent implements OnInit {
   }
 
   constructor() {
-   }
+  }
 
   ngOnInit() {
   }

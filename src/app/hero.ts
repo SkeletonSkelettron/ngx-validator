@@ -4,13 +4,13 @@ import {
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
 
-export const MyClassDecorator = options => {
-  return function (target) {
-    Reflect.defineMetadata('key', options, target);
-  };
-};
-@ModelState
-@Reflect.metadata('metadataKey', 'metadataValue')
+// export const MyClassDecorator = options => {
+//   return function (target) {
+//     Reflect.defineMetadata('key', options, target);
+//   };
+// };
+// @ModelState
+// @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
 
   @NoForm()
@@ -51,6 +51,7 @@ export class Hero {
   // @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Range({ min: 1, max: 10, error: '1 dan 10mde' })
+  // @Required('Value required')
   // @Custom({
   //   value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
   //     if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
@@ -72,18 +73,17 @@ export class Hero {
   @ReadOnly()
   public alterEgo?: string;
 
-  // constructor() {
-  //   // super()
-  //   this.age = 33;
-  //   this.id = 0;
-  //   this.alterEgo = '';
-  //   this.bankAccount = '';
-  //   this.creditCard = '';
-  //   this.email = 'pref.ge1@gmail.com';
-  //   this.heroName = '';
-  //   this.mobile = '';
-  //   this.power = null;
-  //   this.birthdate = null;
-  // }
-
+  constructor() {
+    // super()
+    // this.age = 33;
+    // this.id = 0;
+    // this.alterEgo = '';
+    // this.bankAccount = '';
+    // this.creditCard = '';
+    // this.email = 'pref.ge1@gmail.com';
+    // this.heroName = '';
+    // this.mobile = '';
+    // this.power = null;
+    // this.birthdate = null;
+  }
 }

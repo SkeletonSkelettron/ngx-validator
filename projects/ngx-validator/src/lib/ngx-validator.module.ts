@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NgxValidatorDirective } from './ngx-validator.directive';
 import { NgxLabelForComponent } from './ngx-label-for/ngx-label-for.component';
 import { NgxValidatorForComponent } from './ngx-validator-for/ngx-validator-for.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxInputForComponent } from './ngx-input-for/ngx-input-for.component';
@@ -14,6 +14,7 @@ import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-fo
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule
   ],
   declarations: [
@@ -31,7 +32,8 @@ import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-fo
     NgxValidatorForComponent,
     NgxInputForComponent,
     NgxFormForComponent,
-    NgxCustomTemplateForDirective
+    NgxCustomTemplateForDirective,
+    NgxFormForReactiveComponent
   ]
 })
 export class NgxValidatorModule { }

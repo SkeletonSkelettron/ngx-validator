@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { getDecorators } from '../../core/reflector-functions';
 import { CssInputModel } from '../../core/reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
@@ -13,14 +13,18 @@ import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.direct
 export class NgxFormForReactiveComponent implements OnInit {
 
   _model: any;
-
+  _formGroup: FormGroup;
   @Input()
   set model(value: any) {
     this._model = value;
+  }
 
+  @Input()
+  set formGroup(value: FormGroup) {
+    this._formGroup = value;
     for (const item of Object.keys(this._model)) {
       const attribs = getDecorators(this._model, item);
-      if (!attribs.find(x => x.key === 'NoForm')) {
+      if (!attribs.find(x => x.key === 'NoForm') && this._formGroup.controls[item]) {
         this.propertyNames.push({ field: item, template: false });
       }
     }
@@ -28,6 +32,9 @@ export class NgxFormForReactiveComponent implements OnInit {
 
   @Input()
   cssClasses: CssInputModel;
+
+  @Input()
+  autoComplete: string;
 
   @ViewChild(NgForm)
   form: NgForm;
@@ -55,7 +62,7 @@ export class NgxFormForReactiveComponent implements OnInit {
   }
 
   constructor() {
-   }
+  }
 
   ngOnInit() {
   }
@@ -65,5 +72,13 @@ export class NgxFormForReactiveComponent implements OnInit {
   }
   submit() {
     this.submitForm.emit(this._model);
+  }
+
+  controlExists(item: string) {
+    if (this.formGroup.controls[item]) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -25,11 +25,11 @@ export class ReactiveComponent implements OnInit {
     this.model.heroName = 'ioane';
     this.model.email = 'pref.ge1@gmail.com';
 
-    this.heroForm.setValue({
-      heroName: this.model.heroName,
-      age: this.model.age,
-      email: this.model.email
-    });
+    // this.heroForm.setValue({
+    //   heroName: this.model.heroName,
+    //   age: this.model.age,
+    //   email: this.model.email
+    // });
   }
 
   clickBtn() {

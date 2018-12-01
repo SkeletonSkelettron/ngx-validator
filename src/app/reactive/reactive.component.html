@@ -1,32 +1,31 @@
-<div [formGroup]="heroForm" class="form-group">
+<!-- <div [formGroup]="heroForm" class="form-group">
     <h3>Address</h3>
 
     <label>
         heroName:
-        <!-- <input
-            type="text"
-            class="form-control"
-            formControlName="heroName"> -->
             <ngx-input-for formControlName="heroName" [model]="model"></ngx-input-for>
             <ngx-validator-for [errors]="heroForm.get('heroName').errors"></ngx-validator-for>
     </label>
 <br/>
     <label>
         age:
-        <input
-            type="text"
-            class="form-control"
-            formControlName="age">
+            <ngx-input-for formControlName="age" [model]="model"></ngx-input-for>
+            <ngx-validator-for [errors]="heroForm.get('age').errors"></ngx-validator-for>
     </label>
     <br/>
     <label>
         email:
-        <input
-            type="text"
-            class="form-control"
-            formControlName="email">
+            <ngx-input-for formControlName="email" [model]="model"></ngx-input-for>
+            <ngx-validator-for [errors]="heroForm.get('email').errors"></ngx-validator-for>
     </label>
 
-</div>
-<input type="button" class="btn btn-success" value="Press" (click)="clickBtn()"/>
-
+</div> -->
+<ngx-form-for-reactive
+    [model]="model"
+    [autoComplete]="'off'"
+    [formGroup]="heroForm"></ngx-form-for-reactive>
+<input
+    type="button"
+    class="btn btn-success"
+    value="Press"
+    (click)="clickBtn()">
