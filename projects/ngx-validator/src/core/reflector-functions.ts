@@ -3,21 +3,40 @@ import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } 
 // import { isValid } from 'iban';
 
 export function FormGenerator(constructor: Function) {
-    Object.create(constructor);
-    Object.create(constructor.prototype);
+
 }
 
 export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
 
     return class extends constructor {
 
-        isValid() {
-            const result = true;
-            for (const item of Object.keys(this)) {
+        IsValid() {
+            for (const item of Reflect.getMetadataKeys(this)) {
                 const attribs = getDecorators(this, item);
-                console.log(attribs);
+                for (const attrib of attribs) {
+                    const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+                    if (messg) {
+                        return false;
+                    }
+                }
             }
-            return result;
+            return true;
+        }
+
+        ModelErrors(): any {
+            const errs: { key: string, errors: { [validator: string]: string } } = { key: null, errors: {} };
+
+            for (const item of Reflect.getMetadataKeys(this)) {
+                const attribs = getDecorators(this, item);
+                for (const attrib of attribs) {
+                    const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+                    if (messg) {
+                        errs[item] = item;
+                        errs.errors[attrib.key] = messg;
+                    }
+                }
+            }
+            return errs;
         }
     };
 }
@@ -56,13 +75,6 @@ export function Custom(param: ParamInputModel) {
         Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
     };
 }
-
-// export function IBAN(param: ParamInputModel) {
-//     return function (target: Object, propertyKey: string) {
-//         Reflect.defineMetadata(propertyKey, propertyKey, target);
-//         Reflect.defineMetadata('custom-reflect:IBAN', param, target, propertyKey);
-//     };
-// }
 
 export function Name(param: string) {
     return function (target: Object, propertyKey: string) {

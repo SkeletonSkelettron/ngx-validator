@@ -9,7 +9,15 @@ import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.mode
 //     Reflect.defineMetadata('key', options, target);
 //   };
 // };
-// @ModelState
+
+function ged() {
+  console.log('"g(): evaluated"');
+  return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log('"g(): called"');
+  };
+}
+
+@ModelState
 // @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
 
@@ -65,13 +73,13 @@ export class Hero {
 
   @Required('Value is required')
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
-  public power: number;
+  power: number;
 
   @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
   birthdate: Date;
 
   @ReadOnly()
-  public alterEgo?: string;
+  alterEgo?: string;
 
   constructor() {
     // super()
@@ -86,4 +94,7 @@ export class Hero {
     // this.power = null;
     // this.birthdate = null;
   }
+
+  IsValid: Function;
+  ModelErrors: Function;
 }

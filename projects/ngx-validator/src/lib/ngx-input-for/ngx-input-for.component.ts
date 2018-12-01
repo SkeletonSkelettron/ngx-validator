@@ -92,10 +92,10 @@ export class NgxInputForComponent extends ValueAccessorBase<any> implements Vali
     const attribs = getDecorators(this.model, this.field);
     const errs: { [validator: string]: string } = {};
 
-    for (const item of attribs) {
-      const messg = ngxValidate(item.key, item.value, control.value, this.model);
+    for (const attrib of attribs) {
+      const messg = ngxValidate(attrib.key, attrib.value, control.value, this.model);
       if (messg) {
-        errs[item.key] = messg;
+        errs[attrib.key] = messg;
       }
     }
     return errs;
