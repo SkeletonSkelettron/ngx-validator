@@ -150,7 +150,7 @@ export function Pattern(param: { value: RegExp, error: string }) {
 /**
  * Validates if field has valid value more than specific value
  */
-export function MinValue(input: { value: any, error: string }) {
+export function MinValue(input: { value: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MinValue', input, target, propertyKey);
@@ -160,7 +160,7 @@ export function MinValue(input: { value: any, error: string }) {
 /**
  * Validates if field has valid value less than specific value
  */
-export function MaxValue(input: { value: any, error: string }) {
+export function MaxValue(input: { value: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MaxValue', input, target, propertyKey);
