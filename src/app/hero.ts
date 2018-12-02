@@ -26,7 +26,6 @@ export class Hero {
   id?: number;
 
   @Name('Hero Name')
-  @NameKey('Hero Name Key')
   @Required('field required')
   @Placeholder('placeholder')
   @Email('Value should be an email')

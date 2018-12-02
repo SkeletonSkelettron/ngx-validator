@@ -68,7 +68,7 @@ export function CreditCard(param: { error: string }) {
 }
 
 /**
- * Validates field to other field and checks if they are equal
+ * Compares field to other field and checks if they are equal
  */
 export function Compare(param: { field: string, error: string }) {
     return function (target: Object, propertyKey: string) {
