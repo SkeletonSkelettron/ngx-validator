@@ -1,11 +1,6 @@
 import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
 import { error } from 'protractor';
-// import { isValid } from 'iban';
-
-export function FormGenerator(constructor: Function) {
-
-}
 
 export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
 
