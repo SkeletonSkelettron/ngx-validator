@@ -215,7 +215,7 @@ export function Placeholder(input: string) {
 /**
  * Validates if field value length fits in min and max values
  */
-export function Range(input: {min?: number | Date, max?: number | Date, error: string}) {
+export function Range(input: { min?: number | Date, max?: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Range', input, target, propertyKey);
