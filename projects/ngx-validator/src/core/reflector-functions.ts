@@ -23,18 +23,19 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
             return true;
         }
 
-        ModelErrors(): any {
-            const errs: { key: string, errors: { [validator: string]: string } } = { key: null, errors: {} };
-
+        ModelErrors(): { [key: string]: { [key: string]: any } } {
+            const errs: { [key: string]: any } = {};
+            let tmp: { [key: string]: any } = {};
             for (const item of Reflect.getMetadataKeys(this)) {
                 const attribs = getDecorators(this, item);
                 for (const attrib of attribs) {
                     const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
                     if (messg) {
-                        errs[item] = item;
-                        errs.errors[attrib.key] = messg;
+                        tmp[attrib.key] = messg;
                     }
                 }
+                errs[item] = tmp;
+                tmp = {};
             }
             return errs;
         }

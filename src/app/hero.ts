@@ -29,6 +29,7 @@ export class Hero {
   @NameKey('Hero Name Key')
   @Required('field required')
   @Placeholder('placeholder')
+  @Email('Value should be an email')
   @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
   // @DataType({ value: DataTypeEnum.Number, error: '' })
   heroName?: string;
@@ -59,7 +60,7 @@ export class Hero {
   // @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Range({ min: 1, max: 10, error: '1 dan 10mde' })
-  // @Required('Value required')
+  @Required('Value required')
   // @Custom({
   //   value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
   //     if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
@@ -80,20 +81,6 @@ export class Hero {
 
   @ReadOnly()
   alterEgo?: string;
-
-  constructor() {
-    // super()
-    // this.age = 33;
-    // this.id = 0;
-    // this.alterEgo = '';
-    // this.bankAccount = '';
-    // this.creditCard = '';
-    // this.email = 'pref.ge1@gmail.com';
-    // this.heroName = '';
-    // this.mobile = '';
-    // this.power = null;
-    // this.birthdate = null;
-  }
 
   IsValid: Function;
   ModelErrors: Function;
