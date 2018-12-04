@@ -1,13 +1,24 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, FormGenerator, NoForm, ReadOnly, RequiredIf, Range
+  Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState, 
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
-import { Injectable } from '@angular/core';
 
+// export const MyClassDecorator = options => {
+//   return function (target) {
+//     Reflect.defineMetadata('key', options, target);
+//   };
+// };
 
-@FormGenerator
-@Injectable()
+function ged() {
+  console.log('"g(): evaluated"');
+  return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log('"g(): called"');
+  };
+}
+
+@ModelState
+// @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
 
   @NoForm()
@@ -17,6 +28,7 @@ export class Hero {
   @Name('Hero Name')
   @Required('field required')
   @Placeholder('placeholder')
+  @Email('Value should be an email')
   @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
   // @DataType({ value: DataTypeEnum.Number, error: '' })
   heroName?: string;
@@ -29,10 +41,10 @@ export class Hero {
   email: string;
 
   @Name('Hero\'s  credit card')
-  // @Compare({ field: 'heroName', error: 'field does not match name' })
+  @Compare({ field: 'heroName', error: 'field does not match name' })
   @Required('aucilebelia')
-  // @Contains({ value: '123', error: 'უნდა შეიცავდეს 123ს' })
-  // @CreditCard({ error: 'Value should be a valid credit card number' })
+  @Contains({ value: '123', error: 'უნდა შეიცავდეს 123ს' })
+  @CreditCard({ error: 'Value should be a valid credit card number' })
   creditCard: string;
 
   @Name('Hero\'s  Bank Account')
@@ -44,41 +56,32 @@ export class Hero {
 
 
   @Name('Hero age')
-  // @MinValue({ value: 21, error: 'Value should be more than 21' })
+  @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
-  @Range({min: 1, max: 10, error: '1 dan 10mde'})
-  // @Custom({
-  //   value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
-  //     if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  // })
+  @Range({ min: 1, max: 10, error: '1 dan 10mde' })
+  @Required('Value required')
+  @Custom({
+    value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
+      if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
+        return false;
+      }
+      return true;
+    }
+  })
   // @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
   age: number;
 
   @Required('Value is required')
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
-  public power: number;
+  power: number;
 
   @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
   birthdate: Date;
 
   @ReadOnly()
-  public alterEgo?: string;
+  alterEgo?: string;
 
-  constructor() {
-    this.age = 33;
-    this.id = 0;
-    this.alterEgo = '';
-    this.bankAccount = '';
-    this.creditCard = '';
-    this.email = 'pref.ge1@gmail.com';
-    this.heroName = '';
-    this.mobile = '';
-    this.power = null;
-    this.birthdate = null;
-  }
 
+  IsValid: Function;
+  ModelErrors: Function;
 }

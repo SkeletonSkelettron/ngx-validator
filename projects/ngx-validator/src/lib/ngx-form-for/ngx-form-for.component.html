@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="submit()">
+<form #form="ngForm" (ngSubmit)="submit()" [autocomplete]="autoComplete">
 
   <div [ngClass]="cssClasses? cssClasses.group: 'form-group'" *ngFor="let item of propertyNames">
     <ng-container *ngIf="!item.template; else template">

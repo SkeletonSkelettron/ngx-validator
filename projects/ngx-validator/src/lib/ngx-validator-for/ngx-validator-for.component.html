@@ -1,3 +1,5 @@
-<div  [ngClass]="errorClass">
-  <div *ngFor="let message of messages">{{message | translate}}</div>
- </div>
+<div [ngClass]="errorClass">
+    <div *ngFor="let message of messages">
+        <ng-container *ngIf="message">{{message | translate}}</ng-container>
+    </div>
+</div>

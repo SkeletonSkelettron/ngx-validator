@@ -19,7 +19,7 @@ export class NgxValidatorForComponent {
     this.messages = [];
     if (value) {
       for (const item of Object.keys(value)) {
-        this.messages.push(value[item]);
+        this.messages.push(value[item].toString());
       }
     }
   }

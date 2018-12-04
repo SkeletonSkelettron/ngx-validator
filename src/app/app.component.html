@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label for="power">Hero Power</label>
             <select
                 class="form-control"
@@ -126,7 +126,7 @@
                 </option>
             </select>
             <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
-        </div> -->
+        </div>
 
         <button
             type="submit"
@@ -137,6 +137,7 @@
 
     <!-- <ngx-form-for
         [model]="model"
+        [autoComplete]="'Off'"
         (submitForm)="submitValue($event)">
 
         <ng-template
@@ -165,3 +166,7 @@
     </ngx-form-for> -->
 
 </div>
+<input type="button" class="btn btn-success" (click)="changeVal()" value="change"/> 
+
+
+<router-outlet></router-outlet>  
