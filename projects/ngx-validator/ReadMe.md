@@ -1,8 +1,9 @@
 # Custom validator and form template generator for angular template driven and reactive forms
 
-It is an angular library which has form template generator, custom input and validation component and custom validation directive, which work on data based on typesript class property decorators. custom validation directive replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others.  
+It is an angular library which has form template generator, custom input and validation component and custom validation directive, which work on data based on typesript class property decorators.  
+Custom validation directive replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others.  
 It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.  
-This  library contains 4 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `<ngx-input-for>`, `<ngx-form-for>`  and a directive `ngx-validator`.
+This  library contains 5 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `<ngx-input-for>`, `<ngx-form-for>`, `<ngx-form-for>` ,`<ngx-form-for-reactive>`  and a directive `ngx-validator`.
 
 The library has following class property decorators:
 
@@ -25,6 +26,9 @@ The library has following class property decorators:
 16. NoForm()
 17. ReadOnly()
 18. Placeholder(param: string)
+
+//and class decorator
+19. ModelState()
 ```
 
 ## Documentation

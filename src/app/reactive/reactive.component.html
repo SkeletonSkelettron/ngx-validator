@@ -1,9 +1,10 @@
-<!-- <div [formGroup]="heroForm" class="form-group">
+<div [formGroup]="heroForm" class="form-group">
     <h3>Address</h3>
 
     <label>
         heroName:
-            <ngx-input-for formControlName="heroName" [model]="model"></ngx-input-for>
+        <input type="text" formControlName="heroName" class="form-control" [ngx-validator]="model"/>
+            <!-- <ngx-input-for formControlName="heroName" [model]="model"></ngx-input-for> -->
             <ngx-validator-for [errors]="heroForm.get('heroName').errors"></ngx-validator-for>
     </label>
 <br/>
@@ -19,11 +20,11 @@
             <ngx-validator-for [errors]="heroForm.get('email').errors"></ngx-validator-for>
     </label>
 
-</div> -->
-<ngx-form-for-reactive
+</div>
+<!-- <ngx-form-for-reactive
     [model]="model"
     [autoComplete]="'off'"
-    [formGroup]="heroForm"></ngx-form-for-reactive>
+    [formGroup]="heroForm"></ngx-form-for-reactive> -->
 <input
     type="button"
     class="btn btn-success"

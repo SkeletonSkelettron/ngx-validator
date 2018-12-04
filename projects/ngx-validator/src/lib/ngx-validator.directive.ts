@@ -21,19 +21,18 @@ export class NgxValidatorDirective implements Validator {
   constructor(private el: ElementRef, private render: Renderer2) { }
 
   validate(control: AbstractControl): { [validator: string]: string } {
-
-    const name = !this.el.nativeElement.getAttribute('name')
-      ? this.el.nativeElement.getAttribute('ng-reflect-name')
-      : this.el.nativeElement.getAttribute('name');
+    let name = '';
+      for (const item of Object.keys(control.parent.controls)) {
+        if (control.parent.controls[item] === control) {
+          name = item;
+        }
+      }
     const attribs = getDecorators(this.dataModel, name);
     const errs: { [validator: string]: string } = {};
 
     if (attribs.find(x => x.key === 'ReadOnly')) {
       this.el.nativeElement.setAttribute('readonly', true);
     }
-
-    // const t = await validate(this.skValidator);
-    // return t[0].constraints;
 
     for (const item of attribs) {
       const messg = ngxValidate(item.key, item.value, control.value, this.dataModel);

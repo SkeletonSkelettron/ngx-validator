@@ -1,5 +1,5 @@
 <div>
-    <!-- <h1>Hero Form</h1>
+    <h1>Hero Form</h1>
 
     <form
         (ngSubmit)="onSubmit(heroForm)"
@@ -133,9 +133,9 @@
             class="btn btn-success">
             Submit
         </button>
-    </form> -->
+    </form>
 
-    <ngx-form-for
+    <!-- <ngx-form-for
         [model]="model"
         [autoComplete]="'Off'"
         (submitForm)="submitValue($event)">
@@ -156,14 +156,14 @@
                 [errors]="data.form.controls['power'].errors"></ngx-validator-for>
 
         </ng-template>
-<!-- 
+
         <ng-template
             ngxCustomTemplateFor="age"
             let-data>
             <h4>{{data.model.age}}</h4>
-        </ng-template> -->
+        </ng-template>
 
-    </ngx-form-for>
+    </ngx-form-for> -->
 
 </div>
 <input type="button" class="btn btn-success" (click)="changeVal()" value="change"/> 
