@@ -2,6 +2,17 @@ import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
 import { error } from 'protractor';
 
+
+function isEmpty(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
 
     return class extends constructor {
@@ -35,7 +46,9 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
                         tmp[attrib.key] = messg;
                     }
                 }
-                errs[item] = tmp;
+                if (!isEmpty(tmp)) {
+                    errs[item] = tmp;
+                }
                 tmp = {};
             }
             return errs;
