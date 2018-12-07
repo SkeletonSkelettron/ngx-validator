@@ -1,8 +1,8 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState, 
+  Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState,
 } from 'projects/ngx-validator/src/public_api';
-import { DataTypeEnum } from 'projects/ngx-validator/src/core/reflect-input.models';
+import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/core/reflect-input.models';
 
 // export const MyClassDecorator = options => {
 //   return function (target) {
@@ -16,11 +16,11 @@ function ged() {
     console.log('"g(): called"');
   };
 }
-
 @ModelState
 // @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
-
+  IsValid: PropertyFunction<boolean>;
+  ModelErrors: PropertyFunction<{ [key: string]: any }>;
   @NoForm()
   @Name('Hero Id')
   id?: number;
@@ -81,7 +81,4 @@ export class Hero {
   @ReadOnly()
   alterEgo?: string;
 
-
-  IsValid: Function;
-  ModelErrors: Function;
 }
