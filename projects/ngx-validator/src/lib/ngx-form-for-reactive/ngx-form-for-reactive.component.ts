@@ -7,8 +7,7 @@ import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.direct
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-form-for-reactive',
-  templateUrl: './ngx-form-for-reactive.component.html',
-  styleUrls: ['./ngx-form-for-reactive.component.css']
+  templateUrl: './ngx-form-for-reactive.component.html'
 })
 export class NgxFormForReactiveComponent implements OnInit {
 

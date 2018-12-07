@@ -1,5 +1,9 @@
 # Changes
 
+## version 2.0.1
+
+* **Breaking change**: changed IsValid and ModelErrors type from function to `PropertyFunction`.
+
 ## version 2.0.0
 
 * Added support for reactive forms.  

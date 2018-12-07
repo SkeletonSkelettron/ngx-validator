@@ -3,8 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-validator-for',
-  templateUrl: './ngx-validator-for.component.html',
-  styleUrls: ['./ngx-validator-for.component.css']
+  templateUrl: './ngx-validator-for.component.html'
 })
 export class NgxValidatorForComponent {
 
