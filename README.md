@@ -2,7 +2,7 @@
 
 ## version 2.0.1
 
-* **Breaking change**: changed IsValid and ModelErrors type from function to `PropertyFunction`.
+* **Breaking change**: changed IsValid and ModelErrors type from `Function` to `PropertyFunction`.
 
 ## version 2.0.0
 
