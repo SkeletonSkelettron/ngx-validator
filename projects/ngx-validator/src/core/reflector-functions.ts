@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
-import { error } from 'protractor';
 
 
 function isEmpty(obj) {

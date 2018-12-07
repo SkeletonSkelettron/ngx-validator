@@ -9,7 +9,6 @@ import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.direct
   // tslint:disable-next-line:component-selector
   selector: 'ngx-input-for',
   templateUrl: './ngx-input-for.component.html',
-  styleUrls: ['./ngx-input-for.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: NgxInputForComponent,

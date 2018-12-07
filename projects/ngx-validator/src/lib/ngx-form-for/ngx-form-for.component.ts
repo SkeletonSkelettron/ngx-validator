@@ -7,8 +7,7 @@ import { getDecorators } from '../../core/reflector-functions';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-form-for',
-  templateUrl: './ngx-form-for.component.html',
-  styleUrls: ['./ngx-form-for.component.css']
+  templateUrl: './ngx-form-for.component.html'
 })
 export class NgxFormForComponent implements OnInit {
 
