@@ -36,3 +36,5 @@ export interface CssInputModel {
     input: string;
     error: string;
 }
+
+export type PropertyFunction<T> = () => T;

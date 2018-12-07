@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Renderer2, TemplateRef, AfterViewInit, ContentChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList } from '@angular/core';
 import { ValueAccessorBase } from '../../core/value-accessor';
 import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 import { getDecorators, ngxValidate } from '../../core/reflector-functions';
