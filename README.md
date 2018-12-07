@@ -1,7 +1,6 @@
 # Documentation
 
-For detailed documentation, please wisit projet's wiki  
-[**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)
+For detailed documentation, please wisit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)
 
 # Changes
 
