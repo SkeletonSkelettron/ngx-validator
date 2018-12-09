@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { myValidator } from './validate';
 
-export abstract class ElementBase<T> extends ValueAccessorBase<T> implements Validator {
+export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     protected abstract ngModel: NgModel;
 
     @Input()
@@ -18,16 +18,16 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> implements Val
 
     constructor(protected injector: Injector) {
         super(injector);
-        this.validator = myValidator(this.model);
+        this.validator = myValidator;
     }
 
     validate(control: AbstractControl): ValidationErrors {
-        // const t = this.formControl;
+        console.log('elementbase validate called');
+        return this.validator(control, this.model);
         // if (this.ngModel && this.ngModel.control) {
         //     return this.ngModel.control.errors;
         // } else {
-        //     return null;
+        //     return this.validator(control, this.model);
         // }
-        return this.validator(control);
     }
 }

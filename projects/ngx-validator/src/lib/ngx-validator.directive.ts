@@ -25,11 +25,11 @@ export class NgxValidatorDirective implements Validator {
   }
 
   constructor(private el: ElementRef) {
-    this.validator = myValidator(this.dataModel);
+    this.validator = myValidator;
   }
 
   validate(control: AbstractControl): ValidationErrors {
-    return this.validator(control);
+    return this.validator(control, this.dataModel);
   }
 
 }

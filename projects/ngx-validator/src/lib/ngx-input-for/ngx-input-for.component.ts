@@ -12,11 +12,11 @@ import { ElementBase } from '../../core/element-base';
   templateUrl: './ngx-input-for.component.html',
   styleUrls: ['./ngx-input-for.component.css'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: NgxInputForComponent, multi: true },
-  { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
+  // { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
   ],
 })
 
-export class NgxInputForComponent extends ElementBase<any> implements OnInit, OnChanges {
+export class NgxInputForComponent extends ElementBase<any> implements OnInit {
 
   DataTypeEnum = DataTypeEnum;
   dataType: number;
@@ -93,10 +93,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit, On
       this.readonly = true;
     }
 
-  }
-
-  ngOnChanges(r: SimpleChanges) {
-    console.log(r);
   }
 
   getTemplate(): TemplateRef<any> {

@@ -81,4 +81,8 @@ export class Hero {
   @ReadOnly()
   alterEgo?: string;
 
+  constructor() {
+    this.heroName = 'dsfs';
+  }
+
 }

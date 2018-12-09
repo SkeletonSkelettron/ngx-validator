@@ -5,7 +5,7 @@
         (ngSubmit)="onSubmit(heroForm)"
         #heroForm="ngForm"
         autocomplete="off">
-        <div class="form-group">
+       <div class="form-group">
             <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
@@ -15,7 +15,7 @@
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for>
             <ngx-validator-for [errors]="heroForm.controls['heroName']?.errors"></ngx-validator-for>
- <!--            <ngx-label-for
+  <!--            <ngx-label-for
                 [model]="model"
                 [field]="'birthdate'"></ngx-label-for>
             <kendo-datepicker
@@ -115,7 +115,7 @@
                     {{pow}}
                 </option>
             </select>
-            <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for> 
+            <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for> -->
         </div> 
 
         <button
@@ -125,7 +125,7 @@
         </button>
     </form>
 
-    <!-- <ngx-form-for
+   <!--  <ngx-form-for
         [model]="model"
         [autoComplete]="'Off'"
         (submitForm)="submitValue($event)">

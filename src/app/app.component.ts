@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     // this.model.age = 18;
     this.translate.setDefaultLang('ka-ge');
     // this.model.age = 33;
-    this.model.heroName = 'https://cdn2.ipn.ge/media/uploads/2018/12-09/janledrian.jpg';
+    // this.model.heroName = 'https://cdn2.ipn.ge/media/uploads/2018/12-09/janledrian.jpg';
     console.log(this.model.IsValid());
     console.log(this.model.ModelErrors());
     const err = this.model.ModelErrors();
