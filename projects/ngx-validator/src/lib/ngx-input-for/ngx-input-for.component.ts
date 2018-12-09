@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, AfterViewInit, Injector, OnChanges, SimpleChanges } from '@angular/core';
 import { ValueAccessorBase } from '../../core/value-accessor';
-import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS, NgForm, Validators } from '@angular/forms';
+import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS, NgForm, Validators, FormControlName } from '@angular/forms';
 import { getDecorators, ngxValidate } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
@@ -18,9 +18,6 @@ import { ElementBase } from '../../core/element-base';
 
 export class NgxInputForComponent extends ElementBase<any> implements OnInit, OnChanges {
 
-  @Input()
-  model: any;
-
   DataTypeEnum = DataTypeEnum;
   dataType: number;
 
@@ -33,8 +30,17 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit, On
   @ViewChild(NgForm)
   ngForm: NgForm;
 
+  @ViewChild(FormControlName)
+  formControlName: FormControlName;
+
   @HostBinding('class.ngx-input')
   ngxInput = false;
+
+  // @HostBinding('id')
+  // id;
+
+  // @HostBinding('name')
+  // name1;
 
   placeHolder = '';
   name = '';
@@ -64,6 +70,10 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit, On
       this.field = this.el.nativeElement.getAttribute('name') === null
         ? this.el.nativeElement.getAttribute('id')
         : this.el.nativeElement.getAttribute('name');
+    }
+
+    if (!this.field) {
+      this.field = this.el.nativeElement.getAttribute('formControlName');
     }
 
     const attribs = getDecorators(this.model, this.field);

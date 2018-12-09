@@ -22,7 +22,7 @@ export class ReactiveComponent implements OnInit {
   ngOnInit() {
     this.model = new Hero();
     this.model.age = 39;
-    this.model.heroName = 'ioane';
+    this.model.heroName = 'ioa';
     this.model.email = 'pref.ge1@gmail.com';
 
     this.heroForm.setValue({

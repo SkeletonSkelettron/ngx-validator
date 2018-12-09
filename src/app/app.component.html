@@ -1,12 +1,12 @@
 <div>
     <h1>Hero Form</h1>
 
-    <form
+     <form
         (ngSubmit)="onSubmit(heroForm)"
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
-            <!-- <ngx-label-for
+            <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
             <ngx-input-for
@@ -15,7 +15,7 @@
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for>
             <ngx-validator-for [errors]="heroForm.controls['heroName']?.errors"></ngx-validator-for>
-             <ngx-label-for
+ <!--            <ngx-label-for
                 [model]="model"
                 [field]="'birthdate'"></ngx-label-for>
             <kendo-datepicker
@@ -153,13 +153,13 @@
             <h4>{{data.model.age}}</h4>
         </ng-template>
 
-    </ngx-form-for>
+    </ngx-form-for>-->
 
 </div>
 <input
     type="button"
     class="btn btn-success"
     (click)="changeVal()"
-    value="change"> -->
+    value="change"> 
 
 <router-outlet></router-outlet>
