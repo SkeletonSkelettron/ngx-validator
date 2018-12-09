@@ -6,28 +6,16 @@
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
-            <ngx-label-for
-                [model]="model"
-                [field]="'heroName'"></ngx-label-for>
-            <input
-                type="text"
-                name="heroName"
-                class="form-control"
-                id="heroName"
-                [(ngModel)]="model.heroName"
-                #heroName="ngModel"
-                [ngx-validator]="model">
-            <ngx-validator-for [errors]="heroName.errors"></ngx-validator-for>
-
-            <ngx-label-for
+            <!-- <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
             <ngx-input-for
                 [model]="model"
                 name="heroName"
+                class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for>
             <ngx-validator-for [errors]="heroForm.controls['heroName']?.errors"></ngx-validator-for>
-            <ngx-label-for
+             <ngx-label-for
                 [model]="model"
                 [field]="'birthdate'"></ngx-label-for>
             <kendo-datepicker
@@ -75,6 +63,7 @@
             <ngx-input-for
                 [model]="model"
                 name="power"
+                class="form-control"
                 [(ngModel)]="model.power">
                 <ng-template
                     ngxCustomTemplateFor
@@ -82,6 +71,7 @@
                     <kendo-dropdownlist
                         [data]="listItems"
                         [textField]="'text'"
+                        [ngx-validator]="model"
                         [valueField]="'value'"
                         name="power"
                         class="form-control"
@@ -125,8 +115,8 @@
                     {{pow}}
                 </option>
             </select>
-            <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for>
-        </div>
+            <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for> 
+        </div> 
 
         <button
             type="submit"
@@ -163,10 +153,13 @@
             <h4>{{data.model.age}}</h4>
         </ng-template>
 
-    </ngx-form-for> -->
+    </ngx-form-for>
 
 </div>
-<input type="button" class="btn btn-success" (click)="changeVal()" value="change"/> 
+<input
+    type="button"
+    class="btn btn-success"
+    (click)="changeVal()"
+    value="change"> -->
 
-
-<router-outlet></router-outlet>  
+<router-outlet></router-outlet>

@@ -33,6 +33,7 @@
     "@progress/kendo-angular-layout": "3.1.2",
     "@progress/kendo-data-query": "1.5.0",
     "@progress/kendo-drawing": "1.5.7",
+    "@progress/kendo-theme-bootstrap": "^2.17.1",
     "@progress/kendo-theme-default": "2.56.0",
     "@types/iban": "0.0.30",
     "core-js": "^2.5.4",

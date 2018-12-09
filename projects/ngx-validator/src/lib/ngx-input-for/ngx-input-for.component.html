@@ -3,7 +3,6 @@
         <a
             [href]="value"
             *ngSwitchCase="DataTypeEnum.Url"
-            [ngClass]="inputClass"
             [id]="field">
             {{name | translate}}
         </a>
@@ -14,14 +13,14 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            [ngClass]="inputClass"
-            [readOnly]="readonly">
+            [readOnly]="readonly"
+            [ngx-validator]="model"
+            [field]="field">
 
         <img
             *ngSwitchCase="DataTypeEnum.ImageUrl"
             [src]="value"
-            [id]="field"
-            [ngClass]="inputClass">
+            [id]="field">
 
         <input
             type="file"
@@ -29,8 +28,9 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            [ngClass]="inputClass"
-            [readOnly]="readonly">
+            [readOnly]="readonly"
+            [ngx-validator]="model"
+            [field]="field">
 
         <textarea
             *ngSwitchCase="DataTypeEnum.MultilineText"
@@ -38,8 +38,9 @@
             [(ngModel)]="value"
             [id]="field"
             rows="5"
-            [ngClass]="inputClass"
-            [readOnly]="readonly"></textarea>
+            [readOnly]="readonly"
+            [ngx-validator]="model"
+            [field]="field"></textarea>
 
         <input
             *ngSwitchDefault
@@ -47,9 +48,10 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            [ngClass]="inputClass"
             [readOnly]="readonly"
-            [name]="field">
+            [name]="field"
+            [ngx-validator]="model"
+            [field]="field">
     </ng-container>
     <ng-template #template>
         <ng-container
