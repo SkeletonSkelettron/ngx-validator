@@ -10,10 +10,7 @@ export class NgxValidatorForComponent {
   messages: any[] = [];
 
   @HostBinding('class.ngx-validator')
-  ngxLabel = false;
-
-  @Input()
-  errorClass = 'text-danger';
+  ngxLabel = true;
 
   @Input('errors')
   set errors(value: any) {

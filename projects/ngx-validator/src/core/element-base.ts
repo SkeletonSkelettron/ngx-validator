@@ -23,8 +23,6 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
         return this.validator(control, this.model);
         // if (this.ngModel && this.ngModel.control) {
         //     return this.ngModel.control.errors;
-        // } else {
-        //     return this.validator(control, this.model);
-        // }
+        // } this.formControl
     }
 }

@@ -23,7 +23,7 @@
                 [ngClass]="cssClasses? cssClasses.input:''"></ngx-input-for>
             <ngx-validator-for
                 [errors]="form.controls[item.field]?.errors"
-                [errorClass]="cssClasses? cssClasses.error: 'text-danger'">
+                [ngClass]="cssClasses? cssClasses.error: 'text-danger'">
             </ngx-validator-for>
 
 

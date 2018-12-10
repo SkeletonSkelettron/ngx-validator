@@ -31,10 +31,10 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   formControlName: FormControlName;
 
   @HostBinding('class.ngx-input')
-  ngxInput = false;
+  ngxInput = true;
 
   placeHolder = '';
-  name = ''
+  name = '';
   _template: NgxCustomTemplateForDirective;
 
   readonly = false;
@@ -53,9 +53,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   }
 
   ngOnInit() {
-
-    this.ngxInput = true;
-
     if (this.field === null || this.field === undefined) {
       this.field = this.el.nativeElement.getAttribute('name') === null
         ? this.el.nativeElement.getAttribute('id')
@@ -80,7 +77,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
     }
 
     if (attribs.find(x => x.key === 'Name')) {
-      this.name = attribs.find(x => x.key === 'Name').value
+      this.name = attribs.find(x => x.key === 'Name').value;
     } else {
       this.name = this.field;
     }

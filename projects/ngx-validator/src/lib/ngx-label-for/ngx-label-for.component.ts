@@ -15,12 +15,11 @@ export class NgxLabelForComponent implements OnInit {
   field: string;
 
   @HostBinding('class.ngx-label')
-  ngxLabel = false;
+  ngxLabel = true;
 
   reflectValue = '';
 
   ngOnInit() {
-    this.ngxLabel = true;
     try {
       this.reflectValue = getDecorators(this.model, this.field).find(x => x.key === 'Name').value;
     } catch {
