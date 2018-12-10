@@ -1,10 +1,7 @@
 import { Injector, SimpleChange, SimpleChanges, Input } from '@angular/core';
 import { AbstractControl, NgModel, ValidationErrors, Validator } from '@angular/forms';
 import { ValueAccessorBase } from './value-accessor';
-import { Observable } from 'rxjs/index';
-import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { myValidator } from './validate';
+import { validateControl } from './validate';
 
 export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     protected abstract ngModel: NgModel;
@@ -18,7 +15,7 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
 
     constructor(protected injector: Injector) {
         super(injector);
-        this.validator = myValidator;
+        this.validator = validateControl;
     }
 
     validate(control: AbstractControl): ValidationErrors {

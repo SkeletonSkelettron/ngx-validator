@@ -12,7 +12,7 @@ import { ElementBase } from '../../core/element-base';
   templateUrl: './ngx-input-for.component.html',
   styleUrls: ['./ngx-input-for.component.css'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: NgxInputForComponent, multi: true },
-  // { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
+  { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
   ],
 })
 
@@ -27,24 +27,14 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   @ViewChild(NgModel)
   ngModel: NgModel;
 
-  @ViewChild(NgForm)
-  ngForm: NgForm;
-
   @ViewChild(FormControlName)
   formControlName: FormControlName;
 
   @HostBinding('class.ngx-input')
   ngxInput = false;
 
-  // @HostBinding('id')
-  // id;
-
-  // @HostBinding('name')
-  // name1;
-
   placeHolder = '';
-  name = '';
-
+  name = ''
   _template: NgxCustomTemplateForDirective;
 
   readonly = false;
@@ -85,14 +75,15 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
       this.placeHolder = attribs.find(x => x.key === 'Placeholder').value;
     }
 
-    if (attribs.find(x => x.key === 'Name')) {
-      this.name = attribs.find(x => x.key === 'Name').value;
-    }
-
     if (attribs.find(x => x.key === 'ReadOnly')) {
       this.readonly = true;
     }
 
+    if (attribs.find(x => x.key === 'Name')) {
+      this.name = attribs.find(x => x.key === 'Name').value
+    } else {
+      this.name = this.field;
+    }
   }
 
   getTemplate(): TemplateRef<any> {

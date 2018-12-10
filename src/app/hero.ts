@@ -28,7 +28,7 @@ export class Hero {
   @Name('Hero Name')
   @Required('field required')
   @Placeholder('placeholder')
-  // @DataType({ value: DataTypeEnum., error: 'must be a valid date' })
+  @DataType({ value: DataTypeEnum.MultilineText, error: 'must be a valid date' })
   @Email('Value should be an email')
   @StringLength({ min: 5, max: 10, error: 'field must be  {0} and max {1} simbols length' })
   heroName?: string;

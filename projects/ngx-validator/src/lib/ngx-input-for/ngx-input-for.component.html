@@ -6,53 +6,43 @@
             [id]="field">
             {{name | translate}}
         </a>
-
         <input
             type="password"
             *ngSwitchCase="DataTypeEnum.Password"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            [readOnly]="readonly"
-            [ngx-validator]="model"
-            [field]="field">
-
+            class="ngx-input-child"
+            [readOnly]="readonly">
         <img
             *ngSwitchCase="DataTypeEnum.ImageUrl"
             [src]="value"
             [id]="field">
-
         <input
             type="file"
             *ngSwitchCase="DataTypeEnum.Upload"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            [readOnly]="readonly"
-            [ngx-validator]="model"
-            [field]="field">
-
+            class="ngx-input-child"
+            [readOnly]="readonly">
         <textarea
             *ngSwitchCase="DataTypeEnum.MultilineText"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
+            class="ngx-input-child"
             rows="5"
-            [readOnly]="readonly"
-            [ngx-validator]="model"
-            [field]="field"></textarea>
-
+            [readOnly]="readonly"></textarea>
         <input
             *ngSwitchDefault
             type="text"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
+            class="ngx-input-child"
             [readOnly]="readonly"
-            [name]="field"
-            class="form-control"
-            [ngx-validator]="model"
-            [field]="field">
+            [name]="field">
     </ng-container>
     <ng-template #template>
         <ng-container

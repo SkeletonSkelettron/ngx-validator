@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { ngxValidate, getDecorators } from './reflector-functions';
 
-export function myValidator(control: AbstractControl, dataModel: any): ValidationErrors {
+export function validateControl(control: AbstractControl, dataModel: any): ValidationErrors {
     console.log('validator called');
     let name: string;
     if (control.parent) {

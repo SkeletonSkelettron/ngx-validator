@@ -1,7 +1,6 @@
 import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
-import { getDecorators, ngxValidate } from '../core/reflector-functions';
-import { myValidator } from '../core/validate';
+import { validateControl } from '../core/validate';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -25,7 +24,7 @@ export class NgxValidatorDirective implements Validator {
   }
 
   constructor(private el: ElementRef) {
-    this.validator = myValidator;
+    this.validator = validateControl;
   }
 
   validate(control: AbstractControl): ValidationErrors {

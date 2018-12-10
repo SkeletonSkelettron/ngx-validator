@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { getDecorators } from '../../core/reflector-functions';
 
 @Component({
@@ -14,12 +14,13 @@ export class NgxLabelForComponent implements OnInit {
   @Input()
   field: string;
 
-  @Input()
-  labelClass = '';
+  @HostBinding('class.ngx-label')
+  ngxLabel = false;
 
   reflectValue = '';
 
   ngOnInit() {
+    this.ngxLabel = true;
     try {
       this.reflectValue = getDecorators(this.model, this.field).find(x => x.key === 'Name').value;
     } catch {

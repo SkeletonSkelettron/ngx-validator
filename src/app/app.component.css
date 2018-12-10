@@ -6,8 +6,3 @@
     border: 1px solid #a94442; /* red */
   }
 
-  .ngx-input {
-    padding: 0;
-    border: 0px solid transparent; /* red */
-    display: inline-table;
-}

@@ -3,15 +3,17 @@
     (ngSubmit)="submit()"
     [autocomplete]="autoComplete">
 
+
     <div
         [ngClass]="cssClasses? cssClasses.group: 'form-group'"
         *ngFor="let item of propertyNames">
         <ng-container *ngIf="!item.template; else template">
 
+
             <ngx-label-for
                 [model]="_model"
                 [field]="item.field"
-                [labelClass]="cssClasses? cssClasses.label:''"></ngx-label-for>
+                [ngClass]="cssClasses? cssClasses.label:''"></ngx-label-for>
             <ngx-input-for
                 [id]="item.field"
                 [model]="_model"
@@ -24,7 +26,9 @@
                 [errorClass]="cssClasses? cssClasses.error: 'text-danger'">
             </ngx-validator-for>
 
+
         </ng-container>
+
 
         <ng-template #template>
             <!-- temporary form validation workaround. custom temlpate is not binded to form's controls and therefore, form validation doesn't work. help needed -->
@@ -45,5 +49,6 @@
         class="btn btn-success">
         Submit
     </button>
+
 
 </form>
