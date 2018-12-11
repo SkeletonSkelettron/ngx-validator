@@ -59,7 +59,7 @@ export class Hero {
   @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Range({ min: 1, max: 10, error: '1 dan 10mde' })
-  @Required('Value required')
+  @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then birthdate is required' })
   @Custom({
     value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
       if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
@@ -75,14 +75,14 @@ export class Hero {
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
   power: number;
 
-  @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
+
   birthdate: Date;
 
   @ReadOnly()
   alterEgo?: string;
 
   constructor() {
-    this.heroName = 'dsfs';
+    this.heroName = 'kirk';
   }
 
 }

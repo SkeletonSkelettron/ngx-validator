@@ -5,6 +5,34 @@
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
+            <h3>ngx-input-for</h3>
+            <ngx-label-for
+                [model]="model"
+                [field]="'age'"></ngx-label-for>
+            <ngx-input-for
+                [model]="model"
+                name="age"
+                class="form-control"
+                [(ngModel)]="model.age"></ngx-input-for>
+            <ngx-validator-for
+                [errors]="heroForm.controls['age']?.errors"
+                class="text-danger"></ngx-validator-for>
+
+            <h3>ngx-validator</h3>
+            <ngx-label-for
+                [model]="model"
+                [field]="'heroName'"></ngx-label-for>
+            <input
+                name="heroName"
+                id="heroName"
+                [(ngModel)]="model.heroName"
+                class="form-control"
+                [ngx-validator]="model">
+            <ngx-validator-for
+                [errors]="heroForm.controls['heroName']?.errors"
+                class="text-danger"></ngx-validator-for>
+            <hr>
+            <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
                 class="control-label"
@@ -14,29 +42,25 @@
                 name="heroName"
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for>
-            <ngx-validator-for [errors]="heroForm.controls['heroName']?.errors"></ngx-validator-for>
-            <!-- <ngx-label-for
+            <ngx-validator-for
+                [errors]="heroForm.controls['heroName']?.errors"
+                class="text-danger"></ngx-validator-for>
+
+            <h3>ngx-input-for</h3>
+            <ngx-label-for
                 [model]="model"
                 [field]="'birthdate'"></ngx-label-for>
             <kendo-datepicker
                 [(ngModel)]="model.birthdate"
                 name="birthdate"
-                class="form-control input-sm"
+                class="form-control"
                 [ngx-validator]="model">
             </kendo-datepicker>
-            <ngx-validator-for [errors]="heroForm.controls['birthdate']?.errors"></ngx-validator-for>
+            <ngx-validator-for
+                [errors]="heroForm.controls['birthdate']?.errors"
+                class="text-danger"></ngx-validator-for>
 
-            <ngx-label-for
-                [model]="model"
-                [field]="'age'"></ngx-label-for>
-            <ngx-input-for
-                [model]="model"
-                name="age"
-                [(ngModel)]="model.age"
-                #age="ngModel"></ngx-input-for>
-            <ngx-validator-for [errors]="age.errors"></ngx-validator-for>
-
-            <ngx-label-for
+            <!-- <ngx-label-for
                 [model]="model"
                 [field]="'creditCard'"></ngx-label-for>
             <ngx-input-for
@@ -118,16 +142,12 @@
             <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for> -->
         </div>
 
-
-
         <button
             type="submit"
             class="btn btn-success">
             Submit
         </button>
     </form>
-
-
 
     <!-- <ngx-form-for
         [model]="model"
@@ -159,15 +179,11 @@
 
     </ngx-form-for> -->
 
-
-
 </div>
 <input
     type="button"
     class="btn btn-success"
     (click)="changeVal()"
     value="change">
-
-
 
 <router-outlet></router-outlet>
