@@ -3,6 +3,7 @@
         <a
             [href]="value"
             *ngSwitchCase="DataTypeEnum.Url"
+            class="ngx-input-child-url"
             [id]="field">
             {{name | translate}}
         </a>
@@ -17,6 +18,7 @@
         <img
             *ngSwitchCase="DataTypeEnum.ImageUrl"
             [src]="value"
+            class="ngx-input-child-image"
             [id]="field">
         <input
             type="file"
@@ -24,14 +26,14 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            class="ngx-input-child"
+            class="ngx-input-child-upload"
             [readOnly]="readonly">
         <textarea
             *ngSwitchCase="DataTypeEnum.MultilineText"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            class="ngx-input-child"
+            class="ngx-input-child-textarea"
             rows="5"
             [readOnly]="readonly"></textarea>
         <input
