@@ -57,7 +57,7 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
 /**
  * Validates field if it has valid value according to value parameter
  */
-export function DataType(param: { value: DataTypeEnum, error: string }) {
+export function DataType(param: { value: DataTypeEnum, error?: string }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:DataType', param, target, propertyKey);

@@ -17,9 +17,9 @@ export class AppComponent implements OnInit {
   model = new Hero();
 
   listItems = [
-    { text: 'პირველი', value: 1 },
-    { text: 'მეორე', value: 2 },
-    { text: 'მესამე', value: 3 }
+    { text: 'First', value: 1 },
+    { text: 'Second', value: 2 },
+    { text: 'Third', value: 3 }
   ];
 
   selectedValue: any;
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     // this.model.age = 18;
     this.translate.setDefaultLang('ka-ge');
     // this.model.age = 33;
-    // this.model.heroName = 'https://cdn2.ipn.ge/media/uploads/2018/12-09/janledrian.jpg';
+    this.model.heroPic = 'https://avatars0.githubusercontent.com/u/26940527?s=400&u=b891f4f04f231892ccdc0bf874c00ded0582e7dc&v=4';
     console.log(this.model.IsValid());
     console.log(this.model.ModelErrors());
     const err = this.model.ModelErrors();

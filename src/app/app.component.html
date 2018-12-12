@@ -5,19 +5,16 @@
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
-            <h3>ngx-input-for</h3>
+            <h3>@Datatype</h3>
             <ngx-label-for
                 [model]="model"
-                [field]="'age'"></ngx-label-for>
+                [field]="'heroPic'"></ngx-label-for>
             <ngx-input-for
                 [model]="model"
-                name="age"
-                class="form-control"
-                [(ngModel)]="model.age"></ngx-input-for>
-            <ngx-validator-for
-                [errors]="heroForm.controls['age']?.errors"
-                class="text-danger"></ngx-validator-for>
-
+                name="heroPic"
+                style="height: 100px; width: 100px"
+                [(ngModel)]="model.heroPic"></ngx-input-for>
+            <hr>
             <h3>ngx-validator</h3>
             <ngx-label-for
                 [model]="model"
@@ -35,6 +32,19 @@
             <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
+                [field]="'age'"></ngx-label-for>
+            <ngx-input-for
+                [model]="model"
+                name="age"
+                class="form-control"
+                [(ngModel)]="model.age"></ngx-input-for>
+            <ngx-validator-for
+                [errors]="heroForm.controls['age']?.errors"
+                class="text-danger"></ngx-validator-for>
+            <hr>
+            <h3>ngx-input-for</h3>
+            <ngx-label-for
+                [model]="model"
                 class="control-label"
                 [field]="'heroName'"></ngx-label-for>
             <ngx-input-for
@@ -45,49 +55,25 @@
             <ngx-validator-for
                 [errors]="heroForm.controls['heroName']?.errors"
                 class="text-danger"></ngx-validator-for>
-
-            <h3>ngx-input-for</h3>
+            <hr>
+            <h3>@CreditCard</h3>
             <ngx-label-for
-                [model]="model"
-                [field]="'birthdate'"></ngx-label-for>
-            <kendo-datepicker
-                [(ngModel)]="model.birthdate"
-                name="birthdate"
-                class="form-control"
-                [ngx-validator]="model">
-            </kendo-datepicker>
-            <ngx-validator-for
-                [errors]="heroForm.controls['birthdate']?.errors"
-                class="text-danger"></ngx-validator-for>
-
-            <!-- <ngx-label-for
                 [model]="model"
                 [field]="'creditCard'"></ngx-label-for>
             <ngx-input-for
                 [model]="model"
                 name="creditCard"
+                class="form-control"
                 [(ngModel)]="model.creditCard"></ngx-input-for>
             <ngx-validator-for [errors]="heroForm.controls['creditCard']?.errors"></ngx-validator-for>
-
-            <ngx-label-for
-                [model]="model"
-                [field]="'creditCard'"></ngx-label-for>
-            <input
-                type="text"
-                class="form-control"
-                id="creditCard"
-                [(ngModel)]="model.creditCard"
-                name="creditCard"
-                [ngx-validator]="model">
-            <ngx-validator-for [errors]="heroForm.controls['creditCard']?.errors"></ngx-validator-for>
-
+            <hr>
+            <h3>Custom template</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'power'"></ngx-label-for>
             <ngx-input-for
                 [model]="model"
                 name="power"
-                class="form-control"
                 [(ngModel)]="model.power">
                 <ng-template
                     ngxCustomTemplateFor
@@ -105,43 +91,8 @@
                 </ng-template>
             </ngx-input-for>
             <ngx-validator-for [errors]="heroForm.controls['power']?.errors"></ngx-validator-for>
-        </div>
 
-        <div class="form-group">
-            <label for="alterEgo">Alter Ego</label>
-            <input
-                type="text"
-                class="form-control"
-                id="alterEgo"
-                required
-                [(ngModel)]="model.alterEgo"
-                name="alterEgo"
-                #alterEgo="ngModel">
-            <div
-                [hidden]="alterEgo.valid || alterEgo.pristine"
-                class="alert alert-danger">
-                Valid email is required
-            </div>
         </div>
-
-        <div class="form-group">
-            <label for="power">Hero Power</label>
-            <select
-                class="form-control"
-                id="power"
-                [(ngModel)]="model.power"
-                name="power"
-                #pwr="ngModel"
-                [ngx-validator]="model">
-                <option
-                    *ngFor="let pow of powers"
-                    [value]="pow">
-                    {{pow}}
-                </option>
-            </select>
-            <ngx-validator-for [errors]="pwr.errors"></ngx-validator-for> -->
-        </div>
-
         <button
             type="submit"
             class="btn btn-success">

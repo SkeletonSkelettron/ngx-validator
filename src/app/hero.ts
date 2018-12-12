@@ -10,12 +10,6 @@ import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/core/
 //   };
 // };
 
-function ged() {
-  console.log('"g(): evaluated"');
-  return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
-    console.log('"g(): called"');
-  };
-}
 @ModelState
 // @Reflect.metadata('metadataKey', 'metadataValue')
 export class Hero {
@@ -37,11 +31,11 @@ export class Hero {
   @Required('Email is required')
   @Placeholder('email')
   @Email('Value should be an email')
-
+  @Compare({ field: 'heroName', error: 'field does not match name' })
   email: string;
 
   @Name('Hero\'s  credit card')
-  @Compare({ field: 'heroName', error: 'field does not match name' })
+
   @Required('aucilebelia')
   @Contains({ value: '123', error: 'უნდა შეიცავდეს 123ს' })
   @CreditCard({ error: 'Value should be a valid credit card number' })
@@ -54,12 +48,14 @@ export class Hero {
   @Pattern({ value: /^[0-9]{6}$/, error: 'Value should be a valid phone number' })
   mobile: string;
 
+  @DataType({ value: DataTypeEnum.ImageUrl, error: '' })
+  heroPic: string;
 
   @Name('Hero age')
   @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   @Range({ min: 1, max: 10, error: '1 dan 10mde' })
-  @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then birthdate is required' })
+  @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
   @Custom({
     value: 17, error: 'ბიძინას მოუხან ჩამომთრევი', customFunc: (value: number, hr: Hero) => {
       if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'ბიძინა') {
@@ -68,7 +64,6 @@ export class Hero {
       return true;
     }
   })
-  // @RequiredIf({ field: 'heroName', value: 'ზღარიბი', error: 'სახელი თუ ქვია ზღარიბი, მაშინ აუცილებელია' })
   age: number;
 
   @Required('Value is required')
@@ -83,6 +78,7 @@ export class Hero {
 
   constructor() {
     this.heroName = 'kirk';
+    this.creditCard = '4111 1111 1111 1111';
   }
 
 }
