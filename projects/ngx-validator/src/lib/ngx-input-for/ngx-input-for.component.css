@@ -10,3 +10,8 @@
   border: 0 transparent;
   outline: none;
 }
+.ngx-input-child-image {
+  height: 100px;
+  width: 100px;
+}
+

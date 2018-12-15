@@ -19,7 +19,7 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     }
 
     validate(control: AbstractControl): ValidationErrors {
-        console.log('elementbase validate called');
+        // console.log('elementbase validate called');
         return this.validator(control, this.model);
         // if (this.ngModel && this.ngModel.control) {
         //     return this.ngModel.control.errors;

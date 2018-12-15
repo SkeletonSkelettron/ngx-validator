@@ -4,7 +4,8 @@ import { getDecorators } from '../../core/reflector-functions';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-label-for',
-  templateUrl: './ngx-label-for.component.html'
+  templateUrl: './ngx-label-for.component.html',
+  styleUrls: ['./ngx-label-for.component.css'],
 })
 export class NgxLabelForComponent implements OnInit {
 

@@ -2,7 +2,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { ngxValidate, getDecorators } from './reflector-functions';
 
 export function validateControl(control: AbstractControl, dataModel: any): ValidationErrors {
-    console.log('validator called');
+    // console.log('validator called');
     let name: string;
     if (control.parent) {
         for (const item of Object.keys(control.parent.controls)) {
@@ -20,7 +20,7 @@ export function validateControl(control: AbstractControl, dataModel: any): Valid
         this.el.nativeElement.setAttribute('readonly', true);
     }
 
-    for (const item of attribs) {
+    for (const item of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
         const messg = ngxValidate(item.key, item.value, control.value, dataModel);
         if (messg) {
             errs[item.key] = messg;

@@ -2,7 +2,7 @@ import { Component, OnInit, Output, ViewChild, TemplateRef } from '@angular/core
 import { InputModel } from './InputModel';
 import { Hero } from './hero';
 import { NgForm } from '@angular/forms';
-import { ngxValidate } from 'projects/ngx-validator/src/public_api';
+import { ngxValidate, CssInputModel } from 'projects/ngx-validator/src/public_api';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
     { text: 'Second', value: 2 },
     { text: 'Third', value: 3 }
   ];
+
+  classesForForm: CssInputModel;
 
   selectedValue: any;
   sName = 'snameeeeeeeeeeeee';
@@ -56,6 +58,10 @@ export class AppComponent implements OnInit {
     const err = this.model.ModelErrors();
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
+    this.classesForForm = {
+      input: 'form-control',
+      error: 'text-danger'
+    };
   }
 
   changeVal() {

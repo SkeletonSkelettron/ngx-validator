@@ -99,12 +99,13 @@
             Submit
         </button>
     </form>
-
-    <!-- <ngx-form-for
+    <hr>
+    <h2>ngx-form-for</h2>
+    <ngx-form-for
         [model]="model"
         [autoComplete]="'Off'"
+        [cssClasses]="classesForForm"
         (submitForm)="submitValue($event)">
-
         <ng-template
             ngxCustomTemplateFor="power"
             let-data>
@@ -119,22 +120,11 @@
             <ngx-validator-for
                 *ngIf="data.form.controls['power']"
                 [errors]="data.form.controls['power'].errors"></ngx-validator-for>
-
         </ng-template>
-
         <ng-template
             ngxCustomTemplateFor="age"
             let-data>
             <h4>{{data.model.age}}</h4>
         </ng-template>
-
-    </ngx-form-for> -->
-
+    </ngx-form-for>
 </div>
-<input
-    type="button"
-    class="btn btn-success"
-    (click)="changeVal()"
-    value="change">
-
-<router-outlet></router-outlet>
