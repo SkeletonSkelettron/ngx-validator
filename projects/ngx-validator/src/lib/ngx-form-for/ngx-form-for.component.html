@@ -3,7 +3,7 @@
     (ngSubmit)="submit()"
     [autocomplete]="autoComplete">
     <div
-        [ngClass]="cssClasses? cssClasses.group: 'ngx-form-for'"
+        [ngClass]="cssClasses?.group? cssClasses.group : 'ngx-form-for'"
         *ngFor="let item of propertyNames">
         <ng-container *ngIf="!item.template; else template">
             <ngx-label-for

@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+.ngx-input {
+    padding: 0;
+    display: inline-table;
+}
+.ngx-input-child {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0!important;
+  border: 0 transparent;
+  outline: none!important;
+  box-shadow: none!important;
+}
+.ngx-input-child-image {
+  height: 100px;
+  width: 100px;
+}
+
+.ngx-label {
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+

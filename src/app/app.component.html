@@ -74,24 +74,26 @@
             <ngx-input-for
                 [model]="model"
                 name="power"
+                class="form-control"
                 [(ngModel)]="model.power">
                 <ng-template
                     ngxCustomTemplateFor
                     let-model>
-                    <kendo-dropdownlist
-                        [data]="listItems"
-                        [textField]="'text'"
-                        [ngx-validator]="model"
-                        [valueField]="'value'"
-                        name="power"
-                        class="form-control"
+                    <select
                         [(ngModel)]="model.power"
-                        [valuePrimitive]="true">
-                    </kendo-dropdownlist>
+                        name="power"
+                        class="form-control">
+                        <option
+                            *ngFor="let c of listItems"
+                            [ngValue]="c.value">
+                            {{c.text}}
+                        </option>
+                    </select>
                 </ng-template>
             </ngx-input-for>
-            <ngx-validator-for [errors]="heroForm.controls['power']?.errors"></ngx-validator-for>
-
+            <ngx-validator-for
+                [errors]="heroForm.controls['power']?.errors"
+                class="text-danger"></ngx-validator-for>
         </div>
         <button
             type="submit"
@@ -109,14 +111,16 @@
         <ng-template
             ngxCustomTemplateFor="power"
             let-data>
-            <kendo-dropdownlist
-                [data]="listItems"
-                [textField]="'text'"
-                [valueField]="'value'"
-                name="power"
+            <select
                 [(ngModel)]="data.model.power"
-                [valuePrimitive]="true">
-            </kendo-dropdownlist>
+                name="power"
+                class="form-control">
+                <option
+                    *ngFor="let c of listItems"
+                    [ngValue]="c.value">
+                    {{c.text}}
+                </option>
+            </select>
             <ngx-validator-for
                 *ngIf="data.form.controls['power']"
                 [errors]="data.form.controls['power'].errors"></ngx-validator-for>

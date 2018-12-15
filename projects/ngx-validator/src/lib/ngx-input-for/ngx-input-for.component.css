@@ -8,7 +8,8 @@
   height: 100%;
   padding: 0!important;
   border: 0 transparent;
-  outline: none;
+  outline: none!important;
+  box-shadow: none!important;
 }
 .ngx-input-child-image {
   height: 100px;

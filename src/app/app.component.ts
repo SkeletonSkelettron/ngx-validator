@@ -49,9 +49,9 @@ export class AppComponent implements OnInit {
   //////// NOT SHOWN IN DOCS ////////
 
   ngOnInit() {
-    // this.model.age = 18;
+
     this.translate.setDefaultLang('ka-ge');
-    // this.model.age = 33;
+    this.model.age = 33;
     this.model.heroPic = 'https://avatars0.githubusercontent.com/u/26940527?s=400&u=b891f4f04f231892ccdc0bf874c00ded0582e7dc&v=4';
     console.log(this.model.IsValid());
     console.log(this.model.ModelErrors());
@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
     this.classesForForm = {
+      group: 'form-group',
       input: 'form-control',
       error: 'text-danger'
     };
