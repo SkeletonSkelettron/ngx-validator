@@ -22,6 +22,12 @@
       ],
       "ngx-validator/*": [
         "dist/ngx-validator/*"
+      ],
+      "ggg": [
+        "dist/ggg"
+      ],
+      "ggg/*": [
+        "dist/ggg/*"
       ]
     }
   }

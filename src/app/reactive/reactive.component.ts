@@ -12,7 +12,7 @@ export class ReactiveComponent implements OnInit {
   model: Hero;
 
   heroForm = this.fb.group({
-    heroName: ['', Validators.required],
+    heroName: [''],
     age: [''],
     email: ['']
   });
@@ -22,14 +22,14 @@ export class ReactiveComponent implements OnInit {
   ngOnInit() {
     this.model = new Hero();
     this.model.age = 39;
-    this.model.heroName = 'ioane';
+    this.model.heroName = 'ioa';
     this.model.email = 'pref.ge1@gmail.com';
 
-    // this.heroForm.setValue({
-    //   heroName: this.model.heroName,
-    //   age: this.model.age,
-    //   email: this.model.email
-    // });
+    this.heroForm.setValue({
+      heroName: this.model.heroName,
+      age: this.model.age,
+      email: this.model.email
+    });
   }
 
   clickBtn() {
