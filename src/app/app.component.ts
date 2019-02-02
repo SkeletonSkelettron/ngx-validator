@@ -1,8 +1,6 @@
-import { Component, OnInit, Output, ViewChild, TemplateRef } from '@angular/core';
-import { InputModel } from './InputModel';
+import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';
-import { NgForm } from '@angular/forms';
-import { ngxValidate, CssInputModel } from 'projects/ngx-validator/src/public_api';
+import { CssInputModel } from 'projects/ngx-validator/src/public_api';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

@@ -4,6 +4,11 @@ For detailed documentation, please wisit projet's wiki [**page**](https://github
 
 # Changes
 
+## version 2.1.0
+
+* **Breaking change**: removed [labelClass], [inputClass] and [errorClass] input property from `<ngx-label-for>`, `<ngx-input-for>` and `<ngx-validator-for>` components . Now you can assign any class by `class="form control"`  
+* added defaul css classes to `<ngx-label-for>` ('ngx-label' and 'ngx-label-child'), `<ngx-input-for>`('ngx-input' and 'ngx-input-child') and `<ngx-validator-for>` ('ngx-validator' and 'ngx-validator-child').  You can use them for additional styling  
+
 ## version 2.0.1
 
 * **Breaking change**: changed IsValid and ModelErrors type from `Function` to `PropertyFunction`.
