@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -9,9 +9,8 @@ export class NgxValidatorForComponent {
 
   messages: any[] = [];
 
-
-  @Input()
-  errorClass = 'text-danger';
+  @HostBinding('class.ngx-validator')
+  ngxLabel = true;
 
   @Input('errors')
   set errors(value: any) {
