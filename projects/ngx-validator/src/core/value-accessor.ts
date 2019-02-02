@@ -1,7 +1,7 @@
 // credits to https://github.com/clbond/form-example
 
 import { ControlValueAccessor, NgControl } from '@angular/forms';
-import { ElementRef, Injector } from '@angular/core';
+import { Injector } from '@angular/core';
 
 export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
   private innerValue: T;

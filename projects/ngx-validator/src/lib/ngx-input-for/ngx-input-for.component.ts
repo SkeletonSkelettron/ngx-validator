@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, AfterViewInit, Injector, OnChanges, SimpleChanges } from '@angular/core';
-import { ValueAccessorBase } from '../../core/value-accessor';
-import { NgModel, NG_VALUE_ACCESSOR, Validator, AbstractControl, NG_VALIDATORS, NgForm, Validators, FormControlName } from '@angular/forms';
-import { getDecorators, ngxValidate } from '../../core/reflector-functions';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector } from '@angular/core';
+import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControlName } from '@angular/forms';
+import { getDecorators } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 import { ElementBase } from '../../core/element-base';

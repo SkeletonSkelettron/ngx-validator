@@ -161,6 +161,41 @@
           }
         }
       }
+    },
+    "ggg": {
+      "root": "projects/ggg",
+      "sourceRoot": "projects/ggg/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ggg/tsconfig.lib.json",
+            "project": "projects/ggg/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ggg/src/test.ts",
+            "tsConfig": "projects/ggg/tsconfig.spec.json",
+            "karmaConfig": "projects/ggg/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ggg/tsconfig.lib.json",
+              "projects/ggg/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "reflect-app"

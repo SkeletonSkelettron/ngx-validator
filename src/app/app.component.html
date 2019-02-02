@@ -65,7 +65,7 @@
                 name="creditCard"
                 class="form-control"
                 [(ngModel)]="model.creditCard"></ngx-input-for>
-            <ngx-validator-for [errors]="heroForm.controls['creditCard']?.errors"></ngx-validator-for>
+            <ngx-validator-for [errors]="heroForm.controls['creditCard']?.errors" class="text-danger"></ngx-validator-for>
             <hr>
             <h3>Custom template</h3>
             <ngx-label-for
