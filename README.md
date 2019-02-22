@@ -4,6 +4,10 @@ For detailed documentation, please wisit projet's wiki [**page**](https://github
 Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
 
+## version 2.1.1
+
+* Removed console.log :|  
+
 ## version 2.1.0
 
 * **Breaking change**: removed [labelClass], [inputClass] and [errorClass] input property from `<ngx-label-for>`, `<ngx-input-for>` and `<ngx-validator-for>` components . Now you can assign any class by `class="form control"`  
