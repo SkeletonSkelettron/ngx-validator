@@ -1,6 +1,15 @@
 import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
 
+/*
+DisplayFormat
+GreaterThan
+GreaterThanEqualTo
+LessThan
+LessThanEqualTo
+*/
+
+
 
 function isEmpty(obj) {
     for (const key in obj) {
@@ -97,7 +106,7 @@ export function Contains(param: { value: string, error: string }) {
 /**
  * Validates field according to custom logic
  */
-export function Custom(param: { value?: any, error: string, customFunc: Function }) {
+export function Custom<T>(param: { value?: any, error: string, customFunc: Function }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
