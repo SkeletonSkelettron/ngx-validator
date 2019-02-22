@@ -19,7 +19,6 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     }
 
     validate(control: AbstractControl): ValidationErrors {
-        console.log('validate');
         return this.validator(control, this.model);
     }
 }

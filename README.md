@@ -1,8 +1,12 @@
 # Documentation
 
-For detailed documentation, please wisit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)
-
+For detailed documentation, please wisit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)  
+Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
+
+## version 2.1.1
+
+* Removed console.log :|  
 
 ## version 2.1.0
 
@@ -22,7 +26,7 @@ For detailed documentation, please wisit projet's wiki [**page**](https://github
 
 ## version 1.2.4
 
-* updated readme.
+* updated readme. New documentation for library
 
 ## version 1.2.3
 
