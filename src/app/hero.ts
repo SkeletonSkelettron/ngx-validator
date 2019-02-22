@@ -1,6 +1,6 @@
 import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
-  Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState,
+  Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState, Custom2,
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/core/reflect-input.models';
 
@@ -42,12 +42,12 @@ export class Hero {
   heroPic: string;
 
   @Name('Hero age')
-  @MinValue({ value: 21, error: 'Value should be more than 21' })
-  @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
-  @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
-  @Custom({
-    value: 17, error: 'custom decorator error', customFunc: (value: number, hr: Hero) => {
-      if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'kirk') {
+  // @MinValue({ value: 21, error: 'Value should be more than 21' })
+  // @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
+  // @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
+  @Custom2<Hero>({
+    error: 'custom decorator error', predicate: function(this: Hero)  {
+      if (this.email === 'pref.ge1@gmail.com' && this.heroName === 'kirk') {
         return false;
       }
       return true;

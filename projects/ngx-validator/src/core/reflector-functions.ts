@@ -106,10 +106,20 @@ export function Contains(param: { value: string, error: string }) {
 /**
  * Validates field according to custom logic
  */
-export function Custom<T>(param: { value?: any, error: string, customFunc: Function }) {
+export function Custom(param: { value?: any, error: string, customFunc: Function }) {
     return function (target: Object, propertyKey: string) {
         Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
+    };
+}
+
+/**
+ * Validates field according to custom logic
+ */
+export function Custom2<T>(param: {predicate: (value: T) => boolean, error: string}) {
+    return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
+        Reflect.defineMetadata('custom-reflect:Custom2', param, target, propertyKey);
     };
 }
 

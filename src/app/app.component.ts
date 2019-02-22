@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from './hero';
 import { CssInputModel } from 'projects/ngx-validator/src/public_api';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,9 @@ export class AppComponent implements OnInit {
     'Super Hot', 'Weather Changer'];
 
   model = new Hero();
+
+
+
 
   listItems = [
     { text: 'First', value: 1 },

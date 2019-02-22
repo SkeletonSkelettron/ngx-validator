@@ -41,6 +41,18 @@
             <ngx-validator-for
                 [errors]="heroForm.controls['age']?.errors"
                 class="text-danger"></ngx-validator-for>
+                <h3>ngx-input-for</h3>
+                <ngx-label-for
+                    [model]="model"
+                    [field]="'email'"></ngx-label-for>
+                <ngx-input-for
+                    [model]="model"
+                    name="email"
+                    class="form-control"
+                    [(ngModel)]="model.email"></ngx-input-for>
+                <ngx-validator-for
+                    [errors]="heroForm.controls['email']?.errors"
+                    class="text-danger"></ngx-validator-for>
             <hr>
             <h3>ngx-input-for</h3>
             <ngx-label-for
