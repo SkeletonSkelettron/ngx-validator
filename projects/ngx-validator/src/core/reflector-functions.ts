@@ -1,120 +1,235 @@
 import 'reflect-metadata';
 import { ParamInputModel, RangeInputModel, DecoratorReturnModel, DataTypeEnum } from './reflect-input.models';
-// import { isValid } from 'iban';
 
-export function FormGenerator(constructor: Function) {
-    Object.create(constructor);
-    Object.create(constructor.prototype);
+
+function isEmpty(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
 }
 
-export function DataType(param: ParamInputModel) {
+
+export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
+
+    return class extends constructor {
+        /**
+         * Returns model validation state
+         */
+        IsValid() {
+            for (const item of Reflect.getMetadataKeys(this)) {
+                const attribs = getDecorators(this, item);
+                for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
+                    const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+                    if (messg) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        /**
+         * Placeholder(string)
+         * Validate: function
+         */
+        ModelErrors(): { [key: string]: { [key: string]: any } } {
+            const errs: { [key: string]: any } = {};
+            let tmp: { [key: string]: any } = {};
+            for (const item of Reflect.getMetadataKeys(this)) {
+                const attribs = getDecorators(this, item);
+                for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
+                    const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+                    if (messg) {
+                        tmp[attrib.key] = messg;
+                    }
+                }
+                if (!isEmpty(tmp)) {
+                    errs[item] = tmp;
+                }
+                tmp = {};
+            }
+            return errs;
+        }
+    };
+}
+/**
+ * Validates field if it has valid value according to value parameter
+ */
+export function DataType(param: { value: DataTypeEnum, error?: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:DataType', param, target, propertyKey);
     };
 }
 
-export function CreditCard(param: ParamInputModel) {
+/**
+ * Validates field if it represents valid credit card number
+ */
+export function CreditCard(param: { error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:CreditCard', param, target, propertyKey);
     };
 }
 
-export function Compare(param: ParamInputModel) {
+/**
+ * Compares field to other field and checks if they are equal
+ */
+export function Compare(param: { field: string, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Compare', param, target, propertyKey);
     };
 }
 
-export function Contains(param: ParamInputModel) {
+/**
+ * Validates if field value contains specific value
+ */
+export function Contains(param: { value: string, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Contains', param, target, propertyKey);
     };
 }
 
-export function Custom(param: ParamInputModel) {
+/**
+ * Validates field according to custom logic
+ */
+export function Custom(param: { value?: any, error: string, customFunc: Function }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Custom', param, target, propertyKey);
     };
 }
 
-// export function IBAN(param: ParamInputModel) {
-//     return function (target: Object, propertyKey: string) {
-//         Reflect.defineMetadata('custom-reflect:IBAN', param, target, propertyKey);
-//     };
-// }
-
+/**
+ * Sets the name metadata for the field
+ */
 export function Name(param: string) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Name', param, target, propertyKey);
     };
 }
 
+/**
+ * Validates field and checks if it has null, undefined or empty value
+ */
 export function Required(param: string) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Required', param, target, propertyKey);
     };
 }
 
-export function RequiredIf(param: ParamInputModel) {
+/**
+ * Validates field if other field has specific value and checks if it has null, undefined or empty value
+ */
+export function RequiredIf(param: { field: string, value: any, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:RequiredIf', param, target, propertyKey);
     };
 }
 
+/**
+ * Sets field's input value to readonly
+ */
 export function ReadOnly() {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, propertyKey, target);
         Reflect.defineMetadata('custom-reflect:ReadOnly', null, target, propertyKey);
     };
 }
 
-export function Pattern(param: ParamInputModel) {
+/**
+ * Validates if field has valid value according to specified pattern
+ */
+export function Pattern(param: { value: RegExp, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:Pattern', param, target, propertyKey);
     };
 }
 
-export function MinValue(input: ParamInputModel) {
+/**
+ * Validates if field has valid value more than specific value
+ */
+export function MinValue(input: { value: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MinValue', input, target, propertyKey);
     };
 }
 
-export function MaxValue(input: ParamInputModel) {
+/**
+ * Validates if field has valid value less than specific value
+ */
+export function MaxValue(input: { value: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:MaxValue', input, target, propertyKey);
     };
 }
 
-export function NotContains(param: ParamInputModel) {
+/**
+ * Validates if field value does not contain specific value
+ */
+export function NotContains(param: { value: string, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, param, target);
         Reflect.defineMetadata('custom-reflect:NotContains', param, target, propertyKey);
     };
 }
 
+/**
+ * Tells form generator component not to generate input for this field
+ */
 export function NoForm() {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, propertyKey, target);
         Reflect.defineMetadata('custom-reflect:NoForm', null, target, propertyKey);
     };
 }
 
-export function StringLength(input: RangeInputModel) {
+/**
+ * Validates if field value length fits in min and max values
+ */
+export function StringLength(input: { min?: number, max?: number, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:StringLength', input, target, propertyKey);
     };
 }
+
+/**
+ * Validates if field value is valid email value
+ */
 export function Email(input: string) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Email', input, target, propertyKey);
     };
 }
+
+/**
+ * Sets placeholder value for field input
+ */
 export function Placeholder(input: string) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Placeholder', input, target, propertyKey);
     };
 }
 
-export function Range(input: RangeInputModel) {
+/**
+ * Validates if field value length fits in min and max values
+ */
+export function Range(input: { min?: number | Date, max?: number | Date, error: string }) {
     return function (target: Object, propertyKey: string) {
+        Reflect.defineMetadata(propertyKey, input, target);
         Reflect.defineMetadata('custom-reflect:Range', input, target, propertyKey);
     };
 }
@@ -128,7 +243,6 @@ export function configurable(value: boolean) {
 /**
  * Placeholder(string)
  * Validate: function
- * Compare:? ორი ველის შედარება
  */
 export function getDecorators(target: any, propertyName: string | symbol): DecoratorReturnModel[] {
     const keys: any[] = Reflect.getMetadataKeys(target, propertyName);
@@ -145,7 +259,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
 
     let retstr: string;
 
-    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare'  && key !== 'Range') {
+    if ((value === null || value === undefined || value === '') && key !== 'Required' && key !== 'RequiredIf' && key !== 'Compare' && key !== 'Range') {
         return null;
     }
     let errorString = '';
@@ -158,12 +272,6 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
         errorString = 'error not asigned!';
     }
     switch (key) {
-        // case 'IBAN': {
-        //     if (!isValid(value)) {
-        //         retstr = (param as ParamInputModel).error;
-        //     }
-        //     break;
-        // }
         case 'CreditCard': {
             value = value.replace(/[- ]+/g, '');
 
@@ -251,7 +359,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             break;
         }
         case 'Required': {
-            if (!value) {
+            if (value === null || value === undefined || value === '') {
                 retstr = errorString;
             }
             break;
@@ -260,7 +368,7 @@ export function ngxValidate(key: string, param: string | ParamInputModel | Range
             if (!(param as ParamInputModel).field || !(param as ParamInputModel).value) {
                 console.warn('incorrect parameters in RequiredIf attribute');
             } else {
-                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && !value) {
+                if (((param as ParamInputModel).value === dataModel[(param as ParamInputModel).field]) && (value === null || value === undefined || value === '')) {
                     retstr = errorString;
                 }
             }

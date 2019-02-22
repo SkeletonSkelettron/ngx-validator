@@ -31,8 +31,10 @@ export interface DecoratorReturnModel {
 }
 
 export interface CssInputModel {
-    group: string;
-    label: string;
-    input: string;
-    error: string;
+    group?: string;
+    label?: string;
+    input?: string;
+    error?: string;
 }
+
+export type PropertyFunction<T> = () => T;

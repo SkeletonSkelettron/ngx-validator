@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxValidatorForComponent } from './ngx-validator-for.component';
+import { ReactiveComponent } from './reactive.component';
 
-describe('NgxValidatorForComponent', () => {
-  let component: NgxValidatorForComponent;
-  let fixture: ComponentFixture<NgxValidatorForComponent>;
+describe('ReactiveComponent', () => {
+  let component: ReactiveComponent;
+  let fixture: ComponentFixture<ReactiveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxValidatorForComponent ]
+      declarations: [ ReactiveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxValidatorForComponent);
+    fixture = TestBed.createComponent(ReactiveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

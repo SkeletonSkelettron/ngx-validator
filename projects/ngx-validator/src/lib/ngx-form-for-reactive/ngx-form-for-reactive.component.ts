@@ -1,32 +1,29 @@
-import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild, ContentChildren, QueryList, forwardRef, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { CssInputModel } from '../../public_api';
-import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
+import { NgForm, FormGroup } from '@angular/forms';
 import { getDecorators } from '../../core/reflector-functions';
+import { CssInputModel } from '../../core/reflect-input.models';
+import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'ngx-form-for',
-  templateUrl: './ngx-form-for.component.html'
+  selector: 'ngx-form-for-reactive',
+  templateUrl: './ngx-form-for-reactive.component.html'
 })
-export class NgxFormForComponent implements OnInit {
+export class NgxFormForReactiveComponent implements OnInit {
 
   _model: any;
-
+  _formGroup: FormGroup;
   @Input()
   set model(value: any) {
     this._model = value;
+  }
 
+  @Input()
+  set formGroup(value: FormGroup) {
+    this._formGroup = value;
     for (const item of Object.keys(this._model)) {
       const attribs = getDecorators(this._model, item);
-      if (!attribs.find(x => x.key === 'NoForm')) {
-        this.propertyNames.push({ field: item, template: false });
-      }
-    }
-
-    for (const item of Reflect.getMetadataKeys(this._model)) {
-      const attribs = getDecorators(this._model, item);
-      if (!attribs.find(x => x.key === 'NoForm') && this.propertyNames.find(x => x.field === item) === undefined) {
+      if (!attribs.find(x => x.key === 'NoForm') && this._formGroup.controls[item]) {
         this.propertyNames.push({ field: item, template: false });
       }
     }
@@ -74,5 +71,13 @@ export class NgxFormForComponent implements OnInit {
   }
   submit() {
     this.submitForm.emit(this._model);
+  }
+
+  controlExists(item: string) {
+    if (this.formGroup.controls[item]) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

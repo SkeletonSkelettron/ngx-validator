@@ -1,32 +1,29 @@
 <form
     #form="ngForm"
     (ngSubmit)="submit()"
-    [autocomplete]="autoComplete">
+    [autocomplete]="autoComplete"
+    [formGroup]="_formGroup">
     <div
-        [ngClass]="cssClasses?.group? cssClasses.group : 'ngx-form-for'"
+        [ngClass]="cssClasses? cssClasses.group: 'ngx-form-for'"
         *ngFor="let item of propertyNames">
         <ng-container *ngIf="!item.template; else template">
             <ngx-label-for
                 [model]="_model"
                 [field]="item.field"
-                [ngClass]="cssClasses?.label ? cssClasses?.label: ''"></ngx-label-for>
+                [ngClass]="cssClasses? cssClasses.label:''"></ngx-label-for>
             <ngx-input-for
-                [id]="item.field"
+                [formControlName]="item.field"
                 [model]="_model"
-                [(ngModel)]="_model[item.field]"
-                [ngModelOptions]="{ name: item.field }"
-                [field]="item.field"
-                [ngClass]="cssClasses?.input ? cssClasses.input: ''"></ngx-input-for>
+                [ngClass]="cssClasses? cssClasses.input:''"></ngx-input-for>
             <ngx-validator-for
-                [errors]="form.controls[item.field]?.errors"
-                [ngClass]="cssClasses?.error ? cssClasses.error: ''">
+                [errors]="_formGroup.get(item.field)?.errors"
+                [ngClass]="cssClasses? cssClasses.error: ''">
             </ngx-validator-for>
         </ng-container>
         <ng-template #template>
             <!-- temporary form validation workaround. custom temlpate is not binded to form's controls and therefore, form validation doesn't work. help needed -->
             <input
-                [name]="item.field"
-                [(ngModel)]="_model[item.field]"
+                [formControlName]="item.field"
                 [ngx-validator]="_model"
                 style="display:none">
             <ng-container

@@ -1,47 +1,34 @@
 import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
-import { NG_VALIDATORS, Validator, AbstractControl } from '@angular/forms';
-import { getDecorators, ngxValidate } from '../core/reflector-functions';
+import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
+import { validateControl } from '../core/validate';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: '[ngx-validator]',
+  selector: '[ngx-validator][ngModel],[ngx-validator][formControl],[ngx-validator][formControlName]',
   providers: [
     { provide: NG_VALIDATORS, useExisting: NgxValidatorDirective, multi: true }
   ]
 })
 export class NgxValidatorDirective implements Validator {
 
+  validator: Function;
+
   private dataModel: any;
+
+  @Input()
+  field: string;
 
   @Input('ngx-validator')
   set sk(value: any) {
     this.dataModel = value;
   }
 
-  constructor(private el: ElementRef, private render: Renderer2) { }
+  constructor(private el: ElementRef) {
+    this.validator = validateControl;
+  }
 
-  validate(control: AbstractControl): { [validator: string]: string } {
-
-    const name = !this.el.nativeElement.getAttribute('name')
-      ? this.el.nativeElement.getAttribute('ng-reflect-name')
-      : this.el.nativeElement.getAttribute('name');
-    const attribs = getDecorators(this.dataModel, name);
-    const errs: { [validator: string]: string } = {};
-
-    if (attribs.find(x => x.key === 'ReadOnly')) {
-      this.el.nativeElement.setAttribute('readonly', true);
-    }
-
-    // const t = await validate(this.skValidator);
-    // return t[0].constraints;
-
-    for (const item of attribs) {
-      const messg = ngxValidate(item.key, item.value, control.value, this.dataModel);
-      if (messg) {
-        errs[item.key] = messg;
-      }
-    }
-    return errs;
+  validate(control: AbstractControl): ValidationErrors {
+    return this.validator(control, this.dataModel);
   }
 
 }

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { getDecorators } from '../../core/reflector-functions';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-label-for',
   templateUrl: './ngx-label-for.component.html',
-  styleUrls: ['./ngx-label-for.component.css']
+  styleUrls: ['./ngx-label-for.component.css'],
 })
 export class NgxLabelForComponent implements OnInit {
 
@@ -15,8 +15,8 @@ export class NgxLabelForComponent implements OnInit {
   @Input()
   field: string;
 
-  @Input()
-  labelClass = '';
+  @HostBinding('class.ngx-label')
+  ngxLabel = true;
 
   reflectValue = '';
 
