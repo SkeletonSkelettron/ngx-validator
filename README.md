@@ -1,6 +1,6 @@
 # Documentation
 
-For detailed documentation, please wisit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)  
+For detailed documentation, please visit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)  
 Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
 
