@@ -3,6 +3,7 @@ import {
   Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState, Custom2,
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/core/reflect-input.models';
+import { NgxValidator } from 'projects/ngx-validator/src/core/ngx-Validator';
 
 @ModelState
 export class Hero {
@@ -46,7 +47,7 @@ export class Hero {
   // @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
   // @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
   @Custom2<Hero>({
-    error: 'custom decorator error', predicate: function(this: Hero)  {
+    error: 'custom decorator error', predicate: function (this: Hero) {
       if (this.email === 'pref.ge1@gmail.com' && this.heroName === 'kirk') {
         return false;
       }
@@ -70,5 +71,11 @@ export class Hero {
     this.creditCard = '4111 1111 1111 1111';
     this.alterEgo = 'heroe\'s alter ego';
   }
+  RuleFor(ts: (f: Hero) => any) {
+    return ts(this);
+  }
+}
+
+export class MyClass extends NgxValidator<Hero> {
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from './hero';
+import { Hero, MyClass } from './hero';
 import { CssInputModel } from 'projects/ngx-validator/src/public_api';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -50,6 +50,9 @@ export class AppComponent implements OnInit {
   //////// NOT SHOWN IN DOCS ////////
 
   ngOnInit() {
+    this.model.age = 33;
+    const tt = this.model.RuleFor(x => x.age);
+
 
     this.translate.setDefaultLang('ka-ge');
     this.model.age = 33;
