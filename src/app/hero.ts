@@ -3,12 +3,79 @@ import {
   Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState, Custom2,
 } from 'projects/ngx-validator/src/public_api';
 import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/core/reflect-input.models';
-import { NgxValidator } from 'projects/ngx-validator/src/core/ngx-Validator';
+import { NgxValidator } from 'projects/ngx-validator/src/core/ngx-validator';
 
-@ModelState
+
+
+
+interface Klass {
+  new(): any;
+}
+
+function factory<P>() {
+  return function decorator(klass: Klass) {
+    return class extends klass {
+      test(p: P) {
+        return p;
+      }
+    };
+  };
+}
+function Wheels(numOfWheels: number) {
+  console.log('-- decorator factory invoked --');
+  return function (constructor: Function) {
+    console.log('-- decorator invoked --');
+    constructor.prototype.wheels = numOfWheels;
+  };
+}
+
+function Compact<T extends { new(...args: any[]): {} }>(constructor: T) {
+  return class extends constructor {
+    gears = 5;
+    wheels = 3;
+  };
+}
+
+function Specs<Tout>(numGears: number, numWheels: number) {
+  return function <T extends { new(...args: any[]): {} }, Tout>(constructor: T) {
+    return class extends constructor {
+      gears = numGears;
+      wheels = numWheels;
+    };
+  };
+}
+
+
+// https://www.logicbig.com/tutorials/misc/typescript/class-decorators.html
+
+export class HeroValidator extends NgxValidator<Hero> {
+  public MyValidator() {
+    return this.RuleFor(x => x.age) > 33;
+  }
+}
+
+function Fluent<I extends NgxValidator<any>>(listener: I) {
+
+  return function <T extends { new(...constructorArgs: any[]) }>(constructorFunction: T) {
+
+    const newConstructorFunction: any = function (...args) {
+      const func: any = function () {
+        return new constructorFunction(...args);
+      };
+      func.prototype = constructorFunction.prototype;
+      const result: any = new func();
+      return result;
+    };
+    newConstructorFunction.prototype = constructorFunction.prototype;
+    return newConstructorFunction;
+  };
+}
+
+
+@Fluent(new HeroValidator())
 export class Hero {
-  IsValid: PropertyFunction<boolean>;
-  ModelErrors: PropertyFunction<{ [key: string]: any }>;
+  // IsValid: PropertyFunction<boolean>;
+  // ModelErrors: PropertyFunction<{ [key: string]: any }>;
   @NoForm()
   id?: number;
 

@@ -11,13 +11,52 @@ LessThanEqualTo
 
 
 
-function isEmpty(obj) {
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            return false;
-        }
-    }
-    return true;
+
+interface Ctor<T> {
+    new(...args: any[]): T;
+}
+
+export function FluentValidator<T extends { new(...args: any[]): {} }, T2>(constructor: T2) {
+
+    // return class extends constructor {
+    //     /**
+    //      * Returns model validation state
+    //      */
+    //     IsValid() {
+    //         for (const item of Reflect.getMetadataKeys(this)) {
+    //             const attribs = getDecorators(this, item);
+    //             for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
+    //                 const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+    //                 if (messg) {
+    //                     return false;
+    //                 }
+    //             }
+    //         }
+    //         return true;
+    //     }
+    //     /**
+    //      * Placeholder(string)
+    //      * Validate: function
+    //      */
+    //     ModelErrors(): { [key: string]: { [key: string]: any } } {
+    //         const errs: { [key: string]: any } = {};
+    //         let tmp: { [key: string]: any } = {};
+    //         for (const item of Reflect.getMetadataKeys(this)) {
+    //             const attribs = getDecorators(this, item);
+    //             for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
+    //                 const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
+    //                 if (messg) {
+    //                     tmp[attrib.key] = messg;
+    //                 }
+    //             }
+    //             if (!isEmpty(tmp)) {
+    //                 errs[item] = tmp;
+    //             }
+    //             tmp = {};
+    //         }
+    //         return errs;
+    //     }
+    // };
 }
 
 
@@ -62,6 +101,15 @@ export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T
             return errs;
         }
     };
+}
+
+function isEmpty(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
 }
 /**
  * Validates field if it has valid value according to value parameter
