@@ -38,7 +38,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
 
   @HostBinding('class.ngx-input')
   ngxInput = true;
-  @HostBinding('attr.tabindex') tabindex = '0';
 
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
