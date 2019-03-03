@@ -1,4 +1,4 @@
-import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, Input, ElementRef } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { validateControl } from '../core/validate';
 

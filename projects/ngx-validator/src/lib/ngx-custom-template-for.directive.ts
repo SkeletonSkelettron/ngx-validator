@@ -1,4 +1,4 @@
-import { Directive, TemplateRef, ViewContainerRef, OnInit, Input } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

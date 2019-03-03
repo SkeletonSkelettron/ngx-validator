@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControlName } from '@angular/forms';
 import { getDecorators } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';

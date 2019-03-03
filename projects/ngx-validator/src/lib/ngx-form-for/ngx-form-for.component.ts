@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewContainerRef, ViewChild, ElementRef, ContentChild, ContentChildren, QueryList, forwardRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ViewChild, ContentChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CssInputModel } from '../../public_api';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
