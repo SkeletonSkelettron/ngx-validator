@@ -15,7 +15,7 @@ import { ElementBase } from '../../core/element-base';
   ],
 })
 
-export class NgxInputForComponent extends ElementBase<any> implements OnInit, AfterViewInit {
+export class NgxInputForComponent extends ElementBase<any> implements OnInit {
 
   DataTypeEnum = DataTypeEnum;
   dataType: number;
@@ -84,9 +84,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit, Af
       this.name = this.field;
     }
   }
-  ngAfterViewInit() {
-console.log('ds');
-  }
+
   getTemplate(): TemplateRef<any> {
     return this._template['templateRef'];
   }
