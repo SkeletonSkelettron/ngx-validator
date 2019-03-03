@@ -42,6 +42,8 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
+            [ngModelOptions]="ngModelOptions"
+            (blur)="onTouchedCallback()"
             class="ngx-input-child"
             [readOnly]="readonly"
             [name]="field">
