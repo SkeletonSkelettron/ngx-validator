@@ -4,6 +4,10 @@ For detailed documentation, please visit projet's wiki [**page**](https://github
 Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
 
+## version 2.2.0
+
+* Added support for ngModelOptions "{ updateOn: 'blur' }" in `<ngx-input-for>`  
+
 ## version 2.1.1
 
 * Removed console.log :|  

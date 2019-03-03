@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector, AfterViewInit, HostListener } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControlName } from '@angular/forms';
 import { getDecorators } from '../../core/reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../../core/reflect-input.models';
@@ -19,7 +19,11 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
 
   DataTypeEnum = DataTypeEnum;
   dataType: number;
+  placeHolder = '';
+  name = '';
+  _template: NgxCustomTemplateForDirective;
 
+  readonly = false;
   @Input()
   field: string;
 
@@ -32,11 +36,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   @HostBinding('class.ngx-input')
   ngxInput = true;
 
-  placeHolder = '';
-  name = '';
-  _template: NgxCustomTemplateForDirective;
-
-  readonly = false;
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {

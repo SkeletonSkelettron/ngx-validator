@@ -5,7 +5,7 @@
         #heroForm="ngForm"
         autocomplete="off">
         <div class="form-group">
-            <h3>@Datatype</h3>
+            <!-- <h3>@Datatype</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'heroPic'"></ngx-label-for>
@@ -14,8 +14,8 @@
                 name="heroPic"
                 style="height: 100px; width: 100px"
                 [(ngModel)]="model.heroPic"></ngx-input-for>
-            <hr>
-            <h3>ngx-validator</h3>
+            <hr> -->
+            <!-- <h3>ngx-validator</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
@@ -24,12 +24,13 @@
                 id="heroName"
                 [(ngModel)]="model.heroName"
                 class="form-control"
+                [ngModelOptions]="{ updateOn: 'blur' }"
                 [ngx-validator]="model">
             <ngx-validator-for
                 [errors]="heroForm.controls['heroName']?.errors"
-                class="text-danger"></ngx-validator-for>
+                class="text-danger"></ngx-validator-for> -->
             <hr>
-            <h3>ngx-input-for</h3>
+           <!-- <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'age'"></ngx-label-for>
@@ -40,8 +41,8 @@
                 [(ngModel)]="model.age"></ngx-input-for>
             <ngx-validator-for
                 [errors]="heroForm.controls['age']?.errors"
-                class="text-danger"></ngx-validator-for>
-            <hr>
+                class="text-danger"></ngx-validator-for> -->
+            <hr> -->
             <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
@@ -50,12 +51,13 @@
             <ngx-input-for
                 [model]="model"
                 name="heroName"
+                [ngModelOptions]="{ updateOn: 'blur' }"
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for>
             <ngx-validator-for
                 [errors]="heroForm.controls['heroName']?.errors"
                 class="text-danger"></ngx-validator-for>
-            <hr>
+            <!-- <hr>
             <h3>@CreditCard</h3>
             <ngx-label-for
                 [model]="model"
@@ -93,7 +95,7 @@
             </ngx-input-for>
             <ngx-validator-for
                 [errors]="heroForm.controls['power']?.errors"
-                class="text-danger"></ngx-validator-for>
+                class="text-danger"></ngx-validator-for> -->
         </div>
         <button
             type="submit"
@@ -103,7 +105,7 @@
     </form>
     <hr>
     <h2>ngx-form-for</h2>
-    <ngx-form-for
+    <!-- <ngx-form-for
         [model]="model"
         [autoComplete]="'off'"
         [cssClasses]="classesForForm"
@@ -130,5 +132,5 @@
             let-data>
             <h4>{{data.model.age}}</h4>
         </ng-template>
-    </ngx-form-for>
+    </ngx-form-for> -->
 </div>
