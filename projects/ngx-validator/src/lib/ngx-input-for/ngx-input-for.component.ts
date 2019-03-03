@@ -40,10 +40,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit, Af
   ngxInput = true;
   @HostBinding('attr.tabindex') tabindex = '0';
 
-  host: {
-    '(blur)': '_onTouched()'
- };
-
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {
