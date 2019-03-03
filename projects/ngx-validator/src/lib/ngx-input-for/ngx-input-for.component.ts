@@ -27,9 +27,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   @Input()
   field: string;
 
-  @Input('ngModelOptions')
-  ngModelOptions: string;
-
   @ViewChild(NgModel)
   ngModel: NgModel;
 
