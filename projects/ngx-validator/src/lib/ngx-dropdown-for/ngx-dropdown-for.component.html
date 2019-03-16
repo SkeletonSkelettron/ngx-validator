@@ -1,7 +1,10 @@
-<select>
+<select
+    [(ngModel)]="value"
+    class="ngx-input-child">
     <option
         value
         disabled
+        *ngIf="defaultItem"
         selected>
         {{placeHolder}}
     </option>

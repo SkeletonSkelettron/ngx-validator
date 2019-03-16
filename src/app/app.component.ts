@@ -9,8 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  powers = ['Really Smart', 'Super Flexible',
-    'Super Hot', 'Weather Changer'];
+  powers = [
+    { key: 0, value: 'Really Smart' },
+    { key: 1, value: 'Super Flexible' },
+    { key: 2, value: 'Super Hot' },
+    { key: 3, value: 'Weather Changer' }
+  ];
 
   model = new Hero();
 
@@ -50,6 +54,7 @@ export class AppComponent implements OnInit {
 
     this.translate.setDefaultLang('ka-ge');
     this.model.age = 33;
+    this.model.power = 2;
     this.model.heroPic = 'https://avatars0.githubusercontent.com/u/26940527?s=400&u=b891f4f04f231892ccdc0bf874c00ded0582e7dc&v=4';
     console.log(this.model.IsValid());
     console.log(this.model.ModelErrors());

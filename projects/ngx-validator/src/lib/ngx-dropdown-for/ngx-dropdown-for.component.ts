@@ -1,24 +1,31 @@
 import { Component, OnInit, ViewChild, ElementRef, Injector, ContentChildren, QueryList, Input } from '@angular/core';
-import { ElementBase } from 'ngx-validator/core/element-base';
-import { NgModel } from '@angular/forms';
-import { NgxCustomTemplateForDirective } from 'ngx-validator/lib/ngx-custom-template-for.directive';
-import { DataTypeEnum } from 'ngx-validator/public_api';
+import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
+import { DataTypeEnum } from '../../core/reflect-input.models';
+import { getDecorators } from '../../core/reflector-functions';
+import { ElementBase } from '../../core/element-base';
+import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-dropdown-for',
-  templateUrl: './ngx-dropdown-for.component.html'
+  templateUrl: './ngx-dropdown-for.component.html',
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: NgxDropdownForComponent, multi: true },
+  { provide: NG_VALIDATORS, useExisting: NgxDropdownForComponent, multi: true }
+  ],
 })
 export class NgxDropdownForComponent extends ElementBase<any> implements OnInit {
 
   DataTypeEnum = DataTypeEnum;
-  dataType: number;
   placeHolder = '';
   name = '';
   _template: NgxCustomTemplateForDirective;
+  readonly = false;
 
   @Input()
   itemSource: any[] = [];
+
+  @Input()
+  field: string;
 
   @Input()
   key: string;
@@ -28,6 +35,9 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
 
   @ViewChild(NgModel)
   ngModel: NgModel;
+
+  @Input()
+  defaultItem = true;
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {
@@ -43,6 +53,31 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   }
 
   ngOnInit() {
+    if (this.field === null || this.field === undefined) {
+      this.field = this.el.nativeElement.getAttribute('name') === null
+        ? this.el.nativeElement.getAttribute('id')
+        : this.el.nativeElement.getAttribute('name');
+    }
+
+    if (!this.field) {
+      this.field = this.el.nativeElement.getAttribute('formControlName');
+    }
+
+    const attribs = getDecorators(this.model, this.field);
+
+    if (attribs.find(x => x.key === 'Placeholder')) {
+      this.placeHolder = attribs.find(x => x.key === 'Placeholder').value;
+    }
+
+    if (attribs.find(x => x.key === 'ReadOnly')) {
+      this.readonly = true;
+    }
+
+    if (attribs.find(x => x.key === 'Name')) {
+      this.name = attribs.find(x => x.key === 'Name').value;
+    } else {
+      this.name = this.field;
+    }
   }
 
 }

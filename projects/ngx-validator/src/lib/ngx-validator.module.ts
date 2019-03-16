@@ -35,7 +35,8 @@ import { NgxDropdownForComponent } from './ngx-dropdown-for/ngx-dropdown-for.com
     NgxInputForComponent,
     NgxFormForComponent,
     NgxCustomTemplateForDirective,
-    NgxFormForReactiveComponent
+    NgxFormForReactiveComponent,
+    NgxDropdownForComponent
   ]
 })
 export class NgxValidatorModule { }
