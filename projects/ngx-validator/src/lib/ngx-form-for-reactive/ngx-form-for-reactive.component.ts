@@ -30,9 +30,6 @@ export class NgxFormForReactiveComponent implements OnInit {
   }
 
   @Input()
-  cssClasses: CssInputModel;
-
-  @Input()
   autoComplete: string;
 
   @ViewChild(NgForm)

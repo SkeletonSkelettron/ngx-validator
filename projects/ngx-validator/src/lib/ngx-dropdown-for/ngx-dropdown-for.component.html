@@ -1,0 +1,13 @@
+<select>
+    <option
+        value
+        disabled
+        selected>
+        {{placeHolder}}
+    </option>
+    <option
+        *ngFor="let item of itemSource"
+        value="item[key]">
+        {{item[value]}}
+    </option>
+</select>

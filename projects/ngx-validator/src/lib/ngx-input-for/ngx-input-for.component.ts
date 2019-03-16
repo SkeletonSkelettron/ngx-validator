@@ -23,6 +23,9 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   name = '';
   _template: NgxCustomTemplateForDirective;
 
+  @Input()
+  dataItems: any[];
+
   readonly = false;
   @Input()
   field: string;
