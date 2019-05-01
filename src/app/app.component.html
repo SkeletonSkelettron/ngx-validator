@@ -56,11 +56,13 @@
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for> -->
             <ngx-dropdown-for
+                [model]="model"
                 [defaultItem]="true"
                 [itemSource]="powers"
                 [key]="'key'"
                 name="power"
-                [value]="'value'"
+                [valuePrimitive]="true"
+                [text]="'value'"
                 class="form-control"
                 [(ngModel)]="model.power"></ngx-dropdown-for>
             <ngx-validator-for
@@ -143,3 +145,4 @@
         </ng-template>
     </ngx-form-for> -->
 </div>
+<button (click)="changeValueHero()">change</button>

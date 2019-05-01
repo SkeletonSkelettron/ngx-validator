@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Injector, ContentChildren, QueryList, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Injector, ContentChildren, QueryList, Input, HostBinding } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { DataTypeEnum } from '../../core/reflect-input.models';
 import { getDecorators } from '../../core/reflector-functions';
@@ -21,6 +21,9 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   _template: NgxCustomTemplateForDirective;
   readonly = false;
 
+  @HostBinding('class.ngx-dropdown')
+  ngxDropdown = true;
+
   @Input()
   itemSource: any[] = [];
 
@@ -31,7 +34,10 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   key: string;
 
   @Input()
-  value: string;
+  valuePrimitive = true;
+
+  @Input()
+  text: string;
 
   @ViewChild(NgModel)
   ngModel: NgModel;
@@ -53,6 +59,11 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   }
 
   ngOnInit() {
+
+    if (!this.model) {
+      console.error('ngx-validator error! [model] property is not binded!');
+    }
+
     if (this.field === null || this.field === undefined) {
       this.field = this.el.nativeElement.getAttribute('name') === null
         ? this.el.nativeElement.getAttribute('id')

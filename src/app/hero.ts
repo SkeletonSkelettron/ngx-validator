@@ -58,7 +58,7 @@ export class Hero {
   @Required('Value is required')
   @Placeholder('Hero\'s  power')
   @DataType({ value: DataTypeEnum.Number, error: 'value should be a number' })
-  power: number;
+  power: any;
 
 
   birthdate: Date;

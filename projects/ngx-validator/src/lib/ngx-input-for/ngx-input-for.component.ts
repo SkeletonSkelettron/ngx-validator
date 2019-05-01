@@ -9,7 +9,6 @@ import { ElementBase } from '../../core/element-base';
   // tslint:disable-next-line:component-selector
   selector: 'ngx-input-for',
   templateUrl: './ngx-input-for.component.html',
-  styleUrls: ['./ngx-input-for.component.css'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: NgxInputForComponent, multi: true },
   { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
   ],
@@ -54,6 +53,11 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   }
 
   ngOnInit() {
+
+    if (!this.model) {
+      console.error('ngx-validator error! [model] property is not binded!');
+    }
+
     if (this.field === null || this.field === undefined) {
       this.field = this.el.nativeElement.getAttribute('name') === null
         ? this.el.nativeElement.getAttribute('id')

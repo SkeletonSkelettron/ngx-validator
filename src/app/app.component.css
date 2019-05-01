@@ -14,3 +14,7 @@
 form-control:ng-invalid {
   border-color: #dc3545;
 }
+.ngx-dropdown {
+  padding: 0;
+  display: inline-table;
+}

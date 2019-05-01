@@ -13,10 +13,15 @@ export class NgxFormForReactiveComponent implements OnInit {
 
   _model: any;
   _formGroup: FormGroup;
+
+  @Input()
+  cssClasses: CssInputModel;
+
   @Input()
   set model(value: any) {
     this._model = value;
   }
+
 
   @Input()
   set formGroup(value: FormGroup) {
