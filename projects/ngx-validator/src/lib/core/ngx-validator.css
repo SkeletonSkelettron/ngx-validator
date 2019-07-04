@@ -1,0 +1,37 @@
+.ngx-dropdown {
+    padding: 0;
+    display: inline-table;
+}
+.ngx-dropdown-child {
+  box-sizing: border-box;
+  width: inherit;
+  height: inherit;
+  padding: 0!important;
+  border: 0 transparent;
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+.ngx-input {
+    padding: 0;
+    display: inline-table;
+}
+.ngx-input-child {
+  box-sizing: border-box;
+  width: inherit;
+  height: inherit;
+  padding: 0!important;
+  border: 0 transparent;
+  outline: none!important;
+  box-shadow: none!important;
+}
+.ngx-input-child-image {
+  height: 100px;
+  width: 100px;
+}
+
+.ngx-label {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+

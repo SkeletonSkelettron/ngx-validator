@@ -9,6 +9,7 @@ import { NgxInputForComponent } from './ngx-input-for/ngx-input-for.component';
 import { NgxFormForComponent } from './ngx-form-for/ngx-form-for.component';
 import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directive';
 import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-for-reactive.component';
+import { NgxDropdownForComponent } from './ngx-dropdown-for/ngx-dropdown-for.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-fo
     NgxInputForComponent,
     NgxFormForComponent,
     NgxCustomTemplateForDirective,
-    NgxFormForReactiveComponent
+    NgxFormForReactiveComponent,
+    NgxDropdownForComponent
   ],
   exports: [
     NgxValidatorDirective,
@@ -33,7 +35,8 @@ import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-fo
     NgxInputForComponent,
     NgxFormForComponent,
     NgxCustomTemplateForDirective,
-    NgxFormForReactiveComponent
+    NgxFormForReactiveComponent,
+    NgxDropdownForComponent
   ]
 })
 export class NgxValidatorModule { }

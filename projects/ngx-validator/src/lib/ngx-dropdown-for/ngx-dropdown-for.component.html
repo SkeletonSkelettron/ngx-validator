@@ -1,0 +1,24 @@
+<select
+    [(ngModel)]="value"
+    class="ngx-dropdown-child">
+    <option
+        value
+        disabled
+        *ngIf="defaultItem">
+        {{placeHolder}}
+    </option>
+    <ng-container *ngIf="valuePrimitive; else nonPrimitve">
+        <option
+            *ngFor="let item of itemSource"
+            [ngValue]="item[key]">
+            {{item[text]}}
+        </option>
+    </ng-container>
+    <ng-template #nonPrimitve>
+        <option
+            *ngFor="let item of itemSource"
+            [ngValue]="item">
+            {{item[text]}}
+        </option>
+    </ng-template>
+</select>

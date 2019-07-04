@@ -30,7 +30,7 @@
                 [errors]="heroForm.controls['heroName']?.errors"
                 class="text-danger"></ngx-validator-for> -->
             <hr>
-           <!-- <h3>ngx-input-for</h3>
+            <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'age'"></ngx-label-for>
@@ -41,21 +41,32 @@
                 [(ngModel)]="model.age"></ngx-input-for>
             <ngx-validator-for
                 [errors]="heroForm.controls['age']?.errors"
-                class="text-danger"></ngx-validator-for> -->
-            <hr> -->
+                class="text-danger"></ngx-validator-for>
+            <hr>
+            -->
             <h3>ngx-input-for</h3>
             <ngx-label-for
                 [model]="model"
                 class="control-label"
-                [field]="'heroName'"></ngx-label-for>
-            <ngx-input-for
+                [field]="'power'"></ngx-label-for>
+            <!-- <ngx-input-for
                 [model]="model"
                 name="heroName"
                 [ngModelOptions]="{ updateOn: 'blur' }"
                 class="form-control"
-                [(ngModel)]="model.heroName"></ngx-input-for>
+                [(ngModel)]="model.heroName"></ngx-input-for> -->
+            <ngx-dropdown-for
+                [model]="model"
+                [defaultItem]="true"
+                [itemSource]="powers"
+                [key]="'key'"
+                name="power"
+                [valuePrimitive]="true"
+                [text]="'value'"
+                class="form-control"
+                [(ngModel)]="model.power"></ngx-dropdown-for>
             <ngx-validator-for
-                [errors]="heroForm.controls['heroName']?.errors"
+                [errors]="heroForm.controls['power']?.errors"
                 class="text-danger"></ngx-validator-for>
             <!-- <hr>
             <h3>@CreditCard</h3>
@@ -134,3 +145,4 @@
         </ng-template>
     </ngx-form-for> -->
 </div>
+<button (click)="changeValueHero()">change</button>

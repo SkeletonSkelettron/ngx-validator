@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { getDecorators } from '../../core/reflector-functions';
+import { getDecorators } from '../core/reflector-functions';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-label-for',
-  templateUrl: './ngx-label-for.component.html',
-  styleUrls: ['./ngx-label-for.component.css'],
+  templateUrl: './ngx-label-for.component.html'
 })
 export class NgxLabelForComponent implements OnInit {
 

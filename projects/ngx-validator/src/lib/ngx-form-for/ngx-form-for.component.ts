@@ -2,7 +2,7 @@ import { Component, OnInit, Input, TemplateRef, ViewChild, ContentChildren, Quer
 import { NgForm } from '@angular/forms';
 import { CssInputModel } from '../../public_api';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
-import { getDecorators } from '../../core/reflector-functions';
+import { getDecorators } from '../core/reflector-functions';
 
 @Component({
   // tslint:disable-next-line:component-selector

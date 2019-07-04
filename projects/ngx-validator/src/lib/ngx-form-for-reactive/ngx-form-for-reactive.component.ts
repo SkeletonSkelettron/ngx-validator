@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
 import { NgForm, FormGroup } from '@angular/forms';
-import { getDecorators } from '../../core/reflector-functions';
-import { CssInputModel } from '../../core/reflect-input.models';
+import { getDecorators } from '../core/reflector-functions';
+import { CssInputModel } from '../core/reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({
@@ -13,10 +13,15 @@ export class NgxFormForReactiveComponent implements OnInit {
 
   _model: any;
   _formGroup: FormGroup;
+
+  @Input()
+  cssClasses: CssInputModel;
+
   @Input()
   set model(value: any) {
     this._model = value;
   }
+
 
   @Input()
   set formGroup(value: FormGroup) {
@@ -28,9 +33,6 @@ export class NgxFormForReactiveComponent implements OnInit {
       }
     }
   }
-
-  @Input()
-  cssClasses: CssInputModel;
 
   @Input()
   autoComplete: string;
