@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Injector, ContentChildren, QueryList, Input, HostBinding } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
-import { DataTypeEnum } from '../../core/reflect-input.models';
-import { getDecorators } from '../../core/reflector-functions';
-import { ElementBase } from '../../core/element-base';
+import { DataTypeEnum } from '../core/reflect-input.models';
+import { getDecorators } from '../core/reflector-functions';
+import { ElementBase } from '../core/element-base';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({

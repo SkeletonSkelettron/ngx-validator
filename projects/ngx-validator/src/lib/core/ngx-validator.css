@@ -4,8 +4,8 @@
 }
 .ngx-dropdown-child {
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   padding: 0!important;
   border: 0 transparent;
   outline: none!important;
@@ -18,10 +18,10 @@
 }
 .ngx-input-child {
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   padding: 0!important;
-  border: 1px gray transparent;
+  border: 0 transparent;
   outline: none!important;
   box-shadow: none!important;
 }
