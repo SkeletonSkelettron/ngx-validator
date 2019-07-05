@@ -2,7 +2,7 @@ import {
   Name, Required, Pattern, StringLength, Email, CreditCard, MinValue, DataType, Contains,
   Compare, Placeholder, Custom, NoForm, ReadOnly, RequiredIf, Range, ModelState,
 } from 'ngx-validator';
-import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/lib/core/reflect-input.models';
+import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/lib/reflect-input.models';
 
 @ModelState
 export class Hero {

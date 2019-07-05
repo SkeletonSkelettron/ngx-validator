@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
 import { NgForm, FormGroup } from '@angular/forms';
-import { getDecorators } from '../core/reflector-functions';
-import { CssInputModel } from '../core/reflect-input.models';
+import { getDecorators } from '../reflector-functions';
+import { CssInputModel } from '../reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 
 @Component({

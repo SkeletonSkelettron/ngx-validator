@@ -1,6 +1,6 @@
 import { Directive, Input, ElementRef } from '@angular/core';
 import { NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
-import { validateControl } from './core/validate';
+import { validateControl } from './validate';
 
 @Directive({
   // tslint:disable-next-line:directive-selector

@@ -4,5 +4,5 @@
 
 export * from './lib/ngx-validator.directive';
 export * from './lib/ngx-validator.module';
-export * from './lib/core/reflector-functions';
-export * from './lib/core/reflect-input.models';
+export * from './lib/reflector-functions';
+export * from './lib/reflect-input.models';

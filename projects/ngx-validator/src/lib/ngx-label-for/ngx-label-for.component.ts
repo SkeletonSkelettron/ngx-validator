@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { getDecorators } from '../core/reflector-functions';
+import { getDecorators } from '../reflector-functions';
 
 @Component({
   // tslint:disable-next-line:component-selector

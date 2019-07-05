@@ -4,10 +4,10 @@ For detailed documentation, please visit projet's wiki [**page**](https://github
 Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
 
-## version 2.2.1
+## version 2.2.2
 
 * bugfixes  
-* added some styling. Now you should include 'node_modules/ngx-validator/lib/core/ngx-validator.css'
+* added some styling. Now you should include 'node_modules/ngx-validator/lib/ngx-validator.css'
 
 ## version 2.2.0
 
