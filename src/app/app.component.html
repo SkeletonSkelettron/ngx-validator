@@ -37,32 +37,49 @@
             <ngx-input-for
                 [model]="model"
                 name="age"
+                (blur)="blurred()"
+                [ngModelOptions]="{ updateOn: 'blur' }"
+                [disabled]="this.disabled"
                 class="form-control"
                 [(ngModel)]="model.age"></ngx-input-for>
             <ngx-validator-for
                 [errors]="heroForm.controls['age']?.errors"
                 class="text-danger"></ngx-validator-for>
+                <input type="text" value="sdfsdf"/>
             <hr>
-            -->
             <h3>ngx-input-for</h3>
-            <ngx-label-for
+            <!-- <ngx-label-for
                 [model]="model"
                 class="control-label"
-                [field]="'power'"></ngx-label-for>
+                [field]="'power'"></ngx-label-for> -->
             <!-- <ngx-input-for
                 [model]="model"
                 name="heroName"
                 [ngModelOptions]="{ updateOn: 'blur' }"
                 class="form-control"
                 [(ngModel)]="model.heroName"></ngx-input-for> -->
+            <select>
+                <option
+                    value="undefined"
+                    disabled
+                    class="ngx-dropdown-child-default"
+                   selected
+                    hidden>
+                    choose...
+                </option>
+                <option>Some normal-font option</option>
+                <option>Another normal-font option</option>
+                <option class="boldoption">Some bold option</option>
+            </select>
             <ngx-dropdown-for
                 [model]="model"
                 [defaultItem]="true"
-                [itemSource]="powers"
-                [key]="'key'"
+                [itemSource]="heros"
+                [key]="'id'"
                 name="power"
                 [valuePrimitive]="true"
-                [text]="'value'"
+                (ngModelChange)="dropdownChange($event)"
+                [text]="'heroName'"
                 class="form-control"
                 [(ngModel)]="model.power"></ngx-dropdown-for>
             <ngx-validator-for

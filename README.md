@@ -4,6 +4,12 @@ For detailed documentation, please visit projet's wiki [**page**](https://github
 Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
 # Changes
 
+## version 2.3.0
+
+* added `<ngx-dropdown-for>` component
+* bugfixes  
+* added `<ngx-input-for>` (blur) event
+
 ## version 2.2.2
 
 * bugfixes  

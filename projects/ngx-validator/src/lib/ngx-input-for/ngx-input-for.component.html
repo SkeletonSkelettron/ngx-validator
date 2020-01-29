@@ -13,7 +13,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            (blur)="touch()"
+            [disabled]="this.disabled"
             class="ngx-input-child"
             [readOnly]="readonly">
         <img
@@ -27,7 +27,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            (blur)="touch()"
+            [disabled]="this.disabled"
             class="ngx-input-child-upload"
             [readOnly]="readonly">
         <textarea
@@ -35,7 +35,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            (blur)="touch()"
+            [disabled]="this.disabled"
             class="ngx-input-child-textarea"
             rows="5"
             [readOnly]="readonly"></textarea>
@@ -45,7 +45,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
-            (blur)="touch()"
+            [disabled]="this.disabled"
             class="ngx-input-child"
             [readOnly]="readonly"
             [name]="field">

@@ -38,7 +38,7 @@ export class NgxFormForComponent implements OnInit {
   @Input()
   autoComplete: string;
 
-  @ViewChild(NgForm)
+  @ViewChild(NgForm, { static: false })
   form: NgForm;
 
   propertyNames: { field: string, template: boolean }[] = [];

@@ -39,7 +39,7 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   @Input()
   text: string;
 
-  @ViewChild(NgModel)
+  @ViewChild(NgModel, { static: false })
   ngModel: NgModel;
 
   @Input()

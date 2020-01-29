@@ -1,9 +1,13 @@
 <select
     [(ngModel)]="value"
+    [ngStyle]="{'color':'red'}"
     class="ngx-dropdown-child">
     <option
-        value
+        value="undefined"
         disabled
+        class="ngx-dropdown-child-default"
+        selected
+        hidden
         *ngIf="defaultItem">
         {{placeHolder}}
     </option>

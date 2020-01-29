@@ -5,8 +5,8 @@ import { Injector } from '@angular/core';
 
 export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
     private innerValue: T;
-    private changed = new Array<(value: T) => void>();
-    private touched = new Array<() => void>();
+    private changed = null;
+    private touched = null;
     public disabled: boolean;
     private control: NgControl;
 
@@ -26,7 +26,7 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
     set value(value: T) {
         if (this.innerValue !== value) {
             this.innerValue = value;
-            this.changed.forEach(f => f(value));
+            this.changed(value);
         }
     }
 
@@ -35,14 +35,15 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
 
     writeValue(value: T) {
         this.innerValue = value;
+        // this.changed(value);
     }
 
-    registerOnChange(fn: (value: T) => void) {
-        this.changed.push(fn);
+    registerOnChange(fn: any) {
+        this.changed = fn;
     }
 
-    registerOnTouched(fn: () => void) {
-        this.touched.push(fn);
+    registerOnTouched(fn: any) {
+        this.touched = fn;
     }
 
     setDisabledState(disabled: boolean): void {
@@ -50,7 +51,7 @@ export abstract class ValueAccessorBase<T> implements ControlValueAccessor {
     }
 
     touch() {
-        this.touched.forEach(f => f());
+        this.touched();
     }
 
 }

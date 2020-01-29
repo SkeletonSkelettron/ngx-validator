@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "projects/ngx-validator/src/lib/ngx-validator.css"
             ],
             "scripts": []
           },

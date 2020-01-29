@@ -11,7 +11,9 @@
   outline: none!important;
   box-shadow: none!important;
 }
-
+.ngx-dropdown-child-default {
+   color: gray;
+}
 .ngx-input {
     padding: 0;
     display: inline-table;
@@ -35,3 +37,16 @@
     border-radius: 3px; */
 }
 
+.ng-valid:not(form), .ng-valid.required  {
+  border: 1px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form) .ng-invalid.required  {
+  border: 1px solid #a94442; /* red */
+}
+.ng-invalid:not(form)  {
+  border: 1px solid #a94442; /* red */
+}
+form-control:ng-invalid {
+  border-color: #dc3545;
+  }

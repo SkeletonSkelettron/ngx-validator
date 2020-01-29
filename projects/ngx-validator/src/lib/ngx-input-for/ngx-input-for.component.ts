@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector, AfterViewInit, forwardRef, HostListener, Renderer, Output, EventEmitter } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControlName } from '@angular/forms';
 import { getDecorators } from '../reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../reflect-input.models';
@@ -9,9 +9,9 @@ import { ElementBase } from '../element-base';
   // tslint:disable-next-line:component-selector
   selector: 'ngx-input-for',
   templateUrl: './ngx-input-for.component.html',
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: NgxInputForComponent, multi: true },
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NgxInputForComponent), multi: true },
   { provide: NG_VALIDATORS, useExisting: NgxInputForComponent, multi: true }
-  ],
+  ]
 })
 
 export class NgxInputForComponent extends ElementBase<any> implements OnInit {
@@ -25,19 +25,25 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   @Input()
   dataItems: any[];
 
+  @Output()
+  blur: EventEmitter<any> = new EventEmitter();
+
   readonly = false;
   @Input()
   field: string;
 
-  @ViewChild(NgModel)
+  @ViewChild(NgModel, { static: false })
   ngModel: NgModel;
 
-  @ViewChild(FormControlName)
+  @ViewChild(FormControlName, { static: false })
   formControlName: FormControlName;
 
   @HostBinding('class.ngx-input')
   ngxInput = true;
 
+  @HostListener('focusout') onFocusout() {
+    this.blur.emit();
+  }
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {

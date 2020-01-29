@@ -16,6 +16,39 @@ export class AppComponent implements OnInit {
     { key: 3, value: 'Weather Changer' }
   ];
 
+  disabled = true;
+
+  heros: Hero[] = [{
+    age: 10,
+    alterEgo: '0',
+    birthdate: null,
+    creditCard: 'fsdsdfsdfsdfsdf',
+    email: 'a@a.com',
+    heroName: 'Kurt',
+    bankAccount: '17',
+    id: 0,
+    mobile: '599985234',
+    heroPic: 'dfsdfsdf',
+    power: 0,
+    IsValid: null,
+    ModelErrors: null,
+  },
+  {
+    age: 10,
+    alterEgo: '0',
+    birthdate: null,
+    creditCard: 'fsdsdfsdfsdfsdf',
+    email: 'b@b.com',
+    heroName: 'James',
+    bankAccount: '17',
+    id: 1,
+    mobile: '599985234',
+    heroPic: 'dfsdfsdf',
+    power: 0,
+    IsValid: null,
+    ModelErrors: null,
+  }];
+
   model = new Hero();
 
   listItems = [
@@ -33,6 +66,7 @@ export class AppComponent implements OnInit {
 
   onSubmit(fors: any) {
     this.submitted = true;
+    this.disabled = false;
   }
 
   constructor(private translate: TranslateService) {
@@ -74,6 +108,18 @@ export class AppComponent implements OnInit {
 
   changeValueHero() {
     this.model.power = 4;
+  }
+
+  dropdownChange(item: any) {
+    console.log(item);
+  }
+
+  public blurred() {
+    console.log('blurred');
+  }
+  changged(event: any) {
+    console.log('changed');
+    console.log(event);
   }
 }
 
