@@ -21,6 +21,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   placeHolder = '';
   name = '';
   _template: NgxCustomTemplateForDirective;
+  autocomplete: string;
 
   @Input()
   dataItems: any[];
@@ -73,6 +74,8 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
     if (!this.field) {
       this.field = this.el.nativeElement.getAttribute('formControlName');
     }
+
+    this.autocomplete = this.el.nativeElement.getAttribute('autocomplete');
 
     const attribs = getDecorators(this.model, this.field);
     if (attribs.find(x => x.key === 'DataType')) {

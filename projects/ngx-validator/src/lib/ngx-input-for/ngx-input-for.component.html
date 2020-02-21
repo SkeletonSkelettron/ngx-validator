@@ -13,6 +13,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
+            autocomplete="{{autocomplete}}"
             [disabled]="this.disabled"
             class="ngx-input-child"
             [readOnly]="readonly">
@@ -27,6 +28,7 @@
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
             [id]="field"
+            autocomplete="{{autocomplete}}"
             [disabled]="this.disabled"
             class="ngx-input-child-upload"
             [readOnly]="readonly">
@@ -44,6 +46,7 @@
             type="text"
             [placeholder]="placeHolder | translate"
             [(ngModel)]="value"
+            autocomplete="{{autocomplete}}"
             [id]="field"
             [disabled]="this.disabled"
             class="ngx-input-child"

@@ -38,8 +38,8 @@
                 [model]="model"
                 name="age"
                 (blur)="blurred()"
+                autocomplete="off"
                 [ngModelOptions]="{ updateOn: 'blur' }"
-                [disabled]="this.disabled"
                 class="form-control"
                 [(ngModel)]="model.age"></ngx-input-for>
             <ngx-validator-for
