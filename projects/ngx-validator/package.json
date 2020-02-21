@@ -3,8 +3,8 @@
   "name": "ngx-validator",
   "version": "2.3.0",
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
     "reflect-metadata": "^0.1.12",
     "@ngx-translate/core": "^10.0.2"
   },
