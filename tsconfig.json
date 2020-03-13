@@ -5,30 +5,25 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
     "lib": [
-      "es2017",
+      "es2018",
       "dom"
     ],
     "paths": {
       "ngx-validator": [
+        "dist/ngx-validator/ngx-validator",
         "dist/ngx-validator"
-      ],
-      "ngx-validator/*": [
-        "dist/ngx-validator/*"
-      ],
-      "ggg": [
-        "dist/ggg"
-      ],
-      "ggg/*": [
-        "dist/ggg/*"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
   }
 }

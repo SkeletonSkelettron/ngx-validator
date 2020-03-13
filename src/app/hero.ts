@@ -1,6 +1,9 @@
 
 import { DataTypeEnum, PropertyFunction } from 'projects/ngx-validator/src/lib/reflect-input.models';
-import { NoForm, ModelState, Name, Required, Placeholder, Contains, StringLength, Email, CreditCard, Pattern, DataType, MinValue, RequiredIf, Custom, ReadOnly } from 'projects/ngx-validator/src/public_api';
+import {
+  NoForm, ModelState, Name, Required, Contains, Placeholder, StringLength, Email, CreditCard, Pattern, DataType, MinValue,
+  RequiredIf, Custom, ReadOnly
+} from 'projects/ngx-validator/src/lib/reflector-functions';
 
 @ModelState
 export class Hero {
@@ -45,10 +48,13 @@ export class Hero {
   @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
   @Custom({
     value: 17, error: 'custom decorator error', customFunc: (value: number, hr: Hero) => {
+      let res: any;
       if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'kirk') {
-        return false;
+        res = false;
+      } else {
+        res = true;
       }
-      return true;
+      return res;
     }
   })
   age: number;

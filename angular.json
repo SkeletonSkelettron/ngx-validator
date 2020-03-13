@@ -1,28 +1,30 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
+  "version": 1, 
   "newProjectRoot": "projects",
   "projects": {
-    "reflect-app": {
+    "ngx-validator-nine": {
+      "projectType": "application",
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "projectType": "application",
       "prefix": "app",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/reflect-app",
+            "outputPath": "dist/ngx-validator-nine",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+              "src/styles.css",
               "projects/ngx-validator/src/lib/ngx-validator.css"
             ],
             "scripts": []
@@ -40,28 +42,39 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "reflect-app:build"
+            "browserTarget": "ngx-validator-nine:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "reflect-app:build:production"
+              "browserTarget": "ngx-validator-nine:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "reflect-app:build"
+            "browserTarget": "ngx-validator-nine:build"
           }
         },
         "test": {
@@ -69,63 +82,49 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ]
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
             ]
           }
-        }
-      }
-    },
-    "reflect-app-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "architect": {
+        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "reflect-app:serve"
+            "devServerTarget": "ngx-validator-nine:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "reflect-app:serve:production"
+              "devServerTarget": "ngx-validator-nine:serve:production"
             }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
     },
     "ngx-validator": {
+      "projectType": "library",
       "root": "projects/ngx-validator",
       "sourceRoot": "projects/ngx-validator/src",
-      "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
@@ -136,7 +135,7 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/ngx-validator/ng-package.prod.json"
+              "tsConfig": "projects/ngx-validator/tsconfig.lib.prod.json"
             }
           }
         },
@@ -161,42 +160,6 @@
           }
         }
       }
-    },
-    "ggg": {
-      "root": "projects/ggg",
-      "sourceRoot": "projects/ggg/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/ggg/tsconfig.lib.json",
-            "project": "projects/ggg/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ggg/src/test.ts",
-            "tsConfig": "projects/ggg/tsconfig.spec.json",
-            "karmaConfig": "projects/ggg/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ggg/tsconfig.lib.json",
-              "projects/ggg/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    }
-  },
-  "defaultProject": "reflect-app"
+    }},
+  "defaultProject": "ngx-validator-nine"
 }

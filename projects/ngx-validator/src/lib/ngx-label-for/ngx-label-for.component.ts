@@ -21,7 +21,9 @@ export class NgxLabelForComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.reflectValue = getDecorators(this.model, this.field).find(x => x.key === 'Name').value;
+      const decorators = getDecorators(this.model, this.field);
+      this.reflectValue = decorators.find(x => x.key === 'Name').value;
+      console.log(this.reflectValue);
     } catch {
       this.reflectValue = this.field;
     }

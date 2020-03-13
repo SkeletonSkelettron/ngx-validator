@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero';
-import { CssInputModel } from 'projects/ngx-validator/src/public_api';
 import { TranslateService } from '@ngx-translate/core';
+import { CssInputModel } from 'projects/ngx-validator/src/lib/reflect-input.models';
 
 @Component({
   selector: 'app-root',

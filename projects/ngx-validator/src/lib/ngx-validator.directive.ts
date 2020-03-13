@@ -11,7 +11,7 @@ import { validateControl } from './validate';
 })
 export class NgxValidatorDirective implements Validator {
 
-  validator: Function;
+  validator: (control: AbstractControl, model: any) => ValidationErrors;
 
   private dataModel: any;
 

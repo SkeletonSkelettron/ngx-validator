@@ -11,7 +11,9 @@ import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.direct
 })
 export class NgxFormForReactiveComponent implements OnInit {
 
+  // tslint:disable-next-line:variable-name
   _model: any;
+  // tslint:disable-next-line:variable-name
   _formGroup: FormGroup;
 
   @Input()
@@ -45,6 +47,7 @@ export class NgxFormForReactiveComponent implements OnInit {
   @Output()
   submitForm = new EventEmitter<any>();
 
+  // tslint:disable-next-line:variable-name
   _templates: NgxCustomTemplateForDirective[] = [];
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
@@ -69,7 +72,7 @@ export class NgxFormForReactiveComponent implements OnInit {
   }
 
   getTemplate(field: string): TemplateRef<any> {
-    return this._templates.find(x => x.ngxCustomTemplateFor === field)['templateRef'];
+    return this._templates.find(x => x.ngxCustomTemplateFor === field).templateRef;
   }
   submit() {
     this.submitForm.emit(this._model);

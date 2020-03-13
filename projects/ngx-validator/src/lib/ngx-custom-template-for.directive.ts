@@ -9,6 +9,6 @@ export class NgxCustomTemplateForDirective {
   @Input()
   ngxCustomTemplateFor: string;
 
-  constructor(private templateRef: TemplateRef<any>,
+  constructor(public templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef) { }
 }

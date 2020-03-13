@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveComponent } from './reactive/reactive.component';
 import { RouterModule, Routes } from '@angular/router';
-import { NgxValidatorModule } from 'projects/ngx-validator/src/public_api';
+import { NgxValidatorModule } from 'projects/ngx-validator/src/public-api';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');

@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList, HostBinding, Injector, AfterViewInit, forwardRef, HostListener, Renderer, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, TemplateRef, ContentChildren, QueryList,
+  HostBinding, Injector,  forwardRef, HostListener, Output, EventEmitter } from '@angular/core';
 import { NgModel, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControlName } from '@angular/forms';
 import { getDecorators } from '../reflector-functions';
 import { DataTypeEnum, ParamInputModel } from '../reflect-input.models';
@@ -20,6 +21,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   dataType: number;
   placeHolder = '';
   name = '';
+  // tslint:disable-next-line:variable-name
   _template: NgxCustomTemplateForDirective;
   autocomplete: string;
 
@@ -98,6 +100,6 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   }
 
   getTemplate(): TemplateRef<any> {
-    return this._template['templateRef'];
+    return this._template.templateRef;
   }
 }

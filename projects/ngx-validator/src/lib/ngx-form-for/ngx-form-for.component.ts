@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, TemplateRef, ViewChild, ContentChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CssInputModel } from '../../public_api';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
 import { getDecorators } from '../reflector-functions';
+import { CssInputModel } from '../reflect-input.models';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -11,6 +11,7 @@ import { getDecorators } from '../reflector-functions';
 })
 export class NgxFormForComponent implements OnInit {
 
+  // tslint:disable-next-line:variable-name
   _model: any;
 
   @Input()
@@ -46,6 +47,7 @@ export class NgxFormForComponent implements OnInit {
   @Output()
   submitForm = new EventEmitter<any>();
 
+  // tslint:disable-next-line:variable-name
   _templates: NgxCustomTemplateForDirective[] = [];
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })
@@ -70,7 +72,7 @@ export class NgxFormForComponent implements OnInit {
   }
 
   getTemplate(field: string): TemplateRef<any> {
-    return this._templates.find(x => x.ngxCustomTemplateFor === field)['templateRef'];
+    return this._templates.find(x => x.ngxCustomTemplateFor === field).templateRef;
   }
   submit() {
     this.submitForm.emit(this._model);

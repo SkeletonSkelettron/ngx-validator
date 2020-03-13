@@ -18,7 +18,7 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   DataTypeEnum = DataTypeEnum;
   placeHolder = '';
   name = '';
-  _template: NgxCustomTemplateForDirective;
+  template: NgxCustomTemplateForDirective;
   readonly = false;
 
   @HostBinding('class.ngx-dropdown')
@@ -49,7 +49,7 @@ export class NgxDropdownForComponent extends ElementBase<any> implements OnInit 
   set templates(value: QueryList<NgxCustomTemplateForDirective>) {
     if (this.model) {
       value.forEach((item) => {
-        this._template = item;
+        this.template = item;
       });
     }
   }
