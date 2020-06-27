@@ -11,3 +11,5 @@ export * from './lib/ngx-label-for/ngx-label-for.component';
 export * from './lib/ngx-validator-for/ngx-validator-for.component';
 export * from './lib/ngx-validator.directive';
 export * from './lib/ngx-validator.module';
+export * from './lib/reflector-functions';
+export * from './lib/reflect-input.models';

@@ -15,7 +15,7 @@
                 style="height: 100px; width: 100px"
                 [(ngModel)]="model.heroPic"></ngx-input-for>
             <hr> -->
-            <!-- <h3>ngx-validator</h3>
+            <h3>ngx-validator</h3>
             <ngx-label-for
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
@@ -28,7 +28,7 @@
                 [ngx-validator]="model">
             <ngx-validator-for
                 [errors]="heroForm.controls['heroName']?.errors"
-                class="text-danger"></ngx-validator-for> -->
+                class="text-danger"></ngx-validator-for>
             <hr>
             <h3>ngx-input-for</h3>
             <ngx-label-for
@@ -39,7 +39,6 @@
                 name="age"
                 (blur)="blurred()"
                 autocomplete="off"
-                [ngModelOptions]="{ updateOn: 'blur' }"
                 class="form-control"
                 [(ngModel)]="model.age"></ngx-input-for>
             <ngx-validator-for

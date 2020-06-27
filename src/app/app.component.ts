@@ -87,7 +87,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.translate.setDefaultLang('ka-ge');
-    this.model.age = 33;
+    // this.model.age = 33;
     // this.model.power = 2;
     this.model.heroPic = 'https://avatars0.githubusercontent.com/u/26940527?s=400&u=b891f4f04f231892ccdc0bf874c00ded0582e7dc&v=4';
     console.log(this.model.IsValid());

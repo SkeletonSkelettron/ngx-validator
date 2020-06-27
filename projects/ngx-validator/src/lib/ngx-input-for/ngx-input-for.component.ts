@@ -29,7 +29,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   dataItems: any[];
 
   @Output()
-  blur: EventEmitter<any> = new EventEmitter();
+  blurEvent: EventEmitter<any> = new EventEmitter();
 
   readonly = false;
   @Input()
@@ -45,7 +45,7 @@ export class NgxInputForComponent extends ElementBase<any> implements OnInit {
   ngxInput = true;
 
   @HostListener('focusout') onFocusout() {
-    this.blur.emit();
+    this.blurEvent.emit();
   }
 
   @ContentChildren(NgxCustomTemplateForDirective, { descendants: false })

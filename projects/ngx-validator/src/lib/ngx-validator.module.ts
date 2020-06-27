@@ -9,6 +9,7 @@ import { NgxValidatorDirective } from './ngx-validator.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directive';
 
 
 
@@ -26,7 +27,9 @@ import { TranslateModule } from '@ngx-translate/core';
     NgxInputForComponent,
     NgxFormForReactiveComponent,
     NgxFormForComponent,
-    NgxDropdownForComponent],
+    NgxDropdownForComponent,
+    NgxCustomTemplateForDirective
+  ],
   exports: [
     NgxValidatorDirective,
     NgxValidatorForComponent,
@@ -34,7 +37,8 @@ import { TranslateModule } from '@ngx-translate/core';
     NgxInputForComponent,
     NgxFormForReactiveComponent,
     NgxFormForComponent,
-    NgxDropdownForComponent
+    NgxDropdownForComponent,
+    NgxCustomTemplateForDirective
   ]
 })
 export class NgxValidatorModule { }

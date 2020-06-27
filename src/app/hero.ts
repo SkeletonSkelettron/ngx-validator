@@ -45,8 +45,9 @@ export class Hero {
   @Name('Hero age')
   @MinValue({ value: 21, error: 'Value should be more than 21' })
   @DataType({ value: DataTypeEnum.Number, error: 'Value should be typeof integer' })
-  @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
-  @Custom({
+  @Required('Age is required')
+  // @RequiredIf({ field: 'heroName', value: 'kirk', error: 'if heros name is kirk, then age is required' })
+  /*@Custom({
     value: 17, error: 'custom decorator error', customFunc: (value: number, hr: Hero) => {
       let res: any;
       if (hr.email === 'pref.ge1@gmail.com' && hr.heroName === 'kirk') {
@@ -56,7 +57,7 @@ export class Hero {
       }
       return res;
     }
-  })
+  })*/
   age: number;
 
   @Required('Value is required')

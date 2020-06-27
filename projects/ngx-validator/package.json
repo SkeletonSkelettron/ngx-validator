@@ -1,9 +1,28 @@
 {
+  "license": "MIT",
   "name": "ngx-validator",
-  "version": "0.0.1",
+  "version": "2.4.3",
   "peerDependencies": {
     "@angular/common": "^9.0.6",
     "@angular/core": "^9.0.6",
-    "tslib": "^1.10.0"
+    "reflect-metadata": "^0.1.12",
+    "@ngx-translate/core": "^10.0.2"
+  },
+  "homepage": "https://github.com/SkeletonSkelettron",
+  "keywords": [
+    "angular",
+    "validation",
+    "angular validator",
+    "angular custom validator",
+    "reflection",
+    "razor like functionality",
+    "property decorators",
+    "data anotations",
+    "html helpers",
+    "form generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SkeletonSkelettron/ngx-validator.git"
   }
 }

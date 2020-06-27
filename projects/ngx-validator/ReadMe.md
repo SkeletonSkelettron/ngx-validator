@@ -1,24 +1,38 @@
-# NgxValidator
+# Custom validator and form template generator for angular template driven and reactive forms
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+It is an angular library which has custom input and validation component, custom validation directive and form template generator, which work on data based on typesript class property decorators.  
+Custom validation directive replaces html input validators like `required`, `pattern`, `email`, `min`, etc and adds many others.  
+It is analog of data annotations in C#. This library depends on @ngx-translate/core for translations support.  
+This  library contains 5 angular components - `<ngx-label-for>`, `<ngx-validator-for>`, `<ngx-input-for>`, `<ngx-dropdown-for>`, `<ngx-form-for>` ,`<ngx-form-for-reactive>`  and a directive `ngx-validator`.
 
-## Code scaffolding
+The library has following decorators:
 
-Run `ng generate component component-name --project ngx-validator` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-validator`.
-> Note: Don't forget to add `--project ngx-validator` or else it will be added to the default project in your `angular.json` file. 
+```javascript
+// Class property decorators
+1. DataType(param: { value: DataTypeEnum, error: string })
+2. CreditCard(param: { error: string })
+3. Contains(param: { value: string, error: string })
+4. Compare(param: { field: string, error: string })
+5. Name(param: string)
+6. Required(param:  string)
+7. RequiredIf(param: { field: string, value: any, error: string })
+8. Pattern(param: { value: RegExp, error: string })
+9. MinValue(param: { value: number | Date, error: string })
+10. MaxValue(param: { value: number | Date, error: string })
+11. NotContains(param: { value: string, error: string })
+12. StringLength(param: { min?: number, max?: number, error: string })
+13. Email(param: string)
+14. Range(param: {min?: number | Date, max?: number | Date, error: string})
+15. Custom(param: { value?: any, error: string, customFunc: Function })
+16. NoForm()
+17. ReadOnly()
+18. Placeholder(param: string)
 
-## Build
+// Class decorator
+19. ModelState()
+```
 
-Run `ng build ngx-validator` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Documentation
 
-## Publishing
-
-After building your library with `ng build ngx-validator`, go to the dist folder `cd dist/ngx-validator` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-validator` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+For documentation please check project's wiki page
+[**ngx-validator wiki**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)

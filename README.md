@@ -1,27 +1,89 @@
-# NgxValidatorNine
+# Documentation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
+For detailed documentation, please visit projet's wiki [**page**](https://github.com/SkeletonSkelettron/ngx-validator/wiki)  
+Live Demo [**page**](https://stackblitz.com/edit/angular-bn9mfx)  
+# Changes
 
-## Development server
+## version 2.4.0
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* updated to angular 9 
 
-## Code scaffolding
+## version 2.3.0
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* added `<ngx-dropdown-for>` component
+* bugfixes  
+* added `<ngx-input-for>` (blur) event
 
-## Build
+## version 2.2.2
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* bugfixes  
+* added some styling. Now you should include 'node_modules/ngx-validator/lib/ngx-validator.css'
 
-## Running unit tests
+## version 2.2.0
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Added support for ngModelOptions "{ updateOn: 'blur' }" in `<ngx-input-for>`  
 
-## Running end-to-end tests
+## version 2.1.1
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Removed console.log :|  
 
-## Further help
+## version 2.1.0
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* **Breaking change**: removed [labelClass], [inputClass] and [errorClass] input property from `<ngx-label-for>`, `<ngx-input-for>` and `<ngx-validator-for>` components . Now you can assign any class by `class="form control"`  
+* added defaul css classes to `<ngx-label-for>` ('ngx-label' and 'ngx-label-child'), `<ngx-input-for>`('ngx-input' and 'ngx-input-child') and `<ngx-validator-for>` ('ngx-validator' and 'ngx-validator-child').  You can use them for additional styling  
+
+## version 2.0.1
+
+* **Breaking change**: changed IsValid and ModelErrors type from `Function` to `PropertyFunction`.
+
+## version 2.0.0
+
+* Added support for reactive forms.  
+* Added experimental ModelState decorator for class  
+* Removed need for all property initialization through the class constructor
+* Some refactoring  
+
+## version 1.2.4
+
+* updated readme. New documentation for library
+
+## version 1.2.3
+
+* bug fix in Required and RequiredIf.
+
+## version 1.2.2
+
+* bug fix
+
+## version 1.2.1
+
+* added support for custom template in ngx-input-for
+
+```html
+            <ngx-input-for
+                [model]="model"
+                name="power"
+                [(ngModel)]="model.power">
+                <ng-template
+                    ngxCustomTemplateFor
+                    let-model>
+                    <kendo-dropdownlist
+                        [data]="listItems"
+                        [textField]="'text'"
+                        [valueField]="'value'"
+                        name="power"
+                        class="form-control"
+                        [(ngModel)]="model.power"
+                        [valuePrimitive]="true">
+                    </kendo-dropdownlist>
+                </ng-template>
+            </ngx-input-for>
+```
+
+## version 1.1.1
+
+* fixed placeholder translation error
+
+## version 1.1.0
+
+* added  RequiredIf validation attribute

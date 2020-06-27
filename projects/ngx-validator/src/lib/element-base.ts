@@ -9,9 +9,7 @@ export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     @Input()
     model: any;
 
-    validator: Function;
-
-    r: Function;
+    validator: (control: AbstractControl, dataModel: any) => ValidationErrors;
 
     constructor(protected injector: Injector) {
         super(injector);
