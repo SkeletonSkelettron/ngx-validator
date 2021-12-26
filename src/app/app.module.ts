@@ -9,6 +9,8 @@ import { HttpClient, HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common
 import { ReactiveComponent } from './reactive/reactive.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxValidatorModule } from 'projects/ngx-validator/src/public-api';
+import { NgxModalrModule, NgxModalrService } from 'projects/ngx-modalr/src/public-api';
+import { DummyComponentComponent } from './components/dummy-component/dummy-component.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -21,7 +23,8 @@ export const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    DummyComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NgxValidatorModule,
     HttpClientModule,
+    NgxModalrModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -39,6 +43,10 @@ export const appRoutes: Routes = [
       }
     }),
   ],
+  entryComponents: [
+    DummyComponentComponent
+  ],
+  providers: [NgxModalrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

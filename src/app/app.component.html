@@ -1,5 +1,5 @@
-<div>
-    <h1>Hero Form</h1>
+<div style="padding: 10px 10px 10px 10px;">
+    <h1>Person Form</h1>
     <form
         (ngSubmit)="onSubmit(heroForm)"
         #heroForm="ngForm"
@@ -20,14 +20,14 @@
                 [model]="model"
                 [field]="'heroName'"></ngx-label-for>
             <input
-                name="heroName"
-                id="heroName"
-                [(ngModel)]="model.heroName"
+                name="personName"
+                id="personName"
+                [(ngModel)]="model.personName"
                 class="form-control"
                 [ngModelOptions]="{ updateOn: 'blur' }"
                 [ngx-validator]="model">
             <ngx-validator-for
-                [errors]="heroForm.controls['heroName']?.errors"
+                [errors]="heroForm.controls['personName']?.errors"
                 class="text-danger"></ngx-validator-for>
             <hr>
             <h3>ngx-input-for</h3>
@@ -44,7 +44,9 @@
             <ngx-validator-for
                 [errors]="heroForm.controls['age']?.errors"
                 class="text-danger"></ngx-validator-for>
-                <input type="text" value="sdfsdf"/>
+            <input
+                type="text"
+                value="sdfsdf">
             <hr>
             <h3>ngx-input-for</h3>
             <!-- <ngx-label-for
@@ -62,7 +64,7 @@
                     value="undefined"
                     disabled
                     class="ngx-dropdown-child-default"
-                   selected
+                    selected
                     hidden>
                     choose...
                 </option>
@@ -124,6 +126,14 @@
                 [errors]="heroForm.controls['power']?.errors"
                 class="text-danger"></ngx-validator-for> -->
         </div>
+
+        <button
+            type="button"
+            (click)="call()"
+            class="btn btn-success">
+            Call takePassport
+        </button>
+        &nbsp;
         <button
             type="submit"
             class="btn btn-success">

@@ -1,0 +1,50 @@
+<div
+    class="modal modal-auto-scroll fade show"
+    id="exampleModal-info"
+    tabindex="-1"
+    role="dialog"
+    style="display: block;">
+    <div
+        class="modal-dialog modal-auto-scroll">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{('Title') | translate}}</h5>
+                <button
+                    type="button"
+                    class="close"
+                    (click)="result(null)">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div
+                        class="col"
+                        innerHTML="{{'message' | translate}}"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div
+                    class="row"
+                    >
+                    <div class="col-auto modal-footer-col-prev">
+                        <button
+                            type="button"
+                            class="btn"
+                            (click)="result(null)">
+                            {{( 'shared.buttons.no' ) | translate}}
+                        </button>
+                    </div>
+                    <div class="col-auto modal-footer-col-next">
+                        <button
+                            type="button"
+                            class="btn"
+                            (click)="result(this.editorItem)">
+                            {{( 'shared.buttons.yes') | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,42 +16,32 @@ function isEmpty(obj) {
 export function ModelState<T extends { new(...args: any[]): {} }>(constructor: T) {
 
     return class extends constructor {
+
+        modelErrors: { [key: string]: { [key: string]: any } };
+
         /**
          * Returns model validation state
          */
-        IsValid() {
-            for (const item of Reflect.getMetadataKeys(this)) {
-                const attribs = getDecorators(this, item);
-                for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
-                    const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
-                    if (messg) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-        /**
-         * Placeholder(string)
-         * Validate: function
-         */
-        ModelErrors(): { [key: string]: { [key: string]: any } } {
+        Validate() {
             const errs: { [key: string]: any } = {};
+            let iVl = true;
             let tmp: { [key: string]: any } = {};
             for (const item of Reflect.getMetadataKeys(this)) {
                 const attribs = getDecorators(this, item);
                 for (const attrib of attribs.filter(x => x.key !== 'ReadOnly' && x.key !== 'NoForm')) {
                     const messg = ngxValidate(attrib.key, attrib.value, this[item], this);
                     if (messg) {
+                        iVl = false;
                         tmp[attrib.key] = messg;
                     }
+                    if (!isEmpty(tmp)) {
+                        errs[item] = tmp;
+                    }
+                    tmp = {};
                 }
-                if (!isEmpty(tmp)) {
-                    errs[item] = tmp;
-                }
-                tmp = {};
             }
-            return errs;
+            this.modelErrors = errs;
+            return iVl;
         }
     };
 }

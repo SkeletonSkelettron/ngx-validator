@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from './hero';
+import { Person } from './person';
 import { TranslateService } from '@ngx-translate/core';
 import { CssInputModel } from 'projects/ngx-validator/src/lib/reflect-input.models';
+import { NgxModalrService, StandardMessages } from 'projects/ngx-modalr/src/public-api';
+import { DummyComponentComponent } from './components/dummy-component/dummy-component.component';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +20,13 @@ export class AppComponent implements OnInit {
 
   disabled = true;
 
-  heros: Hero[] = [{
+  heros: Person[] = [new Person({
     age: 10,
     alterEgo: '0',
     birthdate: null,
     creditCard: 'fsdsdfsdfsdfsdf',
     email: 'a@a.com',
-    heroName: 'Kurt',
+    personName: 'Kurt',
     bankAccount: '17',
     id: 0,
     mobile: '599985234',
@@ -32,14 +34,14 @@ export class AppComponent implements OnInit {
     power: 0,
     IsValid: null,
     ModelErrors: null,
-  },
-  {
+  }),
+  new Person({
     age: 10,
     alterEgo: '0',
     birthdate: null,
     creditCard: 'fsdsdfsdfsdfsdf',
     email: 'b@b.com',
-    heroName: 'James',
+    personName: 'James',
     bankAccount: '17',
     id: 1,
     mobile: '599985234',
@@ -47,9 +49,9 @@ export class AppComponent implements OnInit {
     power: 0,
     IsValid: null,
     ModelErrors: null,
-  }];
+  })];
 
-  model = new Hero();
+  model: Person;
 
   listItems = [
     { text: 'First', value: 1 },
@@ -69,7 +71,7 @@ export class AppComponent implements OnInit {
     this.disabled = false;
   }
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private modal: NgxModalrService) {
 
   }
   // TODO: Remove this when we're done
@@ -79,20 +81,22 @@ export class AppComponent implements OnInit {
     // this.model = new Hero();
   }
 
-  submitValue(value: Hero) {
+  submitValue(value: Person) {
+    Object.seal(value);
     console.log(value);
   }
   //////// NOT SHOWN IN DOCS ////////
 
   ngOnInit() {
 
+    this.model = new Person({});
+    
     this.translate.setDefaultLang('ka-ge');
     // this.model.age = 33;
     // this.model.power = 2;
     this.model.heroPic = 'https://avatars0.githubusercontent.com/u/26940527?s=400&u=b891f4f04f231892ccdc0bf874c00ded0582e7dc&v=4';
-    console.log(this.model.IsValid());
-    console.log(this.model.ModelErrors());
-    const err = this.model.ModelErrors();
+    console.log((this.model).Validate());
+    console.log(this.model['modelErrors'])
     // const g = ngxValidate('MinValue', { value: 500, error: 'minimum age should be {0}' }, this.model.age);
     // console.log(g);
     this.classesForForm = {
@@ -100,6 +104,9 @@ export class AppComponent implements OnInit {
       input: 'form-control',
       error: 'text-danger'
     };
+    
+    //this.model.getage();
+    const metadata = Reflect.getMetadataKeys(this.model);
   }
 
   changeVal() {
@@ -108,6 +115,8 @@ export class AppComponent implements OnInit {
 
   changeValueHero() {
     this.model.power = 4;
+    // this.modal.showMessage(StandardMessages.Error, 'შეტყობინება');
+    this.modal.showEditor(DummyComponentComponent, '', null);
   }
 
   dropdownChange(item: any) {
@@ -121,10 +130,18 @@ export class AppComponent implements OnInit {
     console.log('changed');
     console.log(event);
   }
+
+  call() {
+    this.model.takePassport('justice house', 'usual');
+  }
 }
+
 
 
 class A {
   private a1;
   private a2;
 }
+
+
+ 

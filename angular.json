@@ -160,6 +160,46 @@
           }
         }
       }
+    },
+    "ngx-modalr": {
+      "projectType": "library",
+      "root": "projects/ngx-modalr",
+      "sourceRoot": "projects/ngx-modalr/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-modalr/tsconfig.lib.json",
+            "project": "projects/ngx-modalr/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-modalr/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-modalr/src/test.ts",
+            "tsConfig": "projects/ngx-modalr/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-modalr/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-modalr/tsconfig.lib.json",
+              "projects/ngx-modalr/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "ngx-validator-nine"
 }

@@ -1,8 +1,11 @@
-import { Injector, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { AbstractControl, NgModel, ValidationErrors } from '@angular/forms';
 import { ValueAccessorBase } from './value-accessor';
 import { validateControl } from './validate';
-
+ 
+@Component({
+    template: ''
+  })
 export abstract class ElementBase<T> extends ValueAccessorBase<T> {
     protected abstract ngModel: NgModel;
 

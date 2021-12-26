@@ -1,0 +1,63 @@
+﻿<div
+    class="modal modal-auto-scroll fade show"
+    id="exampleModal-info"
+    tabindex="-1"
+    role="dialog"
+    style="display: block;">
+    <div
+        class="modal-dialog modal-auto-scroll"
+        [ngClass]="modalType">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{(title || 'Title') | translate}}</h5>
+                <button
+                    type="button"
+                    class="close"
+                    (click)="NoClick()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div
+                        class="col"
+                        innerHTML="{{message | translate}}"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div
+                    class="row"
+                    *ngIf="dialogStyle===_dialogStyle.Dialog">
+                    <div class="col-auto modal-footer-col-prev">
+                        <button
+                            type="button"
+                            class="btn"
+                            (click)="NoClick()">
+                            {{(noText || 'shared.buttons.no' ) | translate}}
+                        </button>
+                    </div>
+                    <div class="col-auto modal-footer-col-next">
+                        <button
+                            type="button"
+                            class="btn"
+                            (click)="YesClick()">
+                            {{(yesText || 'shared.buttons.yes') | translate}}
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="row"
+                    *ngIf="dialogStyle===_dialogStyle.Message">
+                    <div class="col-auto modal-footer-col-prev">
+                        <button
+                            type="button"
+                            class="btn"
+                            (click)="NoClick()">
+                            დახურვა
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

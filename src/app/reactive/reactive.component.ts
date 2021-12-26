@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Hero } from '../hero';
+import { Person } from '../person';
 
 @Component({
   selector: 'app-reactive',
@@ -9,7 +9,7 @@ import { Hero } from '../hero';
 })
 export class ReactiveComponent implements OnInit {
 
-  model: Hero;
+  model: Person;
 
   heroForm = this.fb.group({
     heroName: [''],
@@ -20,13 +20,13 @@ export class ReactiveComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.model = new Hero();
+    this.model = new Person({});
     this.model.age = 39;
-    this.model.heroName = 'ioa';
+    this.model.personName = 'ioa';
     this.model.email = 'pref.ge1@gmail.com';
 
     this.heroForm.setValue({
-      heroName: this.model.heroName,
+      heroName: this.model.personName,
       age: this.model.age,
       email: this.model.email
     });

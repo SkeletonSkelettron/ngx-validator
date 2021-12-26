@@ -19,6 +19,10 @@
       "ngx-validator": [
         "dist/ngx-validator/ngx-validator",
         "dist/ngx-validator"
+      ],
+      "ngx-modalr": [
+        "dist/ngx-modalr/ngx-modalr",
+        "dist/ngx-modalr"
       ]
     }
   },
