@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ContentChildren, QueryList, TemplateRef } from '@angular/core';
-import { NgForm, FormGroup } from '@angular/forms';
+import { NgForm, UntypedFormGroup } from '@angular/forms';
 import { getDecorators } from '../reflector-functions';
 import { CssInputModel } from '../reflect-input.models';
 import { NgxCustomTemplateForDirective } from '../ngx-custom-template-for.directive';
@@ -14,7 +14,7 @@ export class NgxFormForReactiveComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   _model: any;
   // tslint:disable-next-line:variable-name
-  _formGroup: FormGroup;
+  _formGroup: UntypedFormGroup;
 
   @Input()
   cssClasses: CssInputModel;
@@ -26,7 +26,7 @@ export class NgxFormForReactiveComponent implements OnInit {
 
 
   @Input()
-  set formGroup(value: FormGroup) {
+  set formGroup(value: UntypedFormGroup) {
     this._formGroup = value;
     for (const item of Object.keys(this._model)) {
       const attribs = getDecorators(this._model, item);
