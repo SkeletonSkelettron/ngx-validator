@@ -13,3 +13,4 @@ export * from './lib/ngx-validator.directive';
 export * from './lib/ngx-validator.module';
 export * from './lib/reflector-functions';
 export * from './lib/reflect-input.models';
+export * from './lib/ngx-custom-template-for.directive';

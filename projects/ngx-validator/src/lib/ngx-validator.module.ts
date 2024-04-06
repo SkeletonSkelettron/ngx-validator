@@ -6,10 +6,10 @@ import { NgxFormForReactiveComponent } from './ngx-form-for-reactive/ngx-form-fo
 import { NgxFormForComponent } from './ngx-form-for/ngx-form-for.component';
 import { NgxDropdownForComponent } from './ngx-dropdown-for/ngx-dropdown-for.component';
 import { NgxValidatorDirective } from './ngx-validator.directive';
+import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directive';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgxCustomTemplateForDirective } from './ngx-custom-template-for.directive';
 
 
 
